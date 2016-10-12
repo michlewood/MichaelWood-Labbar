@@ -83,6 +83,8 @@ namespace Labb_2
                 Console.WriteLine("Listan är tom!");
                 return;
             }
+
+            Console.WriteLine("Animals: ");
             foreach (var animal in Runtime.animalList)
             {
                 i++;
@@ -188,6 +190,8 @@ namespace Labb_2
                 Console.WriteLine("Listan är tom!");
                 return;
             }
+
+            Console.WriteLine("Mammals: ");
             foreach (var mammal in Runtime.mammalList)
             {
                 i++;
@@ -260,6 +264,8 @@ namespace Labb_2
                 Console.WriteLine("Listan är tom!");
                 return;
             }
+
+            Console.WriteLine("Dogs: ");
             foreach (var dog in Runtime.dogList)
             {
                 i++;
@@ -408,6 +414,8 @@ namespace Labb_2
                 Console.WriteLine("Listan är tom!");
                 return;
             }
+
+            Console.WriteLine("Reptiles: ");
             foreach (var reptile in Runtime.reptileList)
             {
                 i++;
@@ -480,6 +488,8 @@ namespace Labb_2
                 Console.WriteLine("Listan är tom!");
                 return;
             }
+
+            Console.WriteLine("Snakes: ");
             foreach (var snake in Runtime.snakeList)
             {
                 i++;
@@ -610,6 +620,8 @@ namespace Labb_2
                 Console.WriteLine("Listan är tom!");
                 return;
             }
+
+            Console.WriteLine("Birds: ");
             foreach (var bird in Runtime.birdList)
             {
                 i++;
@@ -682,6 +694,8 @@ namespace Labb_2
                 Console.WriteLine("Listan är tom!");
                 return;
             }
+
+            Console.WriteLine("Spearows: ");
             foreach (var spearow in Runtime.spearowList)
             {
                 i++;
