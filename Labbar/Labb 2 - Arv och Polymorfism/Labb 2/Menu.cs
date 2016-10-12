@@ -11,12 +11,7 @@ namespace Labb_2
             {
                 Console.Clear();
 
-                Console.WriteLine("Choose one: ");
-                Console.WriteLine("1. All animals");
-                Console.WriteLine("2. Mammals");
-                Console.WriteLine("3. Reptiles");
-                Console.WriteLine("4. Birds");
-                Console.WriteLine("5. Exit");
+                MenuGUI.MainMenuGUI();
 
                 var input = Console.ReadKey(true).Key;
 
@@ -55,10 +50,7 @@ namespace Labb_2
                     Console.Clear();
                     loop = false;
 
-                    Console.WriteLine("Choose one: ");
-                    Console.WriteLine("1. Show info");
-                    Console.WriteLine("2. Remove");
-                    Console.WriteLine("3. Return");
+                    MenuGUI.FamilyMenuGUI();
 
                     var input = Console.ReadKey(true).Key;
 
@@ -84,6 +76,7 @@ namespace Labb_2
 
         public void ShowAnimalList()
         {
+            Console.Clear();
             int i = 0;
             if (Runtime.animalList.Count == 0)
             {
@@ -164,10 +157,7 @@ namespace Labb_2
             {
                 Console.Clear();
 
-                Console.WriteLine("Choose one: ");
-                Console.WriteLine("1. Show info");
-                Console.WriteLine("2. Remove");
-                Console.WriteLine("3. Return");
+                MenuGUI.FamilyMenuGUI();
 
                 var input = Console.ReadKey(true).Key;
 
@@ -191,6 +181,7 @@ namespace Labb_2
 
         private void ShowMammalList()
         {
+            Console.Clear();
             int i = 0;
             if (Runtime.mammalList.Count == 0)
             {
@@ -208,7 +199,7 @@ namespace Labb_2
         {
             ShowMammalList();
 
-            if (Runtime.animalList.Count == 0)
+            if (Runtime.mammalList.Count == 0)
             {
                 Console.ReadLine();
                 return;
@@ -219,10 +210,10 @@ namespace Labb_2
             int animalToRemove;
 
             bool validInput = int.TryParse(Console.ReadLine(), out animalToRemove);
-            if (!validInput || animalToRemove > Runtime.animalList.Count || animalToRemove < 1) return;
+            if (!validInput || animalToRemove > Runtime.mammalList.Count || animalToRemove < 1) return;
 
 
-            AnimalRemoval(Runtime.animalList[animalToRemove - 1]);
+            AnimalRemoval(Runtime.mammalList[animalToRemove - 1]);
 
             Console.WriteLine("Mammal removed!");
             Console.ReadLine();
@@ -235,11 +226,7 @@ namespace Labb_2
             {
                 Console.Clear();
 
-                Console.WriteLine("Choose one: ");
-                Console.WriteLine("1. Show info");
-                Console.WriteLine("2. Add new");
-                Console.WriteLine("3. Remove");
-                Console.WriteLine("4. Return");
+                MenuGUI.SpeciesMenuGUI();
 
                 var input = Console.ReadKey(true).Key;
 
@@ -266,6 +253,7 @@ namespace Labb_2
 
         private void ShowDogList()
         {
+            Console.Clear();
             int i = 0;
             if (Runtime.dogList.Count == 0)
             {
@@ -329,7 +317,7 @@ namespace Labb_2
         {
             ShowDogList();
 
-            if (Runtime.animalList.Count == 0)
+            if (Runtime.dogList.Count == 0)
             {
                 Console.ReadLine();
                 return;
@@ -340,10 +328,10 @@ namespace Labb_2
             int animalToRemove;
 
             bool validInput = int.TryParse(Console.ReadLine(), out animalToRemove);
-            if (!validInput || animalToRemove > Runtime.animalList.Count || animalToRemove < 1) return;
+            if (!validInput || animalToRemove > Runtime.dogList.Count || animalToRemove < 1) return;
 
 
-            AnimalRemoval(Runtime.animalList[animalToRemove - 1]);
+            AnimalRemoval(Runtime.dogList[animalToRemove - 1]);
 
             Console.WriteLine("Dog removed!");
             Console.ReadLine();
@@ -389,10 +377,7 @@ namespace Labb_2
             {
                 Console.Clear();
 
-                Console.WriteLine("Choose one: ");
-                Console.WriteLine("1. Show info");
-                Console.WriteLine("2. Remove");
-                Console.WriteLine("3. Return");
+                MenuGUI.FamilyMenuGUI();
 
                 var input = Console.ReadKey(true).Key;
 
@@ -400,6 +385,7 @@ namespace Labb_2
                 {
                     case ConsoleKey.D1:
                         ShowReptileList();
+                        Console.ReadLine();
                         break;
                     case ConsoleKey.D2:
                         RemoveReptileFromLists();
@@ -415,6 +401,7 @@ namespace Labb_2
 
         private void ShowReptileList()
         {
+            Console.Clear();
             int i = 0;
             if (Runtime.reptileList.Count == 0)
             {
@@ -432,7 +419,7 @@ namespace Labb_2
         {
             ShowReptileList();
 
-            if (Runtime.animalList.Count == 0)
+            if (Runtime.reptileList.Count == 0)
             {
                 Console.ReadLine();
                 return;
@@ -443,10 +430,10 @@ namespace Labb_2
             int animalToRemove;
 
             bool validInput = int.TryParse(Console.ReadLine(), out animalToRemove);
-            if (!validInput || animalToRemove > Runtime.animalList.Count || animalToRemove < 1) return;
+            if (!validInput || animalToRemove > Runtime.reptileList.Count || animalToRemove < 1) return;
 
 
-            AnimalRemoval(Runtime.animalList[animalToRemove - 1]);
+            AnimalRemoval(Runtime.reptileList[animalToRemove - 1]);
 
             Console.WriteLine("Reptile removed!");
             Console.ReadLine();
@@ -459,11 +446,7 @@ namespace Labb_2
             {
                 Console.Clear();
 
-                Console.WriteLine("Choose one: ");
-                Console.WriteLine("1. Show info");
-                Console.WriteLine("2. Add new");
-                Console.WriteLine("3. Remove");
-                Console.WriteLine("4. Return");
+                MenuGUI.SpeciesMenuGUI();
 
                 var input = Console.ReadKey(true).Key;
 
@@ -490,6 +473,7 @@ namespace Labb_2
 
         private void ShowSnakeList()
         {
+            Console.Clear();
             int i = 0;
             if (Runtime.snakeList.Count == 0)
             {
@@ -535,7 +519,7 @@ namespace Labb_2
         {
             ShowSnakeList();
 
-            if (Runtime.animalList.Count == 0)
+            if (Runtime.reptileList.Count == 0)
             {
                 Console.ReadLine();
                 return;
@@ -546,10 +530,10 @@ namespace Labb_2
             int animalToRemove;
 
             bool validInput = int.TryParse(Console.ReadLine(), out animalToRemove);
-            if (!validInput || animalToRemove > Runtime.animalList.Count || animalToRemove < 1) return;
+            if (!validInput || animalToRemove > Runtime.reptileList.Count || animalToRemove < 1) return;
 
 
-            AnimalRemoval(Runtime.animalList[animalToRemove - 1]);
+            AnimalRemoval(Runtime.reptileList[animalToRemove - 1]);
 
             Console.WriteLine("Snake removed!");
             Console.ReadLine();
@@ -595,10 +579,7 @@ namespace Labb_2
             {
                 Console.Clear();
 
-                Console.WriteLine("Choose one: ");
-                Console.WriteLine("1. Show info");
-                Console.WriteLine("2. Remove");
-                Console.WriteLine("3. Return");
+                MenuGUI.FamilyMenuGUI();
 
                 var input = Console.ReadKey(true).Key;
 
@@ -606,6 +587,7 @@ namespace Labb_2
                 {
                     case ConsoleKey.D1:
                         ShowBirdList();
+                        Console.ReadLine();
                         break;
                     case ConsoleKey.D2:
                         RemoveBirdFromLists();
@@ -621,6 +603,7 @@ namespace Labb_2
 
         private void ShowBirdList()
         {
+            Console.Clear();
             int i = 0;
             if (Runtime.birdList.Count == 0)
             {
@@ -638,7 +621,7 @@ namespace Labb_2
         {
             ShowBirdList();
 
-            if (Runtime.animalList.Count == 0)
+            if (Runtime.birdList.Count == 0)
             {
                 Console.ReadLine();
                 return;
@@ -649,10 +632,10 @@ namespace Labb_2
             int animalToRemove;
 
             bool validInput = int.TryParse(Console.ReadLine(), out animalToRemove);
-            if (!validInput || animalToRemove > Runtime.animalList.Count || animalToRemove < 1) return;
+            if (!validInput || animalToRemove > Runtime.birdList.Count || animalToRemove < 1) return;
 
 
-            AnimalRemoval(Runtime.animalList[animalToRemove - 1]);
+            AnimalRemoval(Runtime.birdList[animalToRemove - 1]);
 
             Console.WriteLine("Bird removed!");
             Console.ReadLine();
@@ -665,11 +648,7 @@ namespace Labb_2
             {
                 Console.Clear();
 
-                Console.WriteLine("Choose one: ");
-                Console.WriteLine("1. Show info");
-                Console.WriteLine("2. Add new");
-                Console.WriteLine("3. Remove");
-                Console.WriteLine("4. Return");
+                MenuGUI.SpeciesMenuGUI();
 
                 var input = Console.ReadKey(true).Key;
 
@@ -696,6 +675,7 @@ namespace Labb_2
 
         private void ShowSpearowList()
         {
+            Console.Clear();
             int i = 0;
             if (Runtime.spearowList.Count == 0)
             {
@@ -741,7 +721,7 @@ namespace Labb_2
         {
             ShowSpearowList();
 
-            if (Runtime.animalList.Count == 0)
+            if (Runtime.spearowList.Count == 0)
             {
                 Console.ReadLine();
                 return;
@@ -752,10 +732,10 @@ namespace Labb_2
             int animalToRemove;
 
             bool validInput = int.TryParse(Console.ReadLine(), out animalToRemove);
-            if (!validInput || animalToRemove > Runtime.animalList.Count || animalToRemove < 1) return;
+            if (!validInput || animalToRemove > Runtime.spearowList.Count || animalToRemove < 1) return;
 
 
-            AnimalRemoval(Runtime.animalList[animalToRemove - 1]);
+            AnimalRemoval(Runtime.spearowList[animalToRemove - 1]);
 
             Console.WriteLine("Spearow removed!");
             Console.ReadLine();
@@ -788,6 +768,7 @@ namespace Labb_2
 
             if (animal.GetType().BaseType.ToString() == "Labb_2.Bird")
             {
+                Console.ReadLine();
                 Runtime.birdList.Remove((Bird)animal);
                 if (animal.GetType().ToString() == "Labb_2.Spearow")
                 {
