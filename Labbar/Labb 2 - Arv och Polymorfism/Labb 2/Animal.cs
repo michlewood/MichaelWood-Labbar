@@ -24,7 +24,7 @@ namespace Labb_2
 
         abstract public string Talk();
 
-        public string Introduction()
+        public string Description()
         {
             string type = this.GetType().ToString();
             type = type.Remove(0, 7);

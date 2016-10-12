@@ -93,7 +93,7 @@ namespace Labb_2
             foreach (var animal in Runtime.animalList)
             {
                 i++;
-                Console.WriteLine("{0}: {1}", i, animal.Introduction());
+                Console.WriteLine("{0}: {1}", i, animal.Description());
             }
         }
 
@@ -200,7 +200,7 @@ namespace Labb_2
             foreach (var mammal in Runtime.mammalList)
             {
                 i++;
-                Console.WriteLine("{0}: {1}", i, mammal.Introduction());
+                Console.WriteLine("{0}: {1}", i, mammal.Description());
             }
         }
 
@@ -275,7 +275,7 @@ namespace Labb_2
             foreach (var dog in Runtime.dogList)
             {
                 i++;
-                Console.WriteLine("{0}: {1}", i, dog.Introduction());
+                Console.WriteLine("{0}: {1}", i, dog.Description());
             }
         }
 
@@ -424,7 +424,7 @@ namespace Labb_2
             foreach (var reptile in Runtime.reptileList)
             {
                 i++;
-                Console.WriteLine("{0}: {1}", i, reptile.Introduction());
+                Console.WriteLine("{0}: {1}", i, reptile.Description());
             }
         }
 
@@ -499,7 +499,7 @@ namespace Labb_2
             foreach (var snake in Runtime.snakeList)
             {
                 i++;
-                Console.WriteLine("{0}: {1}", i, snake.Introduction());
+                Console.WriteLine("{0}: {1}", i, snake.Description());
             }
         }
 
@@ -630,7 +630,7 @@ namespace Labb_2
             foreach (var bird in Runtime.birdList)
             {
                 i++;
-                Console.WriteLine("{0}: {1}", i, bird.Introduction());
+                Console.WriteLine("{0}: {1}", i, bird.Description());
             }
         }
 
@@ -705,7 +705,7 @@ namespace Labb_2
             foreach (var spearow in Runtime.spearowList)
             {
                 i++;
-                Console.WriteLine("{0}: {1}", i, spearow.Introduction());
+                Console.WriteLine("{0}: {1}", i, spearow.Description());
             }
         }
 
