@@ -8,11 +8,12 @@ namespace Labb_2
 {
     abstract public class Animal
     {
+        public string Name { get; private set; }
         public int Age { get; private set; }
         public int Weight { get; private set; }
-        public int NumberOfLegs { get; private set; }
 
-        public Animal()
+
+        public Animal(string name, int age, int weight)
         {
 
         }

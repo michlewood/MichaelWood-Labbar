@@ -8,7 +8,7 @@ namespace Labb_2
 {
     abstract public class Mammel : Animal
     {
-
+        public int NumberOfLegs { get; private set; }
     }
 
     public class Dog : Mammel
