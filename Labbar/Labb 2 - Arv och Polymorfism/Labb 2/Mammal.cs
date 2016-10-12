@@ -6,18 +6,23 @@ using System.Threading.Tasks;
 
 namespace Labb_2
 {
-    abstract public class Mammel : Animal
+    abstract public class Mammal : Animal
     {
         public int NumberOfLegs { get; private set; }
+
+        public Mammal(string name, int age, int weight, int numberOfLegs) : base(name, age, weight)
+        {
+            NumberOfLegs = numberOfLegs;
+        }
     }
 
-    public class Dog : Mammel
+    public class Dog : Mammal
     {
-        public Dog()
+        public bool FluffyTail { get; private set; }
+        public Dog(string name, int age, int weight, bool fluffyTail) : base(name, age, weight, 4)
         {
-            NumberOfLegs = 4;
+            FluffyTail = fluffyTail;
         }
-        
 
         public override string Move()
         {
@@ -26,7 +31,7 @@ namespace Labb_2
 
         public override string Talk()
         {
-            throw new NotImplementedException();
+            return "Bark";
         }
     }
 }
