@@ -6,7 +6,8 @@ namespace Labb1
     internal class Runtime
     {
 
-        List<Dog> dogs = new List<Dog>();
+        List<Dog> dogs = new List<Dog>()
+            ;
 
         public void Start()
         {
@@ -15,70 +16,107 @@ namespace Labb1
 
         private void Menu()
         {
-            bool loop = false;
-
-            do
+            while (true)
             {
-                loop = false;
+                bool loop = false;
 
-                Console.WriteLine("Choose one: ");
-                Console.WriteLine("1. Add new");
-                Console.WriteLine("2. Remove");
-                Console.WriteLine("3. Show info");
-                Console.WriteLine("4. Exit");
-
-                int input = int.Parse(Console.ReadLine());
-
-                switch (input)
+                do
                 {
-                    case 1:
-                        AddNew();
-                        break;
-                    case 2:
-                        Remove();
-                        break;
-                    case 3:
-                        ShowInfo();
-                        break;
-                    case 4:
-                        Exit();
-                        break;
-                    default:
-                        loop = true;
-                        break;
-                }
-            } while (loop);
+                    Console.Clear();
+                    loop = false;
+
+                    Console.WriteLine("Choose one: ");
+                    Console.WriteLine("1. Add new");
+                    Console.WriteLine("2. Remove");
+                    Console.WriteLine("3. Show info");
+                    Console.WriteLine("4. Exit");
+
+                    int input;
+                        
+                    bool validInput  = int.TryParse(Console.ReadLine(), out input);
+                    if (!validInput) input = -1;
+
+                    switch (input)
+                    {
+                        case 1:
+                            AddNew();
+                            break;
+                        case 2:
+                            Remove();
+                            break;
+                        case 3:
+                            ShowInfo();
+                            Console.ReadLine();
+                            break;
+                        case 4:
+                            return;
+
+                        default:
+                            loop = true;
+                            break;
+                    }
+                } while (loop); 
+            }
         }
 
         private void AddNew()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Name: ");
+            string name = Console.ReadLine();
+
+            int age = 0;
+            bool validInput = false;
+
+            while (!validInput)
+            {
+                Console.WriteLine("Age: ");
+                validInput = int.TryParse(Console.ReadLine(), out age); 
+            }
+
+            Console.WriteLine("Breed: ");
+            string breed = Console.ReadLine();
+
+            dogs.Add(new Dog { Name = name, Age = age, Breed = breed });
+            Console.WriteLine("Dog added!");
+            Console.ReadLine();
         }
 
         private void Remove()
         {
-            int i = 0;
-            foreach (var dog in dogs)
+            ShowInfo();
+
+            if (dogs.Count == 0)
             {
-                i++;
-                Console.WriteLine(dog.Introduction());
+                Console.ReadLine();
+                return;
             }
+
+            Console.WriteLine("Choose a dog to remove:");
+
+            int dogToRemove;
+
+            bool validInput = int.TryParse(Console.ReadLine(), out dogToRemove);
+            if (!validInput || dogToRemove > dogs.Count || dogToRemove < 1) return;
+
+            dogs.RemoveAt(dogToRemove - 1);
+
+            Console.WriteLine("Dog removed!");
+            Console.ReadLine();
         }
 
         private void ShowInfo()
         {
+            int i = 0;
+            if (dogs.Count == 0)
+            {
+                Console.WriteLine("Listan är tom!");
+                return;
+            }
             foreach (var dog in dogs)
             {
-                Console.WriteLine(dog.Introduction());
+                i++;
+                Console.WriteLine("{0}: {1}", i, dog.Introduction());
             }
-
-            Console.ReadLine();
-        }
-
-        private void Exit()
-        {
-            return;
         }
     }
-}
 }

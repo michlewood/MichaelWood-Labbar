@@ -12,7 +12,6 @@ namespace Labb1
         {
             var runtime = new Runtime();
             runtime.Start();
-            Console.ReadLine();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Labb1
 
         internal string Introduction()
         {
-            return String.Format("Namn: {0}. Är {1} år gammal. Är en: {2}",
+            return String.Format("{0} is {1} years old and is a {2}",
                                    Name, Age, Breed);
         }
     }

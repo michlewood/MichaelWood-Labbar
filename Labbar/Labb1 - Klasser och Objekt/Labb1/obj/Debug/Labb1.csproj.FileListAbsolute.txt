@@ -10,3 +10,9 @@ C:\Users\michl\Documents\Visual Studio 2015\Projects\Lernia\Objektorienterad Pro
 C:\Users\michl\Documents\Visual Studio 2015\Projects\Lernia\Objektorienterad Programmering\Git\Labbar\Labb1 - Klasser och Objekt\Labb1\bin\Debug\Labb1.exe.config
 C:\Users\michl\Documents\Visual Studio 2015\Projects\Lernia\Objektorienterad Programmering\Git\Labbar\Labb1 - Klasser och Objekt\Labb1\obj\Debug\Labb1.exe
 C:\Users\michl\Documents\Visual Studio 2015\Projects\Lernia\Objektorienterad Programmering\Git\Labbar\Labb1 - Klasser och Objekt\Labb1\obj\Debug\Labb1.pdb
+C:\Users\michl\Documents\Visual Studio 2015\Projects\Lernia\Objektorienterad Programmering\Git\Labbar\Labb1 - Klasser och Objekt\Labb1\obj\Debug\Labb1.csprojResolveAssemblyReference.cache
+C:\Users\michl\Documents\Visual Studio 2015\Projects\Lernia\Objektorienterad Programmering\Git\Labbar\Labb1 - Klasser och Objekt\Labb1\bin\Debug\Labb1.exe
+C:\Users\michl\Documents\Visual Studio 2015\Projects\Lernia\Objektorienterad Programmering\Git\Labbar\Labb1 - Klasser och Objekt\Labb1\bin\Debug\Labb1.pdb
+C:\Users\michl\Documents\Visual Studio 2015\Projects\Lernia\Objektorienterad Programmering\Objektorienterad Programmering Git\Labbar\Labb1 - Klasser och Objekt\Labb1\bin\Debug\Labb1.exe.config
+C:\Users\michl\Documents\Visual Studio 2015\Projects\Lernia\Objektorienterad Programmering\Objektorienterad Programmering Git\Labbar\Labb1 - Klasser och Objekt\Labb1\obj\Debug\Labb1.exe
+C:\Users\michl\Documents\Visual Studio 2015\Projects\Lernia\Objektorienterad Programmering\Objektorienterad Programmering Git\Labbar\Labb1 - Klasser och Objekt\Labb1\obj\Debug\Labb1.pdb
