@@ -21,12 +21,12 @@ namespace Labb_2
 
         public override string Move()
         {
-            return "Slithers on the ground";
+            return "slithers on the ground";
         }
 
         public override string Talk()
         {
-            return "Hiss";
+            return "hisses";
         }
     }
 }

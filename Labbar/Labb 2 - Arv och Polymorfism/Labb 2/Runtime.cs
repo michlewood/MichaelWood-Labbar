@@ -20,9 +20,9 @@ namespace Labb_2
 
         internal void Start()
         {
-            dogList.Add(new Dog("michael", 23, 100, true));
+            dogList.Add(new Dog("Domino", 23, 50, true));
 
-            snakeList.Add(new Snake("snakey", 3, 5));
+            snakeList.Add(new Snake("Snakey", 3, 5));
 
             spearowList.Add(new Spearow("Birdie", 2, 2));
 
@@ -43,36 +43,6 @@ namespace Labb_2
             animalList.AddRange(mammalList);
             animalList.AddRange(reptileList);
             animalList.AddRange(birdList);
-        }
-
-        
-
-        private void AddNewAnimalToList()
-        {
-
-        }
-
-        private void RemoveAnimalFromList()
-        {
-            menus.ShowAnimalList();
-
-            if (animalList.Count == 0)
-            {
-                Console.ReadLine();
-                return;
-            }
-
-            Console.WriteLine("Choose a animal to remove:");
-
-            int animalToRemove;
-
-            bool validInput = int.TryParse(Console.ReadLine(), out animalToRemove);
-            if (!validInput || animalToRemove > animalList.Count || animalToRemove < 1) return;
-
-            animalList.RemoveAt(animalToRemove - 1);
-
-            Console.WriteLine("Animal removed!");
-            Console.ReadLine();
         }
     }
 }

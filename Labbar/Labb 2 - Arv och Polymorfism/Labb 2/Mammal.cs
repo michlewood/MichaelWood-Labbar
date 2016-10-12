@@ -26,12 +26,12 @@ namespace Labb_2
 
         public override string Move()
         {
-            return "Walks on the ground";
+            return "walks on the ground";
         }
 
         public override string Talk()
         {
-            return "Bark";
+            return "barks";
         }
     }
 }

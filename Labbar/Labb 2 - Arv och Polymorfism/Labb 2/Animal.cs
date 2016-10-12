@@ -26,7 +26,9 @@ namespace Labb_2
 
         public string Introduction()
         {
-            return String.Format("{0}: is {1} years old and weighs {2}", Name, Age, Weight);
+            string type = this.GetType().ToString();
+            type = type.Remove(0, 7);
+            return String.Format("{0}: is {1} years old {2} and weighs {3}. It {4} and it {5}", Name, Age, type.ToLower(), Weight, Move(), Talk());
         }
     }
 }
