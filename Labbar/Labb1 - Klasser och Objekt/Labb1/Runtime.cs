@@ -39,13 +39,13 @@ namespace Labb1
                     switch (input)
                     {
                         case 1:
-                            AddNew();
+                            AddNewDogToList();
                             break;
                         case 2:
-                            Remove();
+                            RemoveDogFromList();
                             break;
                         case 3:
-                            ShowInfo();
+                            ShowDogList();
                             Console.ReadLine();
                             break;
                         case 4:
@@ -59,7 +59,7 @@ namespace Labb1
             }
         }
 
-        private void AddNew()
+        private void AddNewDogToList()
         {
             Console.WriteLine("Name: ");
             string name = Console.ReadLine();
@@ -81,9 +81,9 @@ namespace Labb1
             Console.ReadLine();
         }
 
-        private void Remove()
+        private void RemoveDogFromList()
         {
-            ShowInfo();
+            ShowDogList();
 
             if (dogs.Count == 0)
             {
@@ -104,7 +104,7 @@ namespace Labb1
             Console.ReadLine();
         }
 
-        private void ShowInfo()
+        private void ShowDogList()
         {
             int i = 0;
             if (dogs.Count == 0)
