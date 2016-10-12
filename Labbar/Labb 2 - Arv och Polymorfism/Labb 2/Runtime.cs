@@ -11,8 +11,10 @@ namespace Labb_2
         static public List<Dog> dogList = new List<Dog>();
 
         static public List<Reptile> reptileList = new List<Reptile>();
+        static public List<Snake> snakeList = new List<Snake>();
 
         static public List<Bird> birdList = new List<Bird>();
+        static public List<Spearow> spearowList = new List<Spearow>();
 
         Menus menus = new Menus();
 
@@ -27,6 +29,12 @@ namespace Labb_2
         {
             dogList.Add(new Dog("michael", 23, 100, true));
             mammalList.AddRange(dogList);
+
+            snakeList.Add(new Snake("snakey", 3, 5));
+            reptileList.AddRange(snakeList);
+
+            spearowList.Add(new Spearow("Birdie", 2, 2));
+            birdList.AddRange(spearowList);
 
             animalList.AddRange(mammalList);
             animalList.AddRange(reptileList);

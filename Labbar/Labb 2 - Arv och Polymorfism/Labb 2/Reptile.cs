@@ -12,4 +12,21 @@ namespace Labb_2
         {
         }
     }
+
+    public class Snake : Reptile
+    {
+        public Snake(string name, int age, int weight) : base(name, age, weight)
+        {
+        }
+
+        public override string Move()
+        {
+            return "Slithers on the ground";
+        }
+
+        public override string Talk()
+        {
+            return "Hiss";
+        }
+    }
 }

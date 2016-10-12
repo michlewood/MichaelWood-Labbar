@@ -15,6 +15,23 @@ namespace Labb_2
             CanFly = canFly;
         }
 
-        
+    }
+
+    public class Spearow : Bird
+    {
+        public Spearow(string name, int age, int weight) : base(name, age, weight)
+        {
+
+        }
+
+        public override string Move()
+        {
+            return "Fly through the sky";
+        }
+
+        public override string Talk()
+        {
+            return "twerp";
+        }
     }
 }

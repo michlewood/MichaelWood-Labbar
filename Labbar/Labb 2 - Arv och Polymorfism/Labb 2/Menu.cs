@@ -5,58 +5,11 @@ namespace Labb_2
 {
     internal class Menus
     {
-        public void MainMenu2()
-        {
-            while (true)
-            {
-                bool loop = false;
-
-                do
-                {
-                    Console.Clear();
-                    loop = false;
-
-                    Console.WriteLine("Choose one: ");
-                    Console.WriteLine("1. Add new");
-                    Console.WriteLine("2. Remove");
-                    Console.WriteLine("3. Show info");
-                    Console.WriteLine("4. Exit");
-
-                    int input;
-
-                    bool validInput = int.TryParse(Console.ReadLine(), out input);
-                    if (!validInput) input = -1;
-
-                    switch (input)
-                    {
-                        case 1:
-                            //AddNewAnimalToList();
-                            break;
-                        case 2:
-                            //RemoveAnimalFromList();
-                            break;
-                        case 3:
-                            //ShowListChooser();
-                            break;
-                        case 4:
-                            return;
-
-                        default:
-                            loop = true;
-                            break;
-                    }
-                } while (loop);
-            }
-        }
-
         public void MainMenu()
         {
-            bool loop = true;
-
             while (true)
             {
                 Console.Clear();
-                loop = true;
 
                 Console.WriteLine("Choose one: ");
                 Console.WriteLine("1. All animals");
@@ -122,7 +75,7 @@ namespace Labb_2
                             AddNewAnimalToList();
                             break;
                         case 2:
-                            RemoveAnimalFromList();
+                            RemoveAnimalFromLists();
                             break;
                         case 3:
                             ShowAnimalList();
@@ -159,7 +112,7 @@ namespace Labb_2
 
         }
 
-        private void RemoveAnimalFromList()
+        private void RemoveAnimalFromLists()
         {
             ShowAnimalList();
 
@@ -182,32 +135,6 @@ namespace Labb_2
             Console.WriteLine("Animal removed!");
             Console.ReadLine();
         }
-
-        private void AnimalRemoval(Animal animal)
-        {
-            Runtime.animalList.Remove(animal);
-            if (animal.GetType().BaseType.ToString() == "Labb_2.Mammal")
-            {
-                Runtime.mammalList.Remove((Mammal)animal);
-                if (animal.GetType().ToString() == "Labb_2.Dog")
-                {
-                    Runtime.dogList.Remove((Dog)animal);
-                }
-
-            }
-            if (animal.GetType().BaseType.ToString() == "Labb_2.Reptile")
-            {
-                Runtime.reptileList.Remove((Reptile)animal);
-            }
-
-            if (animal.GetType().BaseType.ToString() == "Labb_2.Bird")
-            {
-                Runtime.birdList.Remove((Bird)animal);
-            }
-
-
-        }
-
         #endregion
 
         #region Mammals
@@ -233,11 +160,12 @@ namespace Labb_2
                 switch (input)
                 {
                     case 1:
-                        ShowMammalList();
+                        MammalOptions();
                         Console.ReadLine();
                         break;
                     case 2:
-                        ShowDogList();
+                        DogOptions();
+                        //ShowDogList();
                         Console.ReadLine();
                         break;
                     case 3:
@@ -248,6 +176,93 @@ namespace Labb_2
                         break;
                 }
             } while (loop);
+        }
+
+        private void MammalOptions()
+        {
+            while (true)
+            {
+                bool loop = false;
+
+                do
+                {
+                    Console.Clear();
+                    loop = false;
+
+                    Console.WriteLine("Choose one: ");
+                    Console.WriteLine("1. Add new");
+                    Console.WriteLine("2. Remove");
+                    Console.WriteLine("3. Show info");
+                    Console.WriteLine("4. Return");
+
+                    int input;
+
+                    bool validInput = int.TryParse(Console.ReadLine(), out input);
+                    if (!validInput) input = -1;
+
+                    switch (input)
+                    {
+                        case 1:
+                            break;
+                        case 2:
+                            RemoveMammalFromLists();
+                            break;
+                        case 3:
+                            ShowMammalList();
+                            Console.ReadLine();
+                            break;
+                        case 4:
+                            return;
+
+                        default:
+                            loop = true;
+                            break;
+                    }
+                } while (loop);
+            }
+        }
+
+        private void DogOptions()
+        {
+            while (true)
+            {
+                bool loop = false;
+
+                do
+                {
+                    Console.Clear();
+                    loop = false;
+
+                    Console.WriteLine("Choose one: ");
+                    Console.WriteLine("1. Add new");
+                    Console.WriteLine("2. Remove");
+                    Console.WriteLine("3. Show info");
+                    Console.WriteLine("4. Return");
+
+                    int input;
+
+                    bool validInput = int.TryParse(Console.ReadLine(), out input);
+                    if (!validInput) input = -1;
+
+                    switch (input)
+                    {
+                        case 1:
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            ShowDogList();
+                            Console.ReadLine();
+                            break;
+                        case 4:
+                            return;
+
+                        default:
+                            loop = true;
+                            break;
+                    }
+                } while (loop);
+            }
         }
 
         private void ShowMammalList()
@@ -264,6 +279,31 @@ namespace Labb_2
                 Console.WriteLine("{0}: {1}", i, mammal.Introduction());
             }
         }
+
+        private void RemoveMammalFromLists()
+        {
+            ShowMammalList();
+
+            if (Runtime.animalList.Count == 0)
+            {
+                Console.ReadLine();
+                return;
+            }
+
+            Console.WriteLine("Choose a mammal to remove:");
+
+            int animalToRemove;
+
+            bool validInput = int.TryParse(Console.ReadLine(), out animalToRemove);
+            if (!validInput || animalToRemove > Runtime.animalList.Count || animalToRemove < 1) return;
+
+
+            AnimalRemoval(Runtime.animalList[animalToRemove - 1]);
+
+            Console.WriteLine("Mammal removed!");
+            Console.ReadLine();
+        }
+
         private void ShowDogList()
         {
             int i = 0;
@@ -385,5 +425,30 @@ namespace Labb_2
             }
         }
         #endregion
+
+        private void AnimalRemoval(Animal animal)
+        {
+            Runtime.animalList.Remove(animal);
+            if (animal.GetType().BaseType.ToString() == "Labb_2.Mammal")
+            {
+                Runtime.mammalList.Remove((Mammal)animal);
+                if (animal.GetType().ToString() == "Labb_2.Dog")
+                {
+                    Runtime.dogList.Remove((Dog)animal);
+                }
+
+            }
+            if (animal.GetType().BaseType.ToString() == "Labb_2.Reptile")
+            {
+                Runtime.reptileList.Remove((Reptile)animal);
+            }
+
+            if (animal.GetType().BaseType.ToString() == "Labb_2.Bird")
+            {
+                Runtime.birdList.Remove((Bird)animal);
+            }
+
+
+        }
     }
 }
