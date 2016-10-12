@@ -20,20 +20,24 @@ namespace Labb_2
 
         internal void Start()
         {
-            CreateLists();
+            dogList.Add(new Dog("michael", 23, 100, true));
+
+            snakeList.Add(new Snake("snakey", 3, 5));
+
+            spearowList.Add(new Spearow("Birdie", 2, 2));
+
+            UpdateLists();
             
             menus.MainMenu();
         }
 
-        private void CreateLists()
+        private void UpdateLists()
         {
-            dogList.Add(new Dog("michael", 23, 100, true));
+            
             mammalList.AddRange(dogList);
-
-            snakeList.Add(new Snake("snakey", 3, 5));
+            
             reptileList.AddRange(snakeList);
-
-            spearowList.Add(new Spearow("Birdie", 2, 2));
+            
             birdList.AddRange(spearowList);
 
             animalList.AddRange(mammalList);

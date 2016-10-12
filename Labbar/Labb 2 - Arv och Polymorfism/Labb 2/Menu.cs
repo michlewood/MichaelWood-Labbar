@@ -18,32 +18,29 @@ namespace Labb_2
                 Console.WriteLine("4. Birds");
                 Console.WriteLine("5. Exit");
 
-                int input;
-
-                bool validInput = int.TryParse(Console.ReadLine(), out input);
-                if (!validInput) input = -1;
+                var input = Console.ReadKey(true).Key;
 
                 switch (input)
                 {
-                    case 1:
+                    case ConsoleKey.D1:
                         AnimalOptions();
                         break;
-                    case 2:
+                    case ConsoleKey.D2:
                         MammalChooser();
                         break;
-                    case 3:
+                    case ConsoleKey.D3:
                         ReptileChooser();
                         break;
-                    case 4:
+                    case ConsoleKey.D4:
                         BirdChooser();
                         break;
-                    case 5:
+                    case ConsoleKey.D5:
                         return;
 
                     default:
                         break;
                 }
-            } 
+            }
         }
 
         #region Animal
@@ -59,29 +56,22 @@ namespace Labb_2
                     loop = false;
 
                     Console.WriteLine("Choose one: ");
-                    Console.WriteLine("1. Add new");
+                    Console.WriteLine("1. Show info");
                     Console.WriteLine("2. Remove");
-                    Console.WriteLine("3. Show info");
-                    Console.WriteLine("4. Return");
+                    Console.WriteLine("3. Return");
 
-                    int input;
-
-                    bool validInput = int.TryParse(Console.ReadLine(), out input);
-                    if (!validInput) input = -1;
+                    var input = Console.ReadKey(true).Key;
 
                     switch (input)
                     {
-                        case 1:
-                            AddNewAnimalToList();
-                            break;
-                        case 2:
-                            RemoveAnimalFromLists();
-                            break;
-                        case 3:
+                        case ConsoleKey.D1:
                             ShowAnimalList();
                             Console.ReadLine();
                             break;
-                        case 4:
+                        case ConsoleKey.D2:
+                            RemoveAnimalFromLists();
+                            break;
+                        case ConsoleKey.D3:
                             return;
 
                         default:
@@ -140,128 +130,62 @@ namespace Labb_2
         #region Mammals
         private void MammalChooser()
         {
-            bool loop = true;
-
-            do
+            while (true)
             {
                 Console.Clear();
-                loop = true;
 
                 Console.WriteLine("Choose one: ");
                 Console.WriteLine("1. List of all mammals");
                 Console.WriteLine("2. List of all dogs");
                 Console.WriteLine("3. return");
 
-                int input;
-
-                bool validInput = int.TryParse(Console.ReadLine(), out input);
-                if (!validInput) input = -1;
+                var input = Console.ReadKey(true).Key;
 
                 switch (input)
                 {
-                    case 1:
+                    case ConsoleKey.D1:
                         MammalOptions();
-                        Console.ReadLine();
                         break;
-                    case 2:
+                    case ConsoleKey.D2:
                         DogOptions();
-                        //ShowDogList();
-                        Console.ReadLine();
                         break;
-                    case 3:
+                    case ConsoleKey.D3:
                         return;
 
                     default:
-                        loop = false;
                         break;
                 }
-            } while (loop);
+            }
         }
 
         private void MammalOptions()
         {
             while (true)
             {
-                bool loop = false;
+                Console.Clear();
 
-                do
+                Console.WriteLine("Choose one: ");
+                Console.WriteLine("1. Show info");
+                Console.WriteLine("2. Remove");
+                Console.WriteLine("3. Return");
+
+                var input = Console.ReadKey(true).Key;
+
+                switch (input)
                 {
-                    Console.Clear();
-                    loop = false;
+                    case ConsoleKey.D1:
+                        ShowMammalList();
+                        Console.ReadLine();
+                        break;
+                    case ConsoleKey.D2:
+                        RemoveMammalFromLists();
+                        break;
+                    case ConsoleKey.D3:
+                        return;
 
-                    Console.WriteLine("Choose one: ");
-                    Console.WriteLine("1. Add new");
-                    Console.WriteLine("2. Remove");
-                    Console.WriteLine("3. Show info");
-                    Console.WriteLine("4. Return");
-
-                    int input;
-
-                    bool validInput = int.TryParse(Console.ReadLine(), out input);
-                    if (!validInput) input = -1;
-
-                    switch (input)
-                    {
-                        case 1:
-                            break;
-                        case 2:
-                            RemoveMammalFromLists();
-                            break;
-                        case 3:
-                            ShowMammalList();
-                            Console.ReadLine();
-                            break;
-                        case 4:
-                            return;
-
-                        default:
-                            loop = true;
-                            break;
-                    }
-                } while (loop);
-            }
-        }
-
-        private void DogOptions()
-        {
-            while (true)
-            {
-                bool loop = false;
-
-                do
-                {
-                    Console.Clear();
-                    loop = false;
-
-                    Console.WriteLine("Choose one: ");
-                    Console.WriteLine("1. Add new");
-                    Console.WriteLine("2. Remove");
-                    Console.WriteLine("3. Show info");
-                    Console.WriteLine("4. Return");
-
-                    int input;
-
-                    bool validInput = int.TryParse(Console.ReadLine(), out input);
-                    if (!validInput) input = -1;
-
-                    switch (input)
-                    {
-                        case 1:
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            ShowDogList();
-                            Console.ReadLine();
-                            break;
-                        case 4:
-                            return;
-
-                        default:
-                            loop = true;
-                            break;
-                    }
-                } while (loop);
+                    default:
+                        break;
+                }
             }
         }
 
@@ -304,6 +228,42 @@ namespace Labb_2
             Console.ReadLine();
         }
 
+        #region Dog
+        private void DogOptions()
+        {
+            while (true)
+            {
+                Console.Clear();
+
+                Console.WriteLine("Choose one: ");
+                Console.WriteLine("1. Show info");
+                Console.WriteLine("2. Add new");
+                Console.WriteLine("3. Remove");
+                Console.WriteLine("4. Return");
+
+                var input = Console.ReadKey(true).Key;
+
+                switch (input)
+                {
+                    case ConsoleKey.D1:
+                        ShowDogList();
+                        Console.ReadLine();
+                        break;
+                    case ConsoleKey.D2:
+                        AddNewDogToList();
+                        break;
+                    case ConsoleKey.D3:
+                        RemoveDogFromLists();
+                        break;
+                    case ConsoleKey.D4:
+                        return;
+
+                    default:
+                        break;
+                }
+            }
+        }
+
         private void ShowDogList()
         {
             int i = 0;
@@ -318,42 +278,139 @@ namespace Labb_2
                 Console.WriteLine("{0}: {1}", i, dog.Introduction());
             }
         }
+
+        private void AddNewDogToList()
+        {
+            Console.WriteLine("Name: ");
+            string name = Console.ReadLine();
+
+            int age = 0;
+            bool validInput = false;
+
+            while (!validInput)
+            {
+                Console.WriteLine("Age: ");
+                validInput = int.TryParse(Console.ReadLine(), out age);
+            }
+
+            int weight = 0;
+            validInput = false;
+
+            while (!validInput)
+            {
+                Console.WriteLine("Weight: ");
+                validInput = int.TryParse(Console.ReadLine(), out weight);
+            }
+
+            bool fluffyTail = false;
+            bool loop = false;
+
+            do
+            {
+                loop = false;
+                Console.WriteLine("Does the dog have a fluffytail? (Y/N)");
+
+                var input = Console.ReadKey(true).Key;
+
+                switch (input)
+                {
+                    case ConsoleKey.Y: fluffyTail = true; break;
+                    case ConsoleKey.N: fluffyTail = false; break;
+                    default: loop = true; break;
+                }
+            } while (loop);
+
+            Runtime.dogList.Add(new Dog(name, age, weight, fluffyTail));
+            Console.WriteLine("Dog added!");
+            Console.ReadLine();
+        }
+
+        private void RemoveDogFromLists()
+        {
+            ShowDogList();
+
+            if (Runtime.animalList.Count == 0)
+            {
+                Console.ReadLine();
+                return;
+            }
+
+            Console.WriteLine("Choose a dog to remove:");
+
+            int animalToRemove;
+
+            bool validInput = int.TryParse(Console.ReadLine(), out animalToRemove);
+            if (!validInput || animalToRemove > Runtime.animalList.Count || animalToRemove < 1) return;
+
+
+            AnimalRemoval(Runtime.animalList[animalToRemove - 1]);
+
+            Console.WriteLine("Dog removed!");
+            Console.ReadLine();
+        }
+        #endregion
+
         #endregion
 
         #region Reptiles
         private void ReptileChooser()
         {
-            bool loop = true;
-
-            do
+            while (true)
             {
                 Console.Clear();
-                loop = true;
 
                 Console.WriteLine("Choose one: ");
                 Console.WriteLine("1. List of all reptiles");
-                Console.WriteLine("2. return");
+                Console.WriteLine("2. List of all snake");
+                Console.WriteLine("3. return");
 
-                int input;
-
-                bool validInput = int.TryParse(Console.ReadLine(), out input);
-                if (!validInput) input = -1;
+                var input = Console.ReadKey(true).Key;
 
                 switch (input)
                 {
-                    case 1:
-                        ShowReptileList();
-                        Console.ReadLine();
+                    case ConsoleKey.D1:
+                        ReptileOptions();
                         break;
-
-                    case 2:
+                    case ConsoleKey.D2:
+                        SnakeOptions();
+                        break;
+                    case ConsoleKey.D3:
                         return;
 
                     default:
-                        loop = false;
                         break;
                 }
-            } while (loop);
+            }
+        }
+
+        private void ReptileOptions()
+        {
+            while (true)
+            {
+                Console.Clear();
+
+                Console.WriteLine("Choose one: ");
+                Console.WriteLine("1. Show info");
+                Console.WriteLine("2. Remove");
+                Console.WriteLine("3. Return");
+
+                var input = Console.ReadKey(true).Key;
+
+                switch (input)
+                {
+                    case ConsoleKey.D1:
+                        ShowReptileList();
+                        break;
+                    case ConsoleKey.D2:
+                        RemoveReptileFromLists();
+                        break;
+                    case ConsoleKey.D3:
+                        return;
+
+                    default:
+                        break;
+                }
+            }
         }
 
         private void ShowReptileList()
@@ -370,44 +427,196 @@ namespace Labb_2
                 Console.WriteLine("{0}: {1}", i, reptile.Introduction());
             }
         }
-        #endregion
 
-        #region Birds
-        private void BirdChooser()
+        private void RemoveReptileFromLists()
         {
-            bool loop = true;
+            ShowReptileList();
 
-            do
+            if (Runtime.animalList.Count == 0)
+            {
+                Console.ReadLine();
+                return;
+            }
+
+            Console.WriteLine("Choose a reptile to remove:");
+
+            int animalToRemove;
+
+            bool validInput = int.TryParse(Console.ReadLine(), out animalToRemove);
+            if (!validInput || animalToRemove > Runtime.animalList.Count || animalToRemove < 1) return;
+
+
+            AnimalRemoval(Runtime.animalList[animalToRemove - 1]);
+
+            Console.WriteLine("Reptile removed!");
+            Console.ReadLine();
+        }
+
+        #region Snake
+        private void SnakeOptions()
+        {
+            while (true)
             {
                 Console.Clear();
-                loop = true;
 
                 Console.WriteLine("Choose one: ");
-                Console.WriteLine("1. List of all birds");
-                Console.WriteLine("2. return");
+                Console.WriteLine("1. Show info");
+                Console.WriteLine("2. Add new");
+                Console.WriteLine("3. Remove");
+                Console.WriteLine("4. Return");
 
-                int input;
-
-                bool validInput = int.TryParse(Console.ReadLine(), out input);
-                if (!validInput) input = -1;
-                List<Animal> animalList = new List<Animal>();
+                var input = Console.ReadKey(true).Key;
 
                 switch (input)
                 {
-
-                    case 1:
-                        ShowBirdList();
+                    case ConsoleKey.D1:
+                        ShowSnakeList();
                         Console.ReadLine();
                         break;
-
-                    case 2:
+                    case ConsoleKey.D2:
+                        AddNewSnakeToList();
+                        break;
+                    case ConsoleKey.D3:
+                        RemoveSnakeFromLists();
+                        break;
+                    case ConsoleKey.D4:
                         return;
 
                     default:
-                        loop = false;
                         break;
                 }
-            } while (loop);
+            }
+        }
+
+        private void ShowSnakeList()
+        {
+            int i = 0;
+            if (Runtime.snakeList.Count == 0)
+            {
+                Console.WriteLine("Listan är tom!");
+                return;
+            }
+            foreach (var snake in Runtime.snakeList)
+            {
+                i++;
+                Console.WriteLine("{0}: {1}", i, snake.Introduction());
+            }
+        }
+
+        private void AddNewSnakeToList()
+        {
+            Console.WriteLine("Name: ");
+            string name = Console.ReadLine();
+
+            int age = 0;
+            bool validInput = false;
+
+            while (!validInput)
+            {
+                Console.WriteLine("Age: ");
+                validInput = int.TryParse(Console.ReadLine(), out age);
+            }
+
+            int weight = 0;
+            validInput = false;
+
+            while (!validInput)
+            {
+                Console.WriteLine("Weight: ");
+                validInput = int.TryParse(Console.ReadLine(), out weight);
+            }
+
+            Runtime.snakeList.Add(new Snake(name, age, weight));
+            Console.WriteLine("Snake added!");
+            Console.ReadLine();
+        }
+
+        private void RemoveSnakeFromLists()
+        {
+            ShowSnakeList();
+
+            if (Runtime.animalList.Count == 0)
+            {
+                Console.ReadLine();
+                return;
+            }
+
+            Console.WriteLine("Choose a snake to remove:");
+
+            int animalToRemove;
+
+            bool validInput = int.TryParse(Console.ReadLine(), out animalToRemove);
+            if (!validInput || animalToRemove > Runtime.animalList.Count || animalToRemove < 1) return;
+
+
+            AnimalRemoval(Runtime.animalList[animalToRemove - 1]);
+
+            Console.WriteLine("Snake removed!");
+            Console.ReadLine();
+        }
+        #endregion
+
+        #endregion
+
+        #region Bird
+        private void BirdChooser()
+        {
+            while (true)
+            {
+                Console.Clear();
+
+                Console.WriteLine("Choose one: ");
+                Console.WriteLine("1. List of all birds");
+                Console.WriteLine("2. List of all spearow");
+                Console.WriteLine("3. return");
+
+                var input = Console.ReadKey(true).Key;
+
+                switch (input)
+                {
+                    case ConsoleKey.D1:
+                        BirdOptions();
+                        break;
+                    case ConsoleKey.D2:
+                        SpearowOptions();
+                        break;
+                    case ConsoleKey.D3:
+                        return;
+
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private void BirdOptions()
+        {
+            while (true)
+            {
+                Console.Clear();
+
+                Console.WriteLine("Choose one: ");
+                Console.WriteLine("1. Show info");
+                Console.WriteLine("2. Remove");
+                Console.WriteLine("3. Return");
+
+                var input = Console.ReadKey(true).Key;
+
+                switch (input)
+                {
+                    case ConsoleKey.D1:
+                        ShowBirdList();
+                        break;
+                    case ConsoleKey.D2:
+                        RemoveBirdFromLists();
+                        break;
+                    case ConsoleKey.D3:
+                        return;
+
+                    default:
+                        break;
+                }
+            }
         }
 
         private void ShowBirdList()
@@ -424,11 +633,141 @@ namespace Labb_2
                 Console.WriteLine("{0}: {1}", i, bird.Introduction());
             }
         }
+
+        private void RemoveBirdFromLists()
+        {
+            ShowBirdList();
+
+            if (Runtime.animalList.Count == 0)
+            {
+                Console.ReadLine();
+                return;
+            }
+
+            Console.WriteLine("Choose a bird to remove:");
+
+            int animalToRemove;
+
+            bool validInput = int.TryParse(Console.ReadLine(), out animalToRemove);
+            if (!validInput || animalToRemove > Runtime.animalList.Count || animalToRemove < 1) return;
+
+
+            AnimalRemoval(Runtime.animalList[animalToRemove - 1]);
+
+            Console.WriteLine("Bird removed!");
+            Console.ReadLine();
+        }
+
+        #region Spearow
+        private void SpearowOptions()
+        {
+            while (true)
+            {
+                Console.Clear();
+
+                Console.WriteLine("Choose one: ");
+                Console.WriteLine("1. Show info");
+                Console.WriteLine("2. Add new");
+                Console.WriteLine("3. Remove");
+                Console.WriteLine("4. Return");
+
+                var input = Console.ReadKey(true).Key;
+
+                switch (input)
+                {
+                    case ConsoleKey.D1:
+                        ShowSpearowList();
+                        Console.ReadLine();
+                        break;
+                    case ConsoleKey.D2:
+                        AddNewSpearowToList();
+                        break;
+                    case ConsoleKey.D3:
+                        RemoveSpearowFromLists();
+                        break;
+                    case ConsoleKey.D4:
+                        return;
+
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private void ShowSpearowList()
+        {
+            int i = 0;
+            if (Runtime.spearowList.Count == 0)
+            {
+                Console.WriteLine("Listan är tom!");
+                return;
+            }
+            foreach (var spearow in Runtime.spearowList)
+            {
+                i++;
+                Console.WriteLine("{0}: {1}", i, spearow.Introduction());
+            }
+        }
+
+        private void AddNewSpearowToList()
+        {
+            Console.WriteLine("Name: ");
+            string name = Console.ReadLine();
+
+            int age = 0;
+            bool validInput = false;
+
+            while (!validInput)
+            {
+                Console.WriteLine("Age: ");
+                validInput = int.TryParse(Console.ReadLine(), out age);
+            }
+
+            int weight = 0;
+            validInput = false;
+
+            while (!validInput)
+            {
+                Console.WriteLine("Weight: ");
+                validInput = int.TryParse(Console.ReadLine(), out weight);
+            }
+
+            Runtime.spearowList.Add(new Spearow(name, age, weight));
+            Console.WriteLine("Bird added!");
+            Console.ReadLine();
+        }
+
+        private void RemoveSpearowFromLists()
+        {
+            ShowSpearowList();
+
+            if (Runtime.animalList.Count == 0)
+            {
+                Console.ReadLine();
+                return;
+            }
+
+            Console.WriteLine("Choose a spearow to remove:");
+
+            int animalToRemove;
+
+            bool validInput = int.TryParse(Console.ReadLine(), out animalToRemove);
+            if (!validInput || animalToRemove > Runtime.animalList.Count || animalToRemove < 1) return;
+
+
+            AnimalRemoval(Runtime.animalList[animalToRemove - 1]);
+
+            Console.WriteLine("Spearow removed!");
+            Console.ReadLine();
+        }
+        #endregion
+
         #endregion
 
         private void AnimalRemoval(Animal animal)
         {
             Runtime.animalList.Remove(animal);
+
             if (animal.GetType().BaseType.ToString() == "Labb_2.Mammal")
             {
                 Runtime.mammalList.Remove((Mammal)animal);
@@ -441,11 +780,19 @@ namespace Labb_2
             if (animal.GetType().BaseType.ToString() == "Labb_2.Reptile")
             {
                 Runtime.reptileList.Remove((Reptile)animal);
+                if (animal.GetType().ToString() == "Labb_2.Snake")
+                {
+                    Runtime.snakeList.Remove((Snake)animal);
+                }
             }
 
             if (animal.GetType().BaseType.ToString() == "Labb_2.Bird")
             {
                 Runtime.birdList.Remove((Bird)animal);
+                if (animal.GetType().ToString() == "Labb_2.Spearow")
+                {
+                    Runtime.spearowList.Remove((Spearow)animal);
+                }
             }
 
 
