@@ -1,2 +1,7 @@
 C:\Users\michl\Documents\Visual Studio 2015\Projects\Lernia\Objektorienterad Programmering\Labb 2 - Arv och Polymorfism\Labb 2\bin\Debug\Labb 2.exe.config
 C:\Users\michl\Documents\Visual Studio 2015\Projects\Lernia\Objektorienterad Programmering\Objektorienterad Programmering Git\Labbar\Labb 2 - Arv och Polymorfism\Labb 2\bin\Debug\Labb 2.exe.config
+C:\Users\michl\Documents\Visual Studio 2015\Projects\Lernia\Objektorienterad Programmering\Objektorienterad Programmering Git\Labbar\Labb 2 - Arv och Polymorfism\Labb 2\bin\Debug\Labb 2.exe
+C:\Users\michl\Documents\Visual Studio 2015\Projects\Lernia\Objektorienterad Programmering\Objektorienterad Programmering Git\Labbar\Labb 2 - Arv och Polymorfism\Labb 2\bin\Debug\Labb 2.pdb
+C:\Users\michl\Documents\Visual Studio 2015\Projects\Lernia\Objektorienterad Programmering\Objektorienterad Programmering Git\Labbar\Labb 2 - Arv och Polymorfism\Labb 2\obj\Debug\Labb 2.csprojResolveAssemblyReference.cache
+C:\Users\michl\Documents\Visual Studio 2015\Projects\Lernia\Objektorienterad Programmering\Objektorienterad Programmering Git\Labbar\Labb 2 - Arv och Polymorfism\Labb 2\obj\Debug\Labb 2.exe
+C:\Users\michl\Documents\Visual Studio 2015\Projects\Lernia\Objektorienterad Programmering\Objektorienterad Programmering Git\Labbar\Labb 2 - Arv och Polymorfism\Labb 2\obj\Debug\Labb 2.pdb

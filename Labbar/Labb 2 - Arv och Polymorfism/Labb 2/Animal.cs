@@ -15,12 +15,18 @@ namespace Labb_2
 
         public Animal(string name, int age, int weight)
         {
-
+            Name = name;
+            Age = age;
+            Weight = weight;
         }
 
         abstract public string Move();
 
         abstract public string Talk();
 
+        public string Introduction()
+        {
+            return String.Format("{0}: is {1} years old and weighs {2}", Name, Age, Weight);
+        }
     }
 }
