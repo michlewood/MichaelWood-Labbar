@@ -16,17 +16,12 @@ namespace Labb_2
         }
     }
 
-    public class Spearow : Bird , IPokemon
+    public class Pigeon : Bird
     {
-        public bool CanEvolve { get; set; }
-        public string Type { get; set; }
 
-        public Spearow(string name, int age, int weight) : base(name, age, weight)
+        public Pigeon(string name, int age, int weight) : base(name, age, weight)
         {
-            CanEvolve = true;
-            Type = "flying-type";
         }
-
 
         public override string Move()
         {
@@ -35,18 +30,24 @@ namespace Labb_2
 
         public override string Talk()
         {
-            return "twerps";
-        }
-
-        public override string Description()
-        {
-            return string.Format("{0} Is a {1} and can evolve to Fearow",base.Description(), Type);
+            return "twerp";
         }
     }
 
-    public interface IPokemon
+    public class Eagle : Bird
     {
-        bool CanEvolve { get; set; }
-        string Type { get; set; }
+        public Eagle(string name, int age, int weight) : base(name, age, weight)
+        {
+        }
+
+        public override string Move()
+        {
+            return "soars through the sky";
+        }
+
+        public override string Talk()
+        {
+            return "high-pitched whistle";
+        }
     }
 }

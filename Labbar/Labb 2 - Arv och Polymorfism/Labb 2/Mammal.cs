@@ -36,7 +36,7 @@ namespace Labb_2
 
         public override string Talk()
         {
-            return "barks";
+            return "bark";
         }
 
         public override string Description()
@@ -68,7 +68,7 @@ namespace Labb_2
 
         public override string Talk()
         {
-            return "Meows";
+            return "meow";
         }
 
         public override string Description()

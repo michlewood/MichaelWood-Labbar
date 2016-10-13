@@ -26,7 +26,7 @@ namespace Labb_2
 
         public override string Talk()
         {
-            return "hisses";
+            return "hiss";
         }
     }
 }

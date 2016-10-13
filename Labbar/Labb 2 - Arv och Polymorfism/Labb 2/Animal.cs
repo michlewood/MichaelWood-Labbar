@@ -28,7 +28,7 @@ namespace Labb_2
         {
             string type = this.GetType().ToString();
             type = type.Remove(0, 7);
-            return String.Format("{0} is a {1} years old {2} and weighs {3}. It {4} and it {5}.", Name, Age, type.ToLower(), Weight, Move(), Talk());
+            return String.Format("{0} is a {1} years old {2} and weighs {3}. It {4} and it makes a {5}ing sound.", Name, Age, type.ToLower(), Weight, Move(), Talk());
         }
     }
 }

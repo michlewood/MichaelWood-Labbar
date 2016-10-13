@@ -16,13 +16,13 @@ namespace Labb_2
 
             Lists.SnakeList.Add(new Snake("Snakey", 3, 5));
 
-            Lists.SpearowList.Add(new Spearow("Birdie", 2, 2));
+            Lists.PigeonList.Add(new Pigeon("Birdie", 2, 2));
 
             Lists.UpdateLists();
             Lists.createListOfAllAnimals();
 
             MainMenu();
-        }      
+        }
 
         public void MainMenu()
         {
@@ -132,12 +132,12 @@ namespace Labb_2
         {
             while (true)
             {
-                TypeOfAnimal = "Mammals";
+                TypeOfAnimal = "Mammal";
                 ListOfCurrentTypeOFAnimal.Clear();
                 ListOfCurrentTypeOFAnimal.AddRange(Lists.MammalList);
                 Console.Clear();
 
-                MenuGUI.FamilyMenuChooserGUI(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                MenuGUI.FamilyMenuChooserGUI(TypeOfAnimal);
 
                 var input = Console.ReadKey(true).Key;
 
@@ -199,8 +199,8 @@ namespace Labb_2
         private void NewMammal()
         {
             Console.WriteLine("What type of mammal do you want to add? ");
-            Console.WriteLine("1. Add dog");
-            Console.WriteLine("2. Add cat");
+            Console.WriteLine("1. Dog");
+            Console.WriteLine("2. Cat");
             Console.WriteLine("3. Return");
 
             var input = Console.ReadKey(true).Key;
@@ -228,7 +228,7 @@ namespace Labb_2
         {
             while (true)
             {
-                TypeOfAnimal = "Dogs";
+                TypeOfAnimal = "Dog";
                 ListOfCurrentTypeOFAnimal.Clear();
                 ListOfCurrentTypeOFAnimal.AddRange(Lists.DogList);
                 Console.Clear();
@@ -311,7 +311,7 @@ namespace Labb_2
         {
             while (true)
             {
-                TypeOfAnimal = "Cats";
+                TypeOfAnimal = "Cat";
                 ListOfCurrentTypeOFAnimal.Clear();
                 ListOfCurrentTypeOFAnimal.AddRange(Lists.CatList);
                 Console.Clear();
@@ -378,12 +378,12 @@ namespace Labb_2
         {
             while (true)
             {
-                TypeOfAnimal = "Reptiles";
+                TypeOfAnimal = "Reptile";
                 ListOfCurrentTypeOFAnimal.Clear();
                 ListOfCurrentTypeOFAnimal.AddRange(Lists.ReptileList);
                 Console.Clear();
 
-                MenuGUI.FamilyMenuChooserGUI(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                MenuGUI.FamilyMenuChooserGUI(TypeOfAnimal);
 
                 var input = Console.ReadKey(true).Key;
 
@@ -442,7 +442,7 @@ namespace Labb_2
         private void NewReptile()
         {
             Console.WriteLine("What type of reptile do you want to add? ");
-            Console.WriteLine("1. add snake");
+            Console.WriteLine("1. Snake");
             Console.WriteLine("2. return");
 
             var input = Console.ReadKey(true).Key;
@@ -467,7 +467,7 @@ namespace Labb_2
         {
             while (true)
             {
-                TypeOfAnimal = "Snakes";
+                TypeOfAnimal = "Snake";
                 ListOfCurrentTypeOFAnimal.Clear();
                 ListOfCurrentTypeOFAnimal.AddRange(Lists.SnakeList);
                 Console.Clear();
@@ -534,12 +534,12 @@ namespace Labb_2
         {
             while (true)
             {
-                TypeOfAnimal = "Birds";
+                TypeOfAnimal = "Bird";
                 ListOfCurrentTypeOFAnimal.Clear();
                 ListOfCurrentTypeOFAnimal.AddRange(Lists.BirdList);
                 Console.Clear();
 
-                MenuGUI.FamilyMenuChooserGUI(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                MenuGUI.FamilyMenuChooserGUI(TypeOfAnimal);
 
                 var input = Console.ReadKey(true).Key;
 
@@ -549,9 +549,12 @@ namespace Labb_2
                         BirdOptions();
                         break;
                     case ConsoleKey.D2:
-                        SpearowOptions();
+                        PigeonOptions();
                         break;
                     case ConsoleKey.D3:
+                        EagleOptions();
+                        break;
+                    case ConsoleKey.D4:
                         return;
 
                     default:
@@ -564,7 +567,7 @@ namespace Labb_2
         {
             while (true)
             {
-                TypeOfAnimal = "Birds";
+                TypeOfAnimal = "Bird";
                 ListOfCurrentTypeOFAnimal.Clear();
                 ListOfCurrentTypeOFAnimal.AddRange(Lists.BirdList);
                 Console.Clear();
@@ -597,8 +600,9 @@ namespace Labb_2
         private void NewBird()
         {
             Console.WriteLine("What type of bird do you want to add? ");
-            Console.WriteLine("1. Add spearow");
-            Console.WriteLine("2. Return");
+            Console.WriteLine("1. Pidgeon");
+            Console.WriteLine("2. Eagle");
+            Console.WriteLine("3. Return");
 
             var input = Console.ReadKey(true).Key;
 
@@ -606,10 +610,13 @@ namespace Labb_2
             {
                 case ConsoleKey.D1:
                     Console.Clear();
-                    AddNewSpearowToList();
+                    AddNewPigeonToList();
                     break;
-
                 case ConsoleKey.D2:
+                    Console.Clear();
+                    AddNewEagleToList();
+                    break;
+                case ConsoleKey.D3:
                     return;
 
                 default:
@@ -617,14 +624,14 @@ namespace Labb_2
             }
         }
 
-        #region Spearow
-        private void SpearowOptions()
+        #region Pigeon
+        private void PigeonOptions()
         {
             while (true)
             {
-                TypeOfAnimal = "Spearow";
+                TypeOfAnimal = "Pigeon";
                 ListOfCurrentTypeOFAnimal.Clear();
-                ListOfCurrentTypeOFAnimal.AddRange(Lists.SpearowList);
+                ListOfCurrentTypeOFAnimal.AddRange(Lists.PigeonList);
                 Console.Clear();
 
                 MenuGUI.SpeciesMenuGUI(TypeOfAnimal);
@@ -638,7 +645,7 @@ namespace Labb_2
                         Console.ReadLine();
                         break;
                     case ConsoleKey.D2:
-                        AddNewSpearowToList();
+                        AddNewPigeonToList();
                         break;
                     case ConsoleKey.D3:
                         RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
@@ -652,7 +659,7 @@ namespace Labb_2
             }
         }
 
-        private void AddNewSpearowToList()
+        private void AddNewPigeonToList()
         {
             Console.WriteLine("Name: ");
             string name = Console.ReadLine();
@@ -675,11 +682,76 @@ namespace Labb_2
                 validInput = int.TryParse(Console.ReadLine(), out weight);
             }
 
-            Lists.SpearowList.Add(new Spearow(name, age, weight));
+            Lists.PigeonList.Add(new Pigeon(name, age, weight));
             Lists.UpdateLists();
-            Console.WriteLine("Bird added!");
+            Console.WriteLine("Pigeon added!");
             Console.ReadLine();
-        }      
+        }
+        #endregion
+
+        #region Eagle
+        private void EagleOptions()
+        {
+            while (true)
+            {
+                TypeOfAnimal = "Eagle";
+                ListOfCurrentTypeOFAnimal.Clear();
+                ListOfCurrentTypeOFAnimal.AddRange(Lists.EagleList);
+                Console.Clear();
+
+                MenuGUI.SpeciesMenuGUI(TypeOfAnimal);
+
+                var input = Console.ReadKey(true).Key;
+
+                switch (input)
+                {
+                    case ConsoleKey.D1:
+                        ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                        Console.ReadLine();
+                        break;
+                    case ConsoleKey.D2:
+                        AddNewEagleToList();
+                        break;
+                    case ConsoleKey.D3:
+                        RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                        break;
+                    case ConsoleKey.D4:
+                        return;
+
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private void AddNewEagleToList()
+        {
+            Console.WriteLine("Name: ");
+            string name = Console.ReadLine();
+
+            int age = 0;
+            bool validInput = false;
+
+            while (!validInput)
+            {
+                Console.WriteLine("Age: ");
+                validInput = int.TryParse(Console.ReadLine(), out age);
+            }
+
+            int weight = 0;
+            validInput = false;
+
+            while (!validInput)
+            {
+                Console.WriteLine("Weight: ");
+                validInput = int.TryParse(Console.ReadLine(), out weight);
+            }
+
+            Lists.EagleList.Add(new Eagle(name, age, weight));
+            Lists.UpdateLists();
+            Console.WriteLine("Eagle added!");
+            Console.ReadLine();
+        }
         #endregion
 
         #endregion
@@ -728,37 +800,23 @@ namespace Labb_2
 
         private void AnimalRemoval(Animal animal)
         {
-            Lists.AnimalList.Remove(animal);
 
-            if (animal.GetType().BaseType.ToString() == "Labb_2.Mammal")
-            {
-                Lists.MammalList.Remove((Mammal)animal);
-                if (animal.GetType().ToString() == "Labb_2.Dog")
-                {
-                    Lists.DogList.Remove((Dog)animal);
-                }
+            if (animal.GetType().ToString() == "Labb_2.Dog")
+                Lists.DogList.Remove((Dog)animal);
 
-            }
-            if (animal.GetType().BaseType.ToString() == "Labb_2.Reptile")
-            {
-                Lists.ReptileList.Remove((Reptile)animal);
-                if (animal.GetType().ToString() == "Labb_2.Snake")
-                {
-                    Lists.SnakeList.Remove((Snake)animal);
-                }
-            }
+            else if (animal.GetType().ToString() == "Labb_2.Cat")
+                Lists.CatList.Remove((Cat)animal);
 
-            if (animal.GetType().BaseType.ToString() == "Labb_2.Bird")
-            {
-                Console.ReadLine();
-                Lists.BirdList.Remove((Bird)animal);
-                if (animal.GetType().ToString() == "Labb_2.Spearow")
-                {
-                    Lists.SpearowList.Remove((Spearow)animal);
-                }
-            }
+            else if (animal.GetType().ToString() == "Labb_2.Snake")
+                Lists.SnakeList.Remove((Snake)animal);
 
+            else if (animal.GetType().ToString() == "Labb_2.Pigeon")
+                Lists.PigeonList.Remove((Pigeon)animal);
 
+            else if (animal.GetType().ToString() == "Labb_2.Eagle")
+                Lists.EagleList.Remove((Eagle)animal);
+
+            Lists.UpdateLists();
         }
     }
 }

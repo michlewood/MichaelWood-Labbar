@@ -27,8 +27,10 @@ namespace Labb_2
 
         static List<Bird> birdList = new List<Bird>();
         public static List<Bird> BirdList { get { return birdList; } set { birdList = value; } }
-        static List<Spearow> spearowList = new List<Spearow>();
-        public static List<Spearow> SpearowList { get { return spearowList; } set { spearowList = value; } }
+        static List<Pigeon> pigeonList = new List<Pigeon>();
+        public static List<Pigeon> PigeonList { get { return pigeonList; } set { pigeonList = value; } }
+        static List<Eagle> eagleList = new List<Eagle>();
+        public static List<Eagle> EagleList { get { return eagleList; } set { eagleList = value; } }
 
         public static void UpdateLists()
         {
@@ -40,7 +42,8 @@ namespace Labb_2
             ReptileList.AddRange(SnakeList);
 
             BirdList.Clear();
-            BirdList.AddRange(SpearowList);
+            BirdList.AddRange(PigeonList);
+            BirdList.AddRange(EagleList);
 
             AnimalList.Clear();
             AnimalList.AddRange(MammalList);
@@ -53,7 +56,8 @@ namespace Labb_2
             allTypesOfAnimals.Add(new Dog("", 0, 0, true));
             allTypesOfAnimals.Add(new Cat("", 0, 0));
             allTypesOfAnimals.Add(new Snake("", 0, 0));
-            allTypesOfAnimals.Add(new Spearow("", 0, 0));
+            allTypesOfAnimals.Add(new Pigeon("", 0, 0));
+            allTypesOfAnimals.Add(new Eagle("", 0, 0));
         }
 
     }
