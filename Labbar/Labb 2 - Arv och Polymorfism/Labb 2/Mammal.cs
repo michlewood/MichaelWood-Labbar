@@ -34,4 +34,21 @@ namespace Labb_2
             return "barks";
         }
     }
+
+    public class Cat : Mammal
+    {
+        public Cat(string name, int age, int weight, int numberOfLegs) : base(name, age, weight, 4)
+        {
+        }
+
+        public override string Move()
+        {
+            return "Walks on the ground";
+        }
+
+        public override string Talk()
+        {
+            return "Meows";
+        }
+    }
 }
