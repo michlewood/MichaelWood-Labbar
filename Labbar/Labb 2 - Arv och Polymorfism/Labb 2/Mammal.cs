@@ -41,13 +41,13 @@ namespace Labb_2
 
         public override string Description()
         {
+
             if (FluffyTail)
             {
                 return base.Description() + " and i have a fluffy tail";
             }
 
             else return base.Description() + ".";
-
 
         }
     }
@@ -56,9 +56,9 @@ namespace Labb_2
     {
         public int Lives { get; set; }
 
-        public Cat(string name, int age, int weight) : base(name, age, weight, 4)
+        public Cat(string name, int age, int weight, int lives = 9) : base(name, age, weight, 4)
         {
-            Lives = 9;
+            Lives = lives;
         }
 
         public override string Move()

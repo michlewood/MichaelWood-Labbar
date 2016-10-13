@@ -18,17 +18,18 @@ namespace Labb_2
             Console.WriteLine("5. Exit");
         }
 
-        static public void FamilyMenuGUI()
+        static public void FamilyMenuGUI(string typeOfAnimal)
         {
-            Console.WriteLine("Choose one: ");
+            Console.WriteLine(typeOfAnimal);
             Console.WriteLine("1. Show info");
-            Console.WriteLine("2. Remove");
-            Console.WriteLine("3. Return");
+            Console.WriteLine("2. Add New");
+            Console.WriteLine("3. Remove");
+            Console.WriteLine("4. Return");
         }
 
-        static public void SpeciesMenuGUI()
+        static public void SpeciesMenuGUI(string typeOfAnimal)
         {
-            Console.WriteLine("Choose one: ");
+            Console.WriteLine(typeOfAnimal);
             Console.WriteLine("1. Show info");
             Console.WriteLine("2. Add new");
             Console.WriteLine("3. Remove");
