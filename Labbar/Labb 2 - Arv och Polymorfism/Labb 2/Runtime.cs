@@ -5,44 +5,60 @@ namespace Labb_2
 {
     internal class Runtime
     {
-        static public List<Animal> animalList = new List<Animal>();
+        public static List<Animal> AnimalList { get; set; }
+        
 
-        static public List<Mammal> mammalList = new List<Mammal>();
-        static public List<Dog> dogList = new List<Dog>();
+        public static List<Mammal> MammalList { get; set; }
+        public static List<Dog> DogList { get; set; }
 
-        static public List<Reptile> reptileList = new List<Reptile>();
-        static public List<Snake> snakeList = new List<Snake>();
+        public static List<Reptile> ReptileList { get; set; }
+        public static List<Snake> SnakeList { get; set; }
 
-        static public List<Bird> birdList = new List<Bird>();
-        static public List<Spearow> spearowList = new List<Spearow>();
+        public static List<Bird> BirdList { get; set; }
+        public static List<Spearow> SpearowList { get; set; }
+
+        public static List<Cat> CatList { get; set; }
 
         Menus menus = new Menus();
 
         internal void Start()
         {
-            dogList.Add(new Dog("Domino", 23, 50, true));
+            AnimalList = new List<Animal>();
+            MammalList = new List<Mammal>();
+            DogList = new List<Dog>();
+            CatList = new List<Cat>();
+            ReptileList = new List<Reptile>();
+            SnakeList = new List<Snake>();
+            BirdList = new List<Bird>();
+            SpearowList = new List<Spearow>();
 
-            snakeList.Add(new Snake("Snakey", 3, 5));
+            DogList.Add(new Dog("Domino", 23, 50, true));
 
-            spearowList.Add(new Spearow("Birdie", 2, 2));
+            SnakeList.Add(new Snake("Snakey", 3, 5));
+
+            SpearowList.Add(new Spearow("Birdie", 2, 2));
 
             UpdateLists();
             
             menus.MainMenu();
         }
 
-        private void UpdateLists()
+        public static void UpdateLists()
         {
-            
-            mammalList.AddRange(dogList);
-            
-            reptileList.AddRange(snakeList);
-            
-            birdList.AddRange(spearowList);
+            MammalList.Clear();
+            MammalList.AddRange(DogList);
+            MammalList.AddRange(CatList);
 
-            animalList.AddRange(mammalList);
-            animalList.AddRange(reptileList);
-            animalList.AddRange(birdList);
+            ReptileList.Clear();
+            ReptileList.AddRange(SnakeList);
+
+            BirdList.Clear();
+            BirdList.AddRange(SpearowList);
+
+            AnimalList.Clear();
+            AnimalList.AddRange(MammalList);
+            AnimalList.AddRange(ReptileList);
+            AnimalList.AddRange(BirdList);
         }
     }
 }

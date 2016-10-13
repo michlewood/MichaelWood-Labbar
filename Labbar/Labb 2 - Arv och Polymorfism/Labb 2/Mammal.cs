@@ -14,6 +14,11 @@ namespace Labb_2
         {
             NumberOfLegs = numberOfLegs;
         }
+
+        public override string Description()
+        {
+            return string.Format("{0} I have {1} legs", base.Description(), NumberOfLegs);
+        }
     }
 
     public class Dog : Mammal
@@ -33,12 +38,27 @@ namespace Labb_2
         {
             return "barks";
         }
+
+        public override string Description()
+        {
+            if (FluffyTail)
+            {
+                return base.Description() + " and i have a fluffy tail";
+            }
+
+            else return base.Description() + ".";
+
+
+        }
     }
 
     public class Cat : Mammal
     {
-        public Cat(string name, int age, int weight, int numberOfLegs) : base(name, age, weight, 4)
+        public int Lives { get; set; }
+
+        public Cat(string name, int age, int weight) : base(name, age, weight, 4)
         {
+            Lives = 9;
         }
 
         public override string Move()
@@ -49,6 +69,11 @@ namespace Labb_2
         public override string Talk()
         {
             return "Meows";
+        }
+
+        public override string Description()
+        {
+            return string.Format("{0}, and i have {1} lives ",base.Description(), Lives);
         }
     }
 }

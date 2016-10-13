@@ -46,7 +46,7 @@ namespace Labb_2
             while (true)
             {
                 tempList.Clear();
-                tempList.AddRange(Runtime.animalList);
+                tempList.AddRange(Runtime.AnimalList);
                 Console.Clear();
 
                 MenuGUI.FamilyMenuGUI();
@@ -83,7 +83,8 @@ namespace Labb_2
                 Console.WriteLine("Choose one: ");
                 Console.WriteLine("1. List of all mammals");
                 Console.WriteLine("2. List of all dogs");
-                Console.WriteLine("3. return");
+                Console.WriteLine("3. List of all cats");
+                Console.WriteLine("4. return");
 
                 var input = Console.ReadKey(true).Key;
 
@@ -96,6 +97,9 @@ namespace Labb_2
                         DogOptions();
                         break;
                     case ConsoleKey.D3:
+                        CatOptions();
+                        break;
+                    case ConsoleKey.D4:
                         return;
 
                     default:
@@ -109,7 +113,7 @@ namespace Labb_2
             while (true)
             {
                 tempList.Clear();
-                tempList.AddRange(Runtime.mammalList);
+                tempList.AddRange(Runtime.MammalList);
                 Console.Clear();
 
                 MenuGUI.FamilyMenuGUI();
@@ -140,7 +144,7 @@ namespace Labb_2
             while (true)
             {
                 tempList.Clear();
-                tempList.AddRange(Runtime.dogList);
+                tempList.AddRange(Runtime.DogList);
                 Console.Clear();
 
                 MenuGUI.SpeciesMenuGUI();
@@ -209,8 +213,73 @@ namespace Labb_2
                 }
             } while (loop);
 
-            Runtime.dogList.Add(new Dog(name, age, weight, fluffyTail));
+            Runtime.DogList.Add(new Dog(name, age, weight, fluffyTail));
+            Runtime.UpdateLists();
             Console.WriteLine("Dog added!");
+            Console.ReadLine();
+        }
+        #endregion
+
+        #region Cat
+        private void CatOptions()
+        {
+            while (true)
+            {
+                tempList.Clear();
+                tempList.AddRange(Runtime.CatList);
+                Console.Clear();
+
+                MenuGUI.SpeciesMenuGUI();
+
+                var input = Console.ReadKey(true).Key;
+
+                switch (input)
+                {
+                    case ConsoleKey.D1:
+                        ShowAnimalList(tempList);
+                        Console.ReadLine();
+                        break;
+                    case ConsoleKey.D2:
+                        AddNewCatToList();
+                        break;
+                    case ConsoleKey.D3:
+                        RemoveAnimalFromLists(tempList);
+                        break;
+                    case ConsoleKey.D4:
+                        return;
+
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private void AddNewCatToList()
+        {
+            Console.WriteLine("Name: ");
+            string name = Console.ReadLine();
+
+            int age = 0;
+            bool validInput = false;
+
+            while (!validInput)
+            {
+                Console.WriteLine("Age: ");
+                validInput = int.TryParse(Console.ReadLine(), out age);
+            }
+
+            int weight = 0;
+            validInput = false;
+
+            while (!validInput)
+            {
+                Console.WriteLine("Weight: ");
+                validInput = int.TryParse(Console.ReadLine(), out weight);
+            }
+
+            Runtime.CatList.Add(new Cat(name, age, weight));
+            Runtime.UpdateLists();
+            Console.WriteLine("Cat added!");
             Console.ReadLine();
         }
         #endregion
@@ -253,7 +322,7 @@ namespace Labb_2
             while (true)
             {
                 tempList.Clear();
-                tempList.AddRange(Runtime.reptileList);
+                tempList.AddRange(Runtime.ReptileList);
                 Console.Clear();
 
                 MenuGUI.FamilyMenuGUI();
@@ -284,7 +353,7 @@ namespace Labb_2
             while (true)
             {
                 tempList.Clear();
-                tempList.AddRange(Runtime.snakeList);
+                tempList.AddRange(Runtime.SnakeList);
                 Console.Clear();
 
                 MenuGUI.SpeciesMenuGUI();
@@ -335,7 +404,8 @@ namespace Labb_2
                 validInput = int.TryParse(Console.ReadLine(), out weight);
             }
 
-            Runtime.snakeList.Add(new Snake(name, age, weight));
+            Runtime.SnakeList.Add(new Snake(name, age, weight));
+            Runtime.UpdateLists();
             Console.WriteLine("Snake added!");
             Console.ReadLine();
         }
@@ -379,7 +449,7 @@ namespace Labb_2
             while (true)
             {
                 tempList.Clear();
-                tempList.AddRange(Runtime.birdList);
+                tempList.AddRange(Runtime.BirdList);
                 Console.Clear();
 
                 MenuGUI.FamilyMenuGUI();
@@ -410,7 +480,7 @@ namespace Labb_2
             while (true)
             {
                 tempList.Clear();
-                tempList.AddRange(Runtime.spearowList);
+                tempList.AddRange(Runtime.SpearowList);
                 Console.Clear();
 
                 MenuGUI.SpeciesMenuGUI();
@@ -461,7 +531,8 @@ namespace Labb_2
                 validInput = int.TryParse(Console.ReadLine(), out weight);
             }
 
-            Runtime.spearowList.Add(new Spearow(name, age, weight));
+            Runtime.SpearowList.Add(new Spearow(name, age, weight));
+            Runtime.UpdateLists();
             Console.WriteLine("Bird added!");
             Console.ReadLine();
         }
@@ -513,33 +584,33 @@ namespace Labb_2
 
         private void AnimalRemoval(Animal animal)
         {
-            Runtime.animalList.Remove(animal);
+            Runtime.AnimalList.Remove(animal);
 
             if (animal.GetType().BaseType.ToString() == "Labb_2.Mammal")
             {
-                Runtime.mammalList.Remove((Mammal)animal);
+                Runtime.MammalList.Remove((Mammal)animal);
                 if (animal.GetType().ToString() == "Labb_2.Dog")
                 {
-                    Runtime.dogList.Remove((Dog)animal);
+                    Runtime.DogList.Remove((Dog)animal);
                 }
 
             }
             if (animal.GetType().BaseType.ToString() == "Labb_2.Reptile")
             {
-                Runtime.reptileList.Remove((Reptile)animal);
+                Runtime.ReptileList.Remove((Reptile)animal);
                 if (animal.GetType().ToString() == "Labb_2.Snake")
                 {
-                    Runtime.snakeList.Remove((Snake)animal);
+                    Runtime.SnakeList.Remove((Snake)animal);
                 }
             }
 
             if (animal.GetType().BaseType.ToString() == "Labb_2.Bird")
             {
                 Console.ReadLine();
-                Runtime.birdList.Remove((Bird)animal);
+                Runtime.BirdList.Remove((Bird)animal);
                 if (animal.GetType().ToString() == "Labb_2.Spearow")
                 {
-                    Runtime.spearowList.Remove((Spearow)animal);
+                    Runtime.SpearowList.Remove((Spearow)animal);
                 }
             }
 
