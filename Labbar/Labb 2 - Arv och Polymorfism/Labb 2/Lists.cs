@@ -8,6 +8,8 @@ namespace Labb_2
 {
     class Lists
     {
+        static readonly public List<Animal> allTypesOfAnimals = new List<Animal>();
+
         static List<Animal> animalList = new List<Animal>();
         public static List<Animal> AnimalList { get { return animalList; } set { animalList = value; } }
 
@@ -44,6 +46,14 @@ namespace Labb_2
             AnimalList.AddRange(MammalList);
             AnimalList.AddRange(ReptileList);
             AnimalList.AddRange(BirdList);
+        }
+
+        public static void createListOfAllAnimals()
+        {
+            allTypesOfAnimals.Add(new Dog("", 0, 0, true));
+            allTypesOfAnimals.Add(new Cat("", 0, 0));
+            allTypesOfAnimals.Add(new Snake("", 0, 0));
+            allTypesOfAnimals.Add(new Spearow("", 0, 0));
         }
 
     }

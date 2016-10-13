@@ -5,23 +5,24 @@ namespace Labb_2
 {
     internal class Runtime
     {
+        List<Animal> ListOfCurrentTypeOFAnimal = new List<Animal>();
+        string TypeOfAnimal { get; set; }
 
-        internal void Start()
+        public void Start()
         {
 
             Lists.DogList.Add(new Dog("Domino", 23, 50, true));
+            Lists.DogList.Add(new Dog("woof", 15, 3, false));
 
             Lists.SnakeList.Add(new Snake("Snakey", 3, 5));
 
             Lists.SpearowList.Add(new Spearow("Birdie", 2, 2));
 
             Lists.UpdateLists();
-            
-            MainMenu();
-        }
+            Lists.createListOfAllAnimals();
 
-        List<Animal> ListOfCurrentTypeOFAnimal = new List<Animal>();
-        string TypeOfAnimal { get; set; }
+            MainMenu();
+        }      
 
         public void MainMenu()
         {
@@ -132,13 +133,11 @@ namespace Labb_2
             while (true)
             {
                 TypeOfAnimal = "Mammals";
+                ListOfCurrentTypeOFAnimal.Clear();
+                ListOfCurrentTypeOFAnimal.AddRange(Lists.MammalList);
                 Console.Clear();
 
-                Console.WriteLine(TypeOfAnimal);
-                Console.WriteLine("1. All mammals");
-                Console.WriteLine("2. Dogs");
-                Console.WriteLine("3. Cats");
-                Console.WriteLine("4. Return");
+                MenuGUI.FamilyMenuChooserGUI(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
 
                 var input = Console.ReadKey(true).Key;
 
@@ -380,12 +379,11 @@ namespace Labb_2
             while (true)
             {
                 TypeOfAnimal = "Reptiles";
+                ListOfCurrentTypeOFAnimal.Clear();
+                ListOfCurrentTypeOFAnimal.AddRange(Lists.ReptileList);
                 Console.Clear();
 
-                Console.WriteLine(TypeOfAnimal);
-                Console.WriteLine("1. All reptiles");
-                Console.WriteLine("2. Snakes");
-                Console.WriteLine("3. Return");
+                MenuGUI.FamilyMenuChooserGUI(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
 
                 var input = Console.ReadKey(true).Key;
 
@@ -537,12 +535,11 @@ namespace Labb_2
             while (true)
             {
                 TypeOfAnimal = "Birds";
+                ListOfCurrentTypeOFAnimal.Clear();
+                ListOfCurrentTypeOFAnimal.AddRange(Lists.BirdList);
                 Console.Clear();
 
-                Console.WriteLine(TypeOfAnimal);
-                Console.WriteLine("1. All birds");
-                Console.WriteLine("2. Spearows");
-                Console.WriteLine("3. Return");
+                MenuGUI.FamilyMenuChooserGUI(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
 
                 var input = Console.ReadKey(true).Key;
 

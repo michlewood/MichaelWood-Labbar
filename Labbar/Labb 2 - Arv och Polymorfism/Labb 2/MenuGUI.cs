@@ -35,5 +35,23 @@ namespace Labb_2
             Console.WriteLine("3. Remove");
             Console.WriteLine("4. Return");
         }
+
+        static public void FamilyMenuChooserGUI(List<Animal> animalList, string typeOfAnimal)
+        {
+            int subTypeNr = 2;
+            string subTypeName = "" ;
+            string baseType = animalList[0].GetType().BaseType.ToString();
+            Console.WriteLine("1. All {0}", typeOfAnimal);
+            foreach (Animal animal in Lists.allTypesOfAnimals)
+            {
+                if(animal.GetType().ToString() != subTypeName && animal.GetType().BaseType.ToString() == baseType)
+                {
+                    subTypeName = animal.GetType().ToString();
+                    Console.WriteLine("{0}: {1}", subTypeNr, subTypeName.Substring(7));
+                    subTypeNr++;
+                }
+            }
+            Console.WriteLine("{0}. Return", subTypeNr);
+        }
     }
 }
