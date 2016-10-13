@@ -40,7 +40,7 @@ namespace Labb_2
 
         public override string Description()
         {
-            return string.Format("{0} is a {1} and can evolve",base.Description(), Type);
+            return string.Format("{0} Is a {1} and can evolve to Fearow",base.Description(), Type);
         }
     }
 
