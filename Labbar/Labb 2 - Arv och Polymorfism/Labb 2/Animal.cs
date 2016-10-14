@@ -8,9 +8,9 @@ namespace Labb_2
 {
     abstract public class Animal
     {
-        public string Name { get; private set; }
-        public int Age { get; private set; }
-        public int Weight { get; private set; }
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public int Weight { get; set; }
 
 
         public Animal(string name, int age, int weight)
@@ -20,6 +20,8 @@ namespace Labb_2
             Weight = weight;
         }
 
+        public Animal() { }
+
         abstract public string Move();
 
         abstract public string Talk();
@@ -28,7 +30,7 @@ namespace Labb_2
         {
             string type = this.GetType().ToString();
             type = type.Remove(0, 7);
-            return String.Format("{0} is a {1} years old {2} and weighs {3}. It {4} and it makes a {5}ing sound.", Name, Age, type.ToLower(), Weight, Move(), Talk());
+            return String.Format("{0} is a {1} years old {2} and weighs {3}. It {4} and it makes a {5} sound.", Name, Age, type.ToLower(), Weight, Move(), Talk());
         }
     }
 }

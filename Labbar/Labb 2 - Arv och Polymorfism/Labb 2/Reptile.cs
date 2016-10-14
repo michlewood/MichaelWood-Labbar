@@ -8,16 +8,12 @@ namespace Labb_2
 {
     abstract public class Reptile : Animal
     {
-        public Reptile(string name, int age, int weight) : base(name, age, weight)
-        {
-        }
+        public Reptile(){ }
     }
 
     public class Snake : Reptile
     {
-        public Snake(string name, int age, int weight) : base(name, age, weight)
-        {
-        }
+        public Snake() { }
 
         public override string Move()
         {
@@ -26,7 +22,7 @@ namespace Labb_2
 
         public override string Talk()
         {
-            return "hiss";
+            return "hissing";
         }
     }
 }

@@ -57,7 +57,7 @@ namespace Labb_2
             Console.WriteLine("{0}. Return", subTypeNr);
         }
 
-        internal static void NewAnimalGUI()
+        public static void NewAnimalGUI()
         {
             Console.WriteLine("What type of animal do you want to add? ");
             Console.WriteLine("1. Add mammal");

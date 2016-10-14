@@ -53,11 +53,11 @@ namespace Labb_2
 
         public static void createListOfAllAnimals()
         {
-            allTypesOfAnimals.Add(new Dog("", 0, 0, true));
-            allTypesOfAnimals.Add(new Cat("", 0, 0));
-            allTypesOfAnimals.Add(new Snake("", 0, 0));
-            allTypesOfAnimals.Add(new Pigeon("", 0, 0));
-            allTypesOfAnimals.Add(new Eagle("", 0, 0));
+            allTypesOfAnimals.Add(new Dog());
+            allTypesOfAnimals.Add(new Cat());
+            allTypesOfAnimals.Add(new Snake());
+            allTypesOfAnimals.Add(new Pigeon());
+            allTypesOfAnimals.Add(new Eagle());
         }
 
     }

@@ -29,28 +29,10 @@ namespace Labb_2
         #region Add Animals
         public void AddNewDogToList()
         {
-            Console.WriteLine("Name: ");
-            string name = Console.ReadLine();
+            Console.Clear();
+            Dog newDog = new Dog();
+            AddAnimalProperties(newDog);
 
-            int age = 0;
-            bool validInput = false;
-
-            while (!validInput)
-            {
-                Console.WriteLine("Age: ");
-                validInput = int.TryParse(Console.ReadLine(), out age);
-            }
-
-            int weight = 0;
-            validInput = false;
-
-            while (!validInput)
-            {
-                Console.WriteLine("Weight: ");
-                validInput = int.TryParse(Console.ReadLine(), out weight);
-            }
-
-            bool fluffyTail = false;
             bool loop = false;
 
             do
@@ -62,13 +44,13 @@ namespace Labb_2
 
                 switch (input)
                 {
-                    case ConsoleKey.Y: fluffyTail = true; break;
-                    case ConsoleKey.N: fluffyTail = false; break;
+                    case ConsoleKey.Y: newDog.FluffyTail = true; break;
+                    case ConsoleKey.N: newDog.FluffyTail = false; break;
                     default: loop = true; break;
                 }
             } while (loop);
 
-            Lists.DogList.Add(new Dog(name, age, weight, fluffyTail));
+            Lists.DogList.Add(newDog);
             Lists.UpdateLists();
             Console.WriteLine("Dog added!");
             Console.ReadLine();
@@ -76,28 +58,43 @@ namespace Labb_2
 
         public void AddNewCatToList()
         {
-            Console.WriteLine("Name: ");
-            string name = Console.ReadLine();
+            Console.Clear();
+            Cat newCat = new Cat();
+            AddAnimalProperties(newCat);
 
-            int age = 0;
-            bool validInput = false;
+            bool loop = false;
 
-            while (!validInput)
+            do
             {
-                Console.WriteLine("Age: ");
-                validInput = int.TryParse(Console.ReadLine(), out age);
-            }
+                loop = false;
+                Console.WriteLine("Does the cat have nine lives? (Y/N)");
 
-            int weight = 0;
-            validInput = false;
+                var input = Console.ReadKey(true).Key;
 
-            while (!validInput)
-            {
-                Console.WriteLine("Weight: ");
-                validInput = int.TryParse(Console.ReadLine(), out weight);
-            }
+                switch (input)
+                {
+                    case ConsoleKey.Y: break;
+                    case ConsoleKey.N:
+                        while (true)
+                        {
+                            Console.WriteLine("How many lives does it have?");
+                            int lives = 0;
+                            bool validInput = false;
 
-            Lists.CatList.Add(new Cat(name, age, weight));
+                            while (!validInput)
+                            {
+                                Console.Write("Lives: ");
+                                validInput = int.TryParse(Console.ReadLine(), out lives);
+                            }
+                            newCat.Lives = lives;
+                            return;
+                        }
+
+                    default: loop = true; break;
+                }
+            } while (loop);
+
+            Lists.CatList.Add(newCat);
             Lists.UpdateLists();
             Console.WriteLine("Cat added!");
             Console.ReadLine();
@@ -105,28 +102,10 @@ namespace Labb_2
 
         public void AddNewSnakeToList()
         {
-            Console.WriteLine("Name: ");
-            string name = Console.ReadLine();
-
-            int age = 0;
-            bool validInput = false;
-
-            while (!validInput)
-            {
-                Console.WriteLine("Age: ");
-                validInput = int.TryParse(Console.ReadLine(), out age);
-            }
-
-            int weight = 0;
-            validInput = false;
-
-            while (!validInput)
-            {
-                Console.WriteLine("Weight: ");
-                validInput = int.TryParse(Console.ReadLine(), out weight);
-            }
-
-            Lists.SnakeList.Add(new Snake(name, age, weight));
+            Console.Clear();
+            Snake newSnake = new Snake();
+            AddAnimalProperties(newSnake);
+            Lists.SnakeList.Add(newSnake);
             Lists.UpdateLists();
             Console.WriteLine("Snake added!");
             Console.ReadLine();
@@ -134,28 +113,10 @@ namespace Labb_2
 
         public void AddNewPigeonToList()
         {
-            Console.WriteLine("Name: ");
-            string name = Console.ReadLine();
-
-            int age = 0;
-            bool validInput = false;
-
-            while (!validInput)
-            {
-                Console.WriteLine("Age: ");
-                validInput = int.TryParse(Console.ReadLine(), out age);
-            }
-
-            int weight = 0;
-            validInput = false;
-
-            while (!validInput)
-            {
-                Console.WriteLine("Weight: ");
-                validInput = int.TryParse(Console.ReadLine(), out weight);
-            }
-
-            Lists.PigeonList.Add(new Pigeon(name, age, weight));
+            Console.Clear();
+            Pigeon newPigeon = new Pigeon();
+            AddAnimalProperties(newPigeon);
+            Lists.PigeonList.Add(newPigeon);
             Lists.UpdateLists();
             Console.WriteLine("Pigeon added!");
             Console.ReadLine();
@@ -163,8 +124,20 @@ namespace Labb_2
 
         public void AddNewEagleToList()
         {
+            Console.Clear();
+            Eagle newEagle = new Eagle();
+            AddAnimalProperties(newEagle);
+            Lists.EagleList.Add(newEagle);
+            Lists.UpdateLists();
+            Console.WriteLine("Eagle added!");
+            Console.ReadLine();
+        }
+        #endregion
+
+        private void AddAnimalProperties(Animal newAnimal)
+        {
             Console.WriteLine("Name: ");
-            string name = Console.ReadLine();
+            newAnimal.Name = Console.ReadLine();
 
             int age = 0;
             bool validInput = false;
@@ -174,22 +147,18 @@ namespace Labb_2
                 Console.WriteLine("Age: ");
                 validInput = int.TryParse(Console.ReadLine(), out age);
             }
+            newAnimal.Age = age;
 
-            int weight = 0;
             validInput = false;
 
+            int weight = 0;
             while (!validInput)
             {
                 Console.WriteLine("Weight: ");
                 validInput = int.TryParse(Console.ReadLine(), out weight);
             }
-
-            Lists.EagleList.Add(new Eagle(name, age, weight));
-            Lists.UpdateLists();
-            Console.WriteLine("Eagle added!");
-            Console.ReadLine();
+            newAnimal.Weight = weight;
         }
-        #endregion
 
         public void RemoveAnimalFromLists(List<Animal> animalList, string typeOfAnimal)
         {
@@ -235,8 +204,5 @@ namespace Labb_2
 
             Lists.UpdateLists();
         }
-
-
-
     }
 }

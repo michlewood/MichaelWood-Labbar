@@ -8,9 +8,9 @@ namespace Labb_2
 {
     abstract public class Bird : Animal
     {
-        public bool CanFly { get; private set; }
+        public bool CanFly { get; set; }
 
-        public Bird(string name, int age, int weight, bool canFly = true) : base(name, age, weight)
+        public Bird(bool canFly = true)
         {
             CanFly = canFly;
         }
@@ -18,10 +18,7 @@ namespace Labb_2
 
     public class Pigeon : Bird
     {
-
-        public Pigeon(string name, int age, int weight) : base(name, age, weight)
-        {
-        }
+        public Pigeon() { }
 
         public override string Move()
         {
@@ -30,15 +27,13 @@ namespace Labb_2
 
         public override string Talk()
         {
-            return "twerp";
+            return "twerping";
         }
     }
 
     public class Eagle : Bird
     {
-        public Eagle(string name, int age, int weight) : base(name, age, weight)
-        {
-        }
+        public Eagle() { }
 
         public override string Move()
         {
@@ -47,7 +42,7 @@ namespace Labb_2
 
         public override string Talk()
         {
-            return "high-pitched whistle";
+            return "high-pitched whistling";
         }
     }
 }

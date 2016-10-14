@@ -8,26 +8,24 @@ namespace Labb_2
 {
     abstract public class Mammal : Animal
     {
-        public int NumberOfLegs { get; private set; }
+        public int NumberOfLegs { get; set; }
 
-        public Mammal(string name, int age, int weight, int numberOfLegs) : base(name, age, weight)
+        public Mammal(int numberOfLegs)
         {
             NumberOfLegs = numberOfLegs;
         }
 
         public override string Description()
         {
-            return string.Format("{0} I have {1} legs", base.Description(), NumberOfLegs);
+            return string.Format("{0} It has {1} legs", base.Description(), NumberOfLegs);
         }
     }
 
     public class Dog : Mammal
     {
-        public bool FluffyTail { get; private set; }
-        public Dog(string name, int age, int weight, bool fluffyTail) : base(name, age, weight, 4)
-        {
-            FluffyTail = fluffyTail;
-        }
+        public bool FluffyTail { get; set; }
+
+        public Dog() : base(4) { }
 
         public override string Move()
         {
@@ -36,7 +34,7 @@ namespace Labb_2
 
         public override string Talk()
         {
-            return "bark";
+            return "barking";
         }
 
         public override string Description()
@@ -44,7 +42,7 @@ namespace Labb_2
 
             if (FluffyTail)
             {
-                return base.Description() + " and i have a fluffy tail";
+                return base.Description() + " and it has a fluffy tail";
             }
 
             else return base.Description() + ".";
@@ -56,7 +54,7 @@ namespace Labb_2
     {
         public int Lives { get; set; }
 
-        public Cat(string name, int age, int weight, int lives = 9) : base(name, age, weight, 4)
+        public Cat(int lives = 9) : base(4)
         {
             Lives = lives;
         }
@@ -68,12 +66,12 @@ namespace Labb_2
 
         public override string Talk()
         {
-            return "meow";
+            return "meowing";
         }
 
         public override string Description()
         {
-            return string.Format("{0}, and i have {1} lives ",base.Description(), Lives);
+            return string.Format("{0}, and it have {1} lives ", base.Description(), Lives);
         }
     }
 }

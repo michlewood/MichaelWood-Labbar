@@ -11,13 +11,12 @@ namespace Labb_2
 
         public void Start()
         {
+            Lists.DogList.Add(new Dog { Name = "Domino", Age = 10, Weight = 50, FluffyTail = true });
+            Lists.DogList.Add(new Dog { Name = "woof", Age = 15, Weight = 3, FluffyTail = false });
 
-            Lists.DogList.Add(new Dog("Domino", 23, 50, true));
-            Lists.DogList.Add(new Dog("woof", 15, 3, false));
+            Lists.SnakeList.Add(new Snake { Name = "Snakey", Age = 3, Weight = 5 });
 
-            Lists.SnakeList.Add(new Snake("Snakey", 3, 5));
-
-            Lists.PigeonList.Add(new Pigeon("Birdie", 2, 2));
+            Lists.PigeonList.Add(new Pigeon { Name = "Birdie", Age = 2,  Weight = 2 });
 
             Lists.UpdateLists();
             Lists.createListOfAllAnimals();
