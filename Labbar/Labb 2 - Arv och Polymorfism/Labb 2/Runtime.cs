@@ -7,6 +7,7 @@ namespace Labb_2
     {
         List<Animal> ListOfCurrentTypeOFAnimal = new List<Animal>();
         string TypeOfAnimal { get; set; }
+        AnimalManager animalManager = new AnimalManager();
 
         public void Start()
         {
@@ -74,7 +75,7 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
-                        ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                        animalManager.ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         Console.ReadLine();
                         break;
                     case ConsoleKey.D2:
@@ -82,7 +83,7 @@ namespace Labb_2
                         NewAnimal();
                         break;
                     case ConsoleKey.D3:
-                        RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                        animalManager.RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         break;
                     case ConsoleKey.D4:
                         return;
@@ -177,7 +178,7 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
-                        ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                        animalManager.ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         Console.ReadLine();
                         break;
                     case ConsoleKey.D2:
@@ -185,7 +186,7 @@ namespace Labb_2
                         NewMammal();
                         break;
                     case ConsoleKey.D3:
-                        RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                        animalManager.RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         break;
                     case ConsoleKey.D4:
                         return;
@@ -209,11 +210,11 @@ namespace Labb_2
             {
                 case ConsoleKey.D1:
                     Console.Clear();
-                    AddNewDogToList();
+                    animalManager.AddNewDogToList();
                     break;
                 case ConsoleKey.D2:
                     Console.Clear();
-                    AddNewCatToList();
+                    animalManager.AddNewCatToList();
                     break;
                 case ConsoleKey.D3:
                     return;
@@ -223,7 +224,6 @@ namespace Labb_2
             }
         }
 
-        #region Dog
         private void DogOptions()
         {
             while (true)
@@ -240,14 +240,14 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
-                        ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                        animalManager.ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         Console.ReadLine();
                         break;
                     case ConsoleKey.D2:
-                        AddNewDogToList();
+                        animalManager.AddNewDogToList();
                         break;
                     case ConsoleKey.D3:
-                        RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                        animalManager.RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         break;
                     case ConsoleKey.D4:
                         return;
@@ -257,56 +257,7 @@ namespace Labb_2
                 }
             }
         }
-
-        private void AddNewDogToList()
-        {
-            Console.WriteLine("Name: ");
-            string name = Console.ReadLine();
-
-            int age = 0;
-            bool validInput = false;
-
-            while (!validInput)
-            {
-                Console.WriteLine("Age: ");
-                validInput = int.TryParse(Console.ReadLine(), out age);
-            }
-
-            int weight = 0;
-            validInput = false;
-
-            while (!validInput)
-            {
-                Console.WriteLine("Weight: ");
-                validInput = int.TryParse(Console.ReadLine(), out weight);
-            }
-
-            bool fluffyTail = false;
-            bool loop = false;
-
-            do
-            {
-                loop = false;
-                Console.WriteLine("Does the dog have a fluffytail? (Y/N)");
-
-                var input = Console.ReadKey(true).Key;
-
-                switch (input)
-                {
-                    case ConsoleKey.Y: fluffyTail = true; break;
-                    case ConsoleKey.N: fluffyTail = false; break;
-                    default: loop = true; break;
-                }
-            } while (loop);
-
-            Lists.DogList.Add(new Dog(name, age, weight, fluffyTail));
-            Lists.UpdateLists();
-            Console.WriteLine("Dog added!");
-            Console.ReadLine();
-        }
-        #endregion
-
-        #region Cat
+      
         private void CatOptions()
         {
             while (true)
@@ -323,14 +274,14 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
-                        ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                        animalManager.ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         Console.ReadLine();
                         break;
                     case ConsoleKey.D2:
-                        AddNewCatToList();
+                        animalManager.AddNewCatToList();
                         break;
                     case ConsoleKey.D3:
-                        RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                        animalManager.RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         break;
                     case ConsoleKey.D4:
                         return;
@@ -340,37 +291,6 @@ namespace Labb_2
                 }
             }
         }
-
-        private void AddNewCatToList()
-        {
-            Console.WriteLine("Name: ");
-            string name = Console.ReadLine();
-
-            int age = 0;
-            bool validInput = false;
-
-            while (!validInput)
-            {
-                Console.WriteLine("Age: ");
-                validInput = int.TryParse(Console.ReadLine(), out age);
-            }
-
-            int weight = 0;
-            validInput = false;
-
-            while (!validInput)
-            {
-                Console.WriteLine("Weight: ");
-                validInput = int.TryParse(Console.ReadLine(), out weight);
-            }
-
-            Lists.CatList.Add(new Cat(name, age, weight));
-            Lists.UpdateLists();
-            Console.WriteLine("Cat added!");
-            Console.ReadLine();
-        }
-        #endregion
-
         #endregion
 
         #region Reptiles
@@ -420,7 +340,7 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
-                        ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                        animalManager.ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         Console.ReadLine();
                         break;
                     case ConsoleKey.D2:
@@ -428,7 +348,7 @@ namespace Labb_2
                         NewReptile();
                         break;
                     case ConsoleKey.D3:
-                        RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                        animalManager.RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         break;
                     case ConsoleKey.D4:
                         return;
@@ -451,7 +371,7 @@ namespace Labb_2
             {
                 case ConsoleKey.D1:
                     Console.Clear();
-                    AddNewSnakeToList();
+                    animalManager.AddNewSnakeToList();
                     break;
 
                 case ConsoleKey.D2:
@@ -462,7 +382,6 @@ namespace Labb_2
             }
         }
 
-        #region Snake
         private void SnakeOptions()
         {
             while (true)
@@ -479,14 +398,14 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
-                        ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                        animalManager.ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         Console.ReadLine();
                         break;
                     case ConsoleKey.D2:
-                        AddNewSnakeToList();
+                        animalManager.AddNewSnakeToList();
                         break;
                     case ConsoleKey.D3:
-                        RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                        animalManager.RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         break;
                     case ConsoleKey.D4:
                         return;
@@ -496,37 +415,6 @@ namespace Labb_2
                 }
             }
         }
-
-        private void AddNewSnakeToList()
-        {
-            Console.WriteLine("Name: ");
-            string name = Console.ReadLine();
-
-            int age = 0;
-            bool validInput = false;
-
-            while (!validInput)
-            {
-                Console.WriteLine("Age: ");
-                validInput = int.TryParse(Console.ReadLine(), out age);
-            }
-
-            int weight = 0;
-            validInput = false;
-
-            while (!validInput)
-            {
-                Console.WriteLine("Weight: ");
-                validInput = int.TryParse(Console.ReadLine(), out weight);
-            }
-
-            Lists.SnakeList.Add(new Snake(name, age, weight));
-            Lists.UpdateLists();
-            Console.WriteLine("Snake added!");
-            Console.ReadLine();
-        }
-        #endregion
-
         #endregion
 
         #region Bird
@@ -579,14 +467,14 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
-                        ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                        animalManager.ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         Console.ReadLine();
                         break;
                     case ConsoleKey.D2:
                         NewBird();
                         break;
                     case ConsoleKey.D3:
-                        RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                        animalManager.RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         break;
                     case ConsoleKey.D4:
                         return;
@@ -610,11 +498,11 @@ namespace Labb_2
             {
                 case ConsoleKey.D1:
                     Console.Clear();
-                    AddNewPigeonToList();
+                    animalManager.AddNewPigeonToList();
                     break;
                 case ConsoleKey.D2:
                     Console.Clear();
-                    AddNewEagleToList();
+                    animalManager.AddNewEagleToList();
                     break;
                 case ConsoleKey.D3:
                     return;
@@ -624,7 +512,6 @@ namespace Labb_2
             }
         }
 
-        #region Pigeon
         private void PigeonOptions()
         {
             while (true)
@@ -641,14 +528,14 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
-                        ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                        animalManager.ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         Console.ReadLine();
                         break;
                     case ConsoleKey.D2:
-                        AddNewPigeonToList();
+                        animalManager.AddNewPigeonToList();
                         break;
                     case ConsoleKey.D3:
-                        RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                        animalManager.RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         break;
                     case ConsoleKey.D4:
                         return;
@@ -659,37 +546,6 @@ namespace Labb_2
             }
         }
 
-        private void AddNewPigeonToList()
-        {
-            Console.WriteLine("Name: ");
-            string name = Console.ReadLine();
-
-            int age = 0;
-            bool validInput = false;
-
-            while (!validInput)
-            {
-                Console.WriteLine("Age: ");
-                validInput = int.TryParse(Console.ReadLine(), out age);
-            }
-
-            int weight = 0;
-            validInput = false;
-
-            while (!validInput)
-            {
-                Console.WriteLine("Weight: ");
-                validInput = int.TryParse(Console.ReadLine(), out weight);
-            }
-
-            Lists.PigeonList.Add(new Pigeon(name, age, weight));
-            Lists.UpdateLists();
-            Console.WriteLine("Pigeon added!");
-            Console.ReadLine();
-        }
-        #endregion
-
-        #region Eagle
         private void EagleOptions()
         {
             while (true)
@@ -706,14 +562,14 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
-                        ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                        animalManager.ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         Console.ReadLine();
                         break;
                     case ConsoleKey.D2:
-                        AddNewEagleToList();
+                        animalManager.AddNewEagleToList();
                         break;
                     case ConsoleKey.D3:
-                        RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
+                        animalManager.RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         break;
                     case ConsoleKey.D4:
                         return;
@@ -723,100 +579,7 @@ namespace Labb_2
                 }
             }
         }
-
-        private void AddNewEagleToList()
-        {
-            Console.WriteLine("Name: ");
-            string name = Console.ReadLine();
-
-            int age = 0;
-            bool validInput = false;
-
-            while (!validInput)
-            {
-                Console.WriteLine("Age: ");
-                validInput = int.TryParse(Console.ReadLine(), out age);
-            }
-
-            int weight = 0;
-            validInput = false;
-
-            while (!validInput)
-            {
-                Console.WriteLine("Weight: ");
-                validInput = int.TryParse(Console.ReadLine(), out weight);
-            }
-
-            Lists.EagleList.Add(new Eagle(name, age, weight));
-            Lists.UpdateLists();
-            Console.WriteLine("Eagle added!");
-            Console.ReadLine();
-        }
         #endregion
 
-        #endregion
-
-        public void ShowAnimalList(List<Animal> animalList, string typeOfAnimal)
-        {
-            Console.Clear();
-            int i = 0;
-            if (animalList.Count == 0)
-            {
-                Console.WriteLine("Listan är tom!");
-                return;
-            }
-
-            Console.WriteLine(typeOfAnimal);
-            foreach (var animal in animalList)
-            {
-                i++;
-                Console.WriteLine("{0}: {1}", i, animal.Description());
-            }
-        }
-
-        private void RemoveAnimalFromLists(List<Animal> animalList, string typeOfAnimal)
-        {
-            ShowAnimalList(animalList, typeOfAnimal);
-
-            if (animalList.Count == 0)
-            {
-                Console.ReadLine();
-                return;
-            }
-
-            Console.WriteLine("Choose a animal to remove:");
-
-            int animalToRemove;
-
-            bool validInput = int.TryParse(Console.ReadLine(), out animalToRemove);
-            if (!validInput || animalToRemove > animalList.Count || animalToRemove < 1) return;
-
-
-            AnimalRemoval(animalList[animalToRemove - 1]);
-
-            Console.WriteLine("Animal removed!");
-            Console.ReadLine();
-        }
-
-        private void AnimalRemoval(Animal animal)
-        {
-
-            if (animal.GetType().ToString() == "Labb_2.Dog")
-                Lists.DogList.Remove((Dog)animal);
-
-            else if (animal.GetType().ToString() == "Labb_2.Cat")
-                Lists.CatList.Remove((Cat)animal);
-
-            else if (animal.GetType().ToString() == "Labb_2.Snake")
-                Lists.SnakeList.Remove((Snake)animal);
-
-            else if (animal.GetType().ToString() == "Labb_2.Pigeon")
-                Lists.PigeonList.Remove((Pigeon)animal);
-
-            else if (animal.GetType().ToString() == "Labb_2.Eagle")
-                Lists.EagleList.Remove((Eagle)animal);
-
-            Lists.UpdateLists();
-        }
     }
 }
