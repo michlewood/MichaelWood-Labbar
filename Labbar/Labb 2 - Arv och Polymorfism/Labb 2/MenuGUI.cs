@@ -18,7 +18,7 @@ namespace Labb_2
             Console.WriteLine("5. Exit");
         }
 
-        static public void FamilyMenuGUI(string typeOfAnimal)
+        static public void OptionsMenuGUI(string typeOfAnimal)
         {
             Console.WriteLine("{0}s", typeOfAnimal);
             Console.WriteLine("1. Show info");
@@ -27,24 +27,27 @@ namespace Labb_2
             Console.WriteLine("4. Return");
         }
 
-        static public void SpeciesMenuGUI(string typeOfAnimal)
-        {
-            Console.WriteLine("{0}s", typeOfAnimal);
-            Console.WriteLine("1. Show info");
-            Console.WriteLine("2. Add new");
-            Console.WriteLine("3. Remove");
-            Console.WriteLine("4. Return");
-        }
-
         static public void FamilyMenuChooserGUI(string typeOfAnimal)
         {
             int subTypeNr = 2;
-            string subTypeName = "" ;
             Console.WriteLine("{0}s", typeOfAnimal);
             Console.WriteLine("1. All {0}s", typeOfAnimal);
+            ListerOFTypesOFAnimals(typeOfAnimal, subTypeNr);
+        }
+
+        static public void NewFamilyGUI(string typeOfAnimal)
+        {
+            int subTypeNr = 1;
+            Console.WriteLine("{0}s", typeOfAnimal);
+            ListerOFTypesOFAnimals(typeOfAnimal, subTypeNr);
+        }
+
+        public static void ListerOFTypesOFAnimals(string typeOfAnimal, int subTypeNr)
+        {  
+            string subTypeName = "";
             foreach (Animal animal in Lists.allTypesOfAnimals)
             {
-                if(animal.GetType().ToString() != subTypeName && animal.GetType().BaseType.ToString().Substring(7) == typeOfAnimal)
+                if (animal.GetType().ToString() != subTypeName && animal.GetType().BaseType.ToString().Substring(7) == typeOfAnimal)
                 {
                     subTypeName = animal.GetType().ToString();
                     Console.WriteLine("{0}: {1}", subTypeNr, subTypeName.Substring(7));
@@ -52,6 +55,15 @@ namespace Labb_2
                 }
             }
             Console.WriteLine("{0}. Return", subTypeNr);
+        }
+
+        internal static void NewAnimalGUI()
+        {
+            Console.WriteLine("What type of animal do you want to add? ");
+            Console.WriteLine("1. Add mammal");
+            Console.WriteLine("2. Add reptile");
+            Console.WriteLine("3. Add bird");
+            Console.WriteLine("4. Return");
         }
     }
 }

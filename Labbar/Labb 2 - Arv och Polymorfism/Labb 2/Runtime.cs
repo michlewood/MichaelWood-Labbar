@@ -63,12 +63,12 @@ namespace Labb_2
         {
             while (true)
             {
-                TypeOfAnimal = "Animals";
+                TypeOfAnimal = "Animal";
                 ListOfCurrentTypeOFAnimal.Clear();
                 ListOfCurrentTypeOFAnimal.AddRange(Lists.AnimalList);
                 Console.Clear();
 
-                MenuGUI.FamilyMenuGUI(TypeOfAnimal);
+                MenuGUI.OptionsMenuGUI(TypeOfAnimal);
 
                 var input = Console.ReadKey(true).Key;
 
@@ -79,7 +79,6 @@ namespace Labb_2
                         Console.ReadLine();
                         break;
                     case ConsoleKey.D2:
-                        Console.Clear();
                         NewAnimal();
                         break;
                     case ConsoleKey.D3:
@@ -96,33 +95,33 @@ namespace Labb_2
 
         private void NewAnimal()
         {
-            Console.WriteLine("What type of animal do you want to add? ");
-            Console.WriteLine("1. Add mammal");
-            Console.WriteLine("2. Add reptile");
-            Console.WriteLine("3. Add bird");
-            Console.WriteLine("4. Return");
-
-            var input = Console.ReadKey(true).Key;
-
-            switch (input)
+            while (true)
             {
-                case ConsoleKey.D1:
-                    Console.Clear();
-                    NewMammal();
-                    break;
-                case ConsoleKey.D2:
-                    Console.Clear();
-                    NewReptile();
-                    break;
-                case ConsoleKey.D3:
-                    Console.Clear();
-                    NewBird();
-                    break;
-                case ConsoleKey.D4:
-                    return;
+                Console.Clear();
+                MenuGUI.NewAnimalGUI();
 
-                default:
-                    break;
+                var input = Console.ReadKey(true).Key;
+
+                switch (input)
+                {
+                    case ConsoleKey.D1:
+                        Console.Clear();
+                        NewMammal();
+                        break;
+                    case ConsoleKey.D2:
+                        Console.Clear();
+                        NewReptile();
+                        break;
+                    case ConsoleKey.D3:
+                        Console.Clear();
+                        NewBird();
+                        break;
+                    case ConsoleKey.D4:
+                        return;
+
+                    default:
+                        break;
+                } 
             }
         }
 
@@ -171,7 +170,7 @@ namespace Labb_2
                 ListOfCurrentTypeOFAnimal.AddRange(Lists.MammalList);
                 Console.Clear();
 
-                MenuGUI.FamilyMenuGUI(TypeOfAnimal);
+                MenuGUI.OptionsMenuGUI(TypeOfAnimal);
 
                 var input = Console.ReadKey(true).Key;
 
@@ -199,28 +198,33 @@ namespace Labb_2
 
         private void NewMammal()
         {
-            Console.WriteLine("What type of mammal do you want to add? ");
-            Console.WriteLine("1. Dog");
-            Console.WriteLine("2. Cat");
-            Console.WriteLine("3. Return");
-
-            var input = Console.ReadKey(true).Key;
-
-            switch (input)
+            while (true)
             {
-                case ConsoleKey.D1:
-                    Console.Clear();
-                    animalManager.AddNewDogToList();
-                    break;
-                case ConsoleKey.D2:
-                    Console.Clear();
-                    animalManager.AddNewCatToList();
-                    break;
-                case ConsoleKey.D3:
-                    return;
+                TypeOfAnimal = "Mammal";
+                ListOfCurrentTypeOFAnimal.Clear();
+                ListOfCurrentTypeOFAnimal.AddRange(Lists.MammalList);
+                Console.Clear();
 
-                default:
-                    break;
+                MenuGUI.NewFamilyGUI(TypeOfAnimal);
+
+                var input = Console.ReadKey(true).Key;
+
+                switch (input)
+                {
+                    case ConsoleKey.D1:
+                        Console.Clear();
+                        animalManager.AddNewDogToList();
+                        break;
+                    case ConsoleKey.D2:
+                        Console.Clear();
+                        animalManager.AddNewCatToList();
+                        break;
+                    case ConsoleKey.D3:
+                        return;
+
+                    default:
+                        break;
+                } 
             }
         }
 
@@ -233,7 +237,7 @@ namespace Labb_2
                 ListOfCurrentTypeOFAnimal.AddRange(Lists.DogList);
                 Console.Clear();
 
-                MenuGUI.SpeciesMenuGUI(TypeOfAnimal);
+                MenuGUI.OptionsMenuGUI(TypeOfAnimal);
 
                 var input = Console.ReadKey(true).Key;
 
@@ -267,7 +271,7 @@ namespace Labb_2
                 ListOfCurrentTypeOFAnimal.AddRange(Lists.CatList);
                 Console.Clear();
 
-                MenuGUI.SpeciesMenuGUI(TypeOfAnimal);
+                MenuGUI.OptionsMenuGUI(TypeOfAnimal);
 
                 var input = Console.ReadKey(true).Key;
 
@@ -333,7 +337,7 @@ namespace Labb_2
                 ListOfCurrentTypeOFAnimal.AddRange(Lists.ReptileList);
                 Console.Clear();
 
-                MenuGUI.FamilyMenuGUI(TypeOfAnimal);
+                MenuGUI.OptionsMenuGUI(TypeOfAnimal);
 
                 var input = Console.ReadKey(true).Key;
 
@@ -361,24 +365,30 @@ namespace Labb_2
 
         private void NewReptile()
         {
-            Console.WriteLine("What type of reptile do you want to add? ");
-            Console.WriteLine("1. Snake");
-            Console.WriteLine("2. return");
-
-            var input = Console.ReadKey(true).Key;
-
-            switch (input)
+            while (true)
             {
-                case ConsoleKey.D1:
-                    Console.Clear();
-                    animalManager.AddNewSnakeToList();
-                    break;
+                TypeOfAnimal = "Reptile";
+                ListOfCurrentTypeOFAnimal.Clear();
+                ListOfCurrentTypeOFAnimal.AddRange(Lists.MammalList);
+                Console.Clear();
 
-                case ConsoleKey.D2:
-                    return;
+                MenuGUI.NewFamilyGUI(TypeOfAnimal);
 
-                default:
-                    break;
+                var input = Console.ReadKey(true).Key;
+
+                switch (input)
+                {
+                    case ConsoleKey.D1:
+                        Console.Clear();
+                        animalManager.AddNewSnakeToList();
+                        break;
+
+                    case ConsoleKey.D2:
+                        return;
+
+                    default:
+                        break;
+                } 
             }
         }
 
@@ -391,7 +401,7 @@ namespace Labb_2
                 ListOfCurrentTypeOFAnimal.AddRange(Lists.SnakeList);
                 Console.Clear();
 
-                MenuGUI.SpeciesMenuGUI(TypeOfAnimal);
+                MenuGUI.OptionsMenuGUI(TypeOfAnimal);
 
                 var input = Console.ReadKey(true).Key;
 
@@ -460,7 +470,7 @@ namespace Labb_2
                 ListOfCurrentTypeOFAnimal.AddRange(Lists.BirdList);
                 Console.Clear();
 
-                MenuGUI.FamilyMenuGUI(TypeOfAnimal);
+                MenuGUI.OptionsMenuGUI(TypeOfAnimal);
 
                 var input = Console.ReadKey(true).Key;
 
@@ -487,28 +497,33 @@ namespace Labb_2
 
         private void NewBird()
         {
-            Console.WriteLine("What type of bird do you want to add? ");
-            Console.WriteLine("1. Pidgeon");
-            Console.WriteLine("2. Eagle");
-            Console.WriteLine("3. Return");
-
-            var input = Console.ReadKey(true).Key;
-
-            switch (input)
+            while (true)
             {
-                case ConsoleKey.D1:
-                    Console.Clear();
-                    animalManager.AddNewPigeonToList();
-                    break;
-                case ConsoleKey.D2:
-                    Console.Clear();
-                    animalManager.AddNewEagleToList();
-                    break;
-                case ConsoleKey.D3:
-                    return;
+                TypeOfAnimal = "Bird";
+                ListOfCurrentTypeOFAnimal.Clear();
+                ListOfCurrentTypeOFAnimal.AddRange(Lists.MammalList);
+                Console.Clear();
 
-                default:
-                    break;
+                MenuGUI.NewFamilyGUI(TypeOfAnimal);
+
+                var input = Console.ReadKey(true).Key;
+
+                switch (input)
+                {
+                    case ConsoleKey.D1:
+                        Console.Clear();
+                        animalManager.AddNewPigeonToList();
+                        break;
+                    case ConsoleKey.D2:
+                        Console.Clear();
+                        animalManager.AddNewEagleToList();
+                        break;
+                    case ConsoleKey.D3:
+                        return;
+
+                    default:
+                        break;
+                } 
             }
         }
 
@@ -521,7 +536,7 @@ namespace Labb_2
                 ListOfCurrentTypeOFAnimal.AddRange(Lists.PigeonList);
                 Console.Clear();
 
-                MenuGUI.SpeciesMenuGUI(TypeOfAnimal);
+                MenuGUI.OptionsMenuGUI(TypeOfAnimal);
 
                 var input = Console.ReadKey(true).Key;
 
@@ -555,7 +570,7 @@ namespace Labb_2
                 ListOfCurrentTypeOFAnimal.AddRange(Lists.EagleList);
                 Console.Clear();
 
-                MenuGUI.SpeciesMenuGUI(TypeOfAnimal);
+                MenuGUI.OptionsMenuGUI(TypeOfAnimal);
 
                 var input = Console.ReadKey(true).Key;
 
