@@ -13,8 +13,7 @@ namespace Labb3
         public void Start()
         {
             Console.WriteLine("Enter name of user: ");
-            //User = Console.ReadLine();
-            User = "Michael";
+            User = Console.ReadLine();
 
             MainMenu();
             
