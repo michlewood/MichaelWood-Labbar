@@ -71,7 +71,7 @@ namespace Labb_2
 
         public override string Description()
         {
-            return string.Format("{0}, and it have {1} lives ", base.Description(), Lives);
+            return string.Format("{0}, and it has {1} lives ", base.Description(), Lives);
         }
     }
 }

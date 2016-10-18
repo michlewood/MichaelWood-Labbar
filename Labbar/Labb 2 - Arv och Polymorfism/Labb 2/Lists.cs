@@ -8,6 +8,7 @@ namespace Labb_2
 {
     class Lists
     {
+        #region Lists
         static readonly public List<Animal> allTypesOfAnimals = new List<Animal>();
 
         static List<Animal> animalList = new List<Animal>();
@@ -31,6 +32,7 @@ namespace Labb_2
         public static List<Pigeon> PigeonList { get { return pigeonList; } set { pigeonList = value; } }
         static List<Eagle> eagleList = new List<Eagle>();
         public static List<Eagle> EagleList { get { return eagleList; } set { eagleList = value; } }
+        #endregion
 
         public static void UpdateLists()
         {
@@ -59,6 +61,5 @@ namespace Labb_2
             allTypesOfAnimals.Add(new Pigeon());
             allTypesOfAnimals.Add(new Eagle());
         }
-
     }
 }

@@ -75,7 +75,8 @@ namespace Labb_2
                 {
                     case ConsoleKey.Y: break;
                     case ConsoleKey.N:
-                        while (true)
+                        loop = true;
+                        while (loop)
                         {
                             Console.WriteLine("How many lives does it have?");
                             int lives = 0;
@@ -87,8 +88,9 @@ namespace Labb_2
                                 validInput = int.TryParse(Console.ReadLine(), out lives);
                             }
                             newCat.Lives = lives;
-                            return;
+                            loop = false;
                         }
+                        break;
 
                     default: loop = true; break;
                 }

@@ -12,14 +12,6 @@ namespace Labb_2
         public int Age { get; set; }
         public int Weight { get; set; }
 
-
-        public Animal(string name, int age, int weight)
-        {
-            Name = name;
-            Age = age;
-            Weight = weight;
-        }
-
         public Animal() { }
 
         abstract public string Move();
