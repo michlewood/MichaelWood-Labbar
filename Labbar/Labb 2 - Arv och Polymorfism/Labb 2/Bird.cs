@@ -8,7 +8,7 @@ namespace Labb_2
 {
     abstract public class Bird : Animal
     {
-        public bool CanFly { get; set; }
+        public bool CanFly { get; set; } = true;
 
         public Bird(bool canFly = true)
         {

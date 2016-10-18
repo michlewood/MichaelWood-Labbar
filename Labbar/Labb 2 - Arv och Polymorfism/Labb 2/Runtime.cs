@@ -74,16 +74,20 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
                         animalManager.ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         Console.ReadLine();
                         break;
                     case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
                         NewAnimal();
                         break;
                     case ConsoleKey.D3:
+                    case ConsoleKey.NumPad3:
                         animalManager.RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         break;
                     case ConsoleKey.D4:
+                    case ConsoleKey.NumPad4:
                         return;
 
                     default:
@@ -104,18 +108,22 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
                         Console.Clear();
                         NewMammal();
                         break;
                     case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
                         Console.Clear();
                         NewReptile();
                         break;
                     case ConsoleKey.D3:
+                    case ConsoleKey.NumPad3:
                         Console.Clear();
                         NewBird();
                         break;
                     case ConsoleKey.D4:
+                    case ConsoleKey.NumPad4:
                         return;
 
                     default:
@@ -143,15 +151,19 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
                         MammalOptions();
                         break;
                     case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
                         DogOptions();
                         break;
                     case ConsoleKey.D3:
+                    case ConsoleKey.NumPad3:
                         CatOptions();
                         break;
                     case ConsoleKey.D4:
+                    case ConsoleKey.NumPad4:
                         return;
 
                     default:
@@ -176,17 +188,21 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
                         animalManager.ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         Console.ReadLine();
                         break;
                     case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
                         Console.Clear();
                         NewMammal();
                         break;
                     case ConsoleKey.D3:
+                    case ConsoleKey.NumPad3:
                         animalManager.RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         break;
                     case ConsoleKey.D4:
+                    case ConsoleKey.NumPad4:
                         return;
 
                     default:
@@ -211,14 +227,17 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
                         Console.Clear();
                         animalManager.AddNewDogToList();
                         break;
                     case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
                         Console.Clear();
                         animalManager.AddNewCatToList();
                         break;
                     case ConsoleKey.D3:
+                    case ConsoleKey.NumPad3:
                         return;
 
                     default:
@@ -243,16 +262,20 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
                         animalManager.ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         Console.ReadLine();
                         break;
                     case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
                         animalManager.AddNewDogToList();
                         break;
                     case ConsoleKey.D3:
+                    case ConsoleKey.NumPad3:
                         animalManager.RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         break;
                     case ConsoleKey.D4:
+                    case ConsoleKey.NumPad4:
                         return;
 
                     default:
@@ -277,16 +300,20 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
                         animalManager.ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         Console.ReadLine();
                         break;
                     case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
                         animalManager.AddNewCatToList();
                         break;
                     case ConsoleKey.D3:
+                    case ConsoleKey.NumPad3:
                         animalManager.RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         break;
                     case ConsoleKey.D4:
+                    case ConsoleKey.NumPad4:
                         return;
 
                     default:
@@ -313,12 +340,15 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
                         ReptileOptions();
                         break;
                     case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
                         SnakeOptions();
                         break;
                     case ConsoleKey.D3:
+                    case ConsoleKey.NumPad3:
                         return;
 
                     default:
@@ -343,17 +373,21 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
                         animalManager.ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         Console.ReadLine();
                         break;
                     case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
                         Console.Clear();
                         NewReptile();
                         break;
                     case ConsoleKey.D3:
+                    case ConsoleKey.NumPad3:
                         animalManager.RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         break;
                     case ConsoleKey.D4:
+                    case ConsoleKey.NumPad4:
                         return;
 
                     default:
@@ -378,11 +412,13 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
                         Console.Clear();
                         animalManager.AddNewSnakeToList();
                         break;
 
                     case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
                         return;
 
                     default:
@@ -407,16 +443,20 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
                         animalManager.ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         Console.ReadLine();
                         break;
                     case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
                         animalManager.AddNewSnakeToList();
                         break;
                     case ConsoleKey.D3:
+                    case ConsoleKey.NumPad3:
                         animalManager.RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         break;
                     case ConsoleKey.D4:
+                    case ConsoleKey.NumPad4:
                         return;
 
                     default:
@@ -443,15 +483,19 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
                         BirdOptions();
                         break;
                     case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
                         PigeonOptions();
                         break;
                     case ConsoleKey.D3:
+                    case ConsoleKey.NumPad3:
                         EagleOptions();
                         break;
                     case ConsoleKey.D4:
+                    case ConsoleKey.NumPad4:
                         return;
 
                     default:
@@ -476,16 +520,20 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
                         animalManager.ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         Console.ReadLine();
                         break;
                     case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
                         NewBird();
                         break;
                     case ConsoleKey.D3:
+                    case ConsoleKey.NumPad3:
                         animalManager.RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         break;
                     case ConsoleKey.D4:
+                    case ConsoleKey.NumPad4:
                         return;
 
                     default:
@@ -510,14 +558,17 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
                         Console.Clear();
                         animalManager.AddNewPigeonToList();
                         break;
                     case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
                         Console.Clear();
                         animalManager.AddNewEagleToList();
                         break;
                     case ConsoleKey.D3:
+                    case ConsoleKey.NumPad3:
                         return;
 
                     default:
@@ -542,16 +593,20 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
                         animalManager.ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         Console.ReadLine();
                         break;
                     case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
                         animalManager.AddNewPigeonToList();
                         break;
                     case ConsoleKey.D3:
+                    case ConsoleKey.NumPad3:
                         animalManager.RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         break;
                     case ConsoleKey.D4:
+                    case ConsoleKey.NumPad4:
                         return;
 
                     default:
@@ -576,16 +631,20 @@ namespace Labb_2
                 switch (input)
                 {
                     case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
                         animalManager.ShowAnimalList(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         Console.ReadLine();
                         break;
                     case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
                         animalManager.AddNewEagleToList();
                         break;
                     case ConsoleKey.D3:
+                    case ConsoleKey.NumPad3:
                         animalManager.RemoveAnimalFromLists(ListOfCurrentTypeOFAnimal, TypeOfAnimal);
                         break;
                     case ConsoleKey.D4:
+                    case ConsoleKey.NumPad4:
                         return;
 
                     default:

@@ -42,7 +42,7 @@ namespace Labb_2
             ListerOFTypesOFAnimals(typeOfAnimal, subTypeNr);
         }
 
-        public static void ListerOFTypesOFAnimals(string typeOfAnimal, int subTypeNr)
+        private static void ListerOFTypesOFAnimals(string typeOfAnimal, int subTypeNr)
         {  
             string subTypeName = "";
             foreach (Animal animal in Lists.allTypesOfAnimals)

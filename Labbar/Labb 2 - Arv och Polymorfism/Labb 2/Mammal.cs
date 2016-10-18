@@ -39,25 +39,16 @@ namespace Labb_2
 
         public override string Description()
         {
-
-            if (FluffyTail)
-            {
-                return base.Description() + " and it has a fluffy tail";
-            }
-
-            else return base.Description() + ".";
-
+            string fluffyTail = FluffyTail ? " and it has a fluffy tail." : ".";
+            return base.Description() + fluffyTail;
         }
     }
 
     public class Cat : Mammal
     {
-        public int Lives { get; set; }
+        public int Lives { get; set; } = 9;
 
-        public Cat(int lives = 9) : base(4)
-        {
-            Lives = lives;
-        }
+        public Cat() : base(4) { }
 
         public override string Move()
         {
