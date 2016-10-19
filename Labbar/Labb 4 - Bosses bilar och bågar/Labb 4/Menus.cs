@@ -18,34 +18,49 @@ namespace Labb_4
             Console.WriteLine("(E)xit");
         }
 
-        public static void Filters()
+        private static void Filters()
         {
             Console.SetCursorPosition(95, 0);
             Console.WriteLine("Filter:");
             Console.SetCursorPosition(95, 1);
-            Console.WriteLine("1. Bilar {0}", Runtime.CarOn == true ? "på" : "av");
+            Console.Write("1. Bilar ");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("{0}", Runtime.CarOn == true ? "på" : "av");
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.SetCursorPosition(95, 2);
-            Console.WriteLine("2. Motorcyklar {0}", Runtime.MotorcycleOn == true ? "på" : "av");
+            Console.Write("2. Motorcyklar ");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("{0}", Runtime.MotorcycleOn == true ? "på" : "av");
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.SetCursorPosition(0, 0);
 
         }
 
         public static void ShowCurrentMenu(List<Vehicle> currentList)
         {
-            for (int i = 0; i < currentList.Count; i++)
+            Filters();
+
+            Console.SetCursorPosition(93, 0);
+            Console.WriteLine("|");
+
+            for (int i = 1; i < currentList.Count; i++)
             {
                 Console.SetCursorPosition(93, i);
                 Console.WriteLine("|"); 
             }
             Console.SetCursorPosition(0, 0);
-            int index = 1;
-            foreach (var vehicle in currentList)
+            if (currentList.Count != 0)
             {
-                Console.WriteLine("{0}. {1}: {2} {3} price: {4}. Det finns {5} nya och {6} begagnade.",
-                    index, vehicle.GetType().ToString().Substring(7), vehicle.Manufacturer, vehicle.Model, vehicle.Price,
-                    vehicle.NewInStock, vehicle.UsedInStock);
-                index++;
+                int index = 1;
+                foreach (var vehicle in currentList)
+                {
+                    Console.WriteLine("{0}. {1}: {2} {3} price: {4}. Det finns {5} nya och {6} begagnade.",
+                        index, vehicle.GetType().ToString().Substring(7), vehicle.Manufacturer, vehicle.Model, vehicle.Price,
+                        vehicle.NewInStock, vehicle.UsedInStock);
+                    index++;
+                } 
             }
+            else Console.WriteLine("Listan tom (kolla filterna)");
 
             Console.WriteLine("----------------------------------------------------------------------------------------------");
         }

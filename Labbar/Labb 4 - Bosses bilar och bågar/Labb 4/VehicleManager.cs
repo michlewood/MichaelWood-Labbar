@@ -27,15 +27,9 @@ namespace Labb_4
             lists.AddToStock(4, false, 5);
         }
 
-        public void TopMenu()
-        {
-            Menus.Filters();
-            Menus.ShowCurrentMenu(lists.currentList);
-        }
-
         public void RemoveTypeOfVehicle()
         {
-            TopMenu();
+            Menus.ShowCurrentMenu(lists.currentList);
             Console.WriteLine("Välj ett fordonstyp att ta bort:");
 
             int vehicleToRemove;
@@ -55,7 +49,7 @@ namespace Labb_4
 
         public void AddToStock()
         {
-            TopMenu();
+            Menus.ShowCurrentMenu(lists.currentList);
             Console.WriteLine("Välj ett fordonstyp att lägga till:");
 
             int vehicleToAddToo;
@@ -101,7 +95,7 @@ namespace Labb_4
 
         public void RemoveFromStock()
         {
-            TopMenu();
+            Menus.ShowCurrentMenu(lists.currentList);
             Console.WriteLine("Välj ett fordonstyp att ta bort ifrån:");
 
             int vehicleToRemoveFrom;
@@ -148,7 +142,7 @@ namespace Labb_4
 
         public void AddTypeOfVehicle()
         {
-            TopMenu();
+            Menus.ShowCurrentMenu(lists.currentList);
             bool loop = false;
 
             do

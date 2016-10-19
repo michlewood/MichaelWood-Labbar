@@ -24,7 +24,6 @@ namespace Labb_4
             while (true)
             {
                 Console.Clear();
-                Menus.Filters();
                 Menus.ShowCurrentMenu(vehicleManager.lists.currentList);
                 Menus.MainMenu();
 
