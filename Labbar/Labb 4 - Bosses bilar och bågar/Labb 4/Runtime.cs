@@ -25,6 +25,7 @@ namespace Labb_4
             while (true)
             {
                 Console.Clear();
+                UpdateCurrentList();
                 Menus.ShowCurrentMenu(vehicleManager.lists.currentList);
                 Menus.MainMenu();
 
@@ -77,6 +78,12 @@ namespace Labb_4
                 default:
                     break;
             }
+            UpdateCurrentList();
+            
+        }
+
+        private void UpdateCurrentList()
+        {
             vehicleManager.lists.currentList = vehicleManager.lists.VehiclesInStock;
             if (InStockOn) vehicleManager.lists.currentList = vehicleManager.lists.currentList
                          .Where(vehicle => (vehicle.NewInStock != 0 || vehicle.UsedInStock != 0)
