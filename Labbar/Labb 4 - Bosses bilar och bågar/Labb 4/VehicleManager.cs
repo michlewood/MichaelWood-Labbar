@@ -15,6 +15,7 @@ namespace Labb_4
             lists.AddType(new Car { Price = 200, Manufacturer = "ManufacturerNr1", Model = "CarModel1" });
             lists.AddType(new Car { Price = 123, Manufacturer = "ManufacturerNr1", Model = "CarModel2" });
             lists.AddType(new Car { Price = 290, Manufacturer = "ManufacturerNr2", Model = "CarModel3" });
+            lists.AddType(new Car { Price = 290, Manufacturer = "ManufacturerNr2", Model = "CarModel4" });
             lists.AddType(new Motorcycle { Price = 100, Manufacturer = "ManufacturerNr3", Model = "MotorbikeModel1" });
             lists.AddType(new Motorcycle { Price = 200, Manufacturer = "ManufacturerNr3", Model = "MotorbikeModel2" });
 
@@ -22,9 +23,10 @@ namespace Labb_4
             lists.AddToStock(0, false, 3);
             lists.AddToStock(1, true, 10);
             lists.AddToStock(2, false, 4);
-            lists.AddToStock(3, false, 3);
-            lists.AddToStock(3, true, 7);
-            lists.AddToStock(4, false, 5);
+            lists.AddToStock(3, false, 0);
+            lists.AddToStock(4, false, 3);
+            lists.AddToStock(4, true, 7);
+            lists.AddToStock(5, false, 5);
         }
 
         public void RemoveTypeOfVehicle()

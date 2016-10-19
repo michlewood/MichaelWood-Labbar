@@ -10,6 +10,7 @@ namespace Labb_4
     {
         VehicleManager vehicleManager = new VehicleManager();
 
+        public static bool InStockOn { get; private set; }
         public static bool CarOn { get; private set; } = true;
         public static bool MotorcycleOn { get; private set; } = true;
 
@@ -62,15 +63,15 @@ namespace Labb_4
             {
                 case ConsoleKey.D1:
                 case ConsoleKey.NumPad1:
-                    CarOn = !CarOn;
+                    InStockOn = !InStockOn;
                     break;
                 case ConsoleKey.D2:
                 case ConsoleKey.NumPad2:
-                    MotorcycleOn = !MotorcycleOn;
+                    CarOn = !CarOn;
                     break;
                 case ConsoleKey.D3:
                 case ConsoleKey.NumPad3:
-
+                    MotorcycleOn = !MotorcycleOn;
                     break;
 
                 default:

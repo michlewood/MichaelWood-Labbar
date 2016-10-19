@@ -23,12 +23,17 @@ namespace Labb_4
             Console.SetCursorPosition(95, 0);
             Console.WriteLine("Filter:");
             Console.SetCursorPosition(95, 1);
-            Console.Write("1. Bilar ");
+            Console.Write("1. Finns i lager ");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("{0}", Runtime.InStockOn == true ? "på" : "av");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.SetCursorPosition(95, 2);
+            Console.Write("2. Bilar ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("{0}", Runtime.CarOn == true ? "på" : "av");
             Console.ForegroundColor = ConsoleColor.Gray;
-            Console.SetCursorPosition(95, 2);
-            Console.Write("2. Motorcyklar ");
+            Console.SetCursorPosition(95, 3);
+            Console.Write("3. Motorcyklar ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("{0}", Runtime.MotorcycleOn == true ? "på" : "av");
             Console.ForegroundColor = ConsoleColor.Gray;
@@ -54,10 +59,13 @@ namespace Labb_4
                 int index = 1;
                 foreach (var vehicle in currentList)
                 {
-                    Console.WriteLine("{0}. {1}: {2} {3} price: {4}. Det finns {5} nya och {6} begagnade.",
-                        index, vehicle.GetType().ToString().Substring(7), vehicle.Manufacturer, vehicle.Model, vehicle.Price,
-                        vehicle.NewInStock, vehicle.UsedInStock);
-                    index++;
+                    if ((Runtime.InStockOn && (vehicle.NewInStock != 0 || vehicle.UsedInStock != 0)) || !Runtime.InStockOn)
+                    {
+                        Console.WriteLine("{0}. {1}: {2} {3} price: {4}. Det finns {5} nya och {6} begagnade.",
+                                        index, vehicle.GetType().ToString().Substring(7), vehicle.Manufacturer, vehicle.Model, vehicle.Price,
+                                        vehicle.NewInStock, vehicle.UsedInStock);
+                        index++; 
+                    }
                 } 
             }
             else Console.WriteLine("Listan tom (kolla filterna)");
