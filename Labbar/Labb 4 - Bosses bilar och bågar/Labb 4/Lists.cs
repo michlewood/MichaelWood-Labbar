@@ -16,6 +16,11 @@ namespace Labb_4
             VehiclesInStock = new List<Vehicle>();
         }
 
+        public void AddType(Vehicle vehicle)
+        {
+            VehiclesInStock.Add(vehicle);
+        }
+
         public void AddToStock(int indexOFVehicle, bool isNew = true, int nrToAdd = 1)
         {
             for (int i = 0; i < nrToAdd; i++)
@@ -23,11 +28,6 @@ namespace Labb_4
                 if (isNew) VehiclesInStock[indexOFVehicle].NewInStock++;
                 else VehiclesInStock[indexOFVehicle].UsedInStock++;
             }
-        }
-
-        public void AddType(Vehicle vehicle)
-        {
-            VehiclesInStock.Add(vehicle);
         }
     }
 }

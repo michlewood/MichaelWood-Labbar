@@ -29,6 +29,60 @@ namespace Labb_4
             lists.AddToStock(5, false, 5);
         }
 
+        public void AddTypeOfVehicle()
+        {
+            Menus.ShowCurrentMenu(lists.currentList);
+            bool loop = false;
+
+            do
+            {
+                loop = false;
+                Console.WriteLine("Är det en (b)il eller en (m)otorcykel?");
+
+                var input = Console.ReadKey(true).Key;
+
+                switch (input)
+                {
+                    case ConsoleKey.B: AddNewTypeOfCar(); break;
+                    case ConsoleKey.M: AddNewTypeOfMotorcycle(); break;
+                    default: loop = true; break;
+                }
+            } while (loop);
+        }
+
+        private void AddNewTypeOfCar()
+        {
+            Car newCar = new Car();
+            AddNewTypeOfVehicle(newCar);
+            lists.AddType(newCar);
+        }
+
+        private void AddNewTypeOfMotorcycle()
+        {
+            Motorcycle newMotorcycle = new Motorcycle();
+            AddNewTypeOfVehicle(newMotorcycle);
+            lists.AddType(newMotorcycle);
+        }
+
+        private void AddNewTypeOfVehicle(Vehicle newVehicle)
+        {
+            Console.WriteLine("Vem är tillverkaren?");
+            newVehicle.Manufacturer = Console.ReadLine();
+            Console.WriteLine("Vilken modell är bilen?");
+            newVehicle.Model = Console.ReadLine();
+            Console.WriteLine("Vad är priset?");
+            bool validInput = false;
+
+            int Price = 0;
+            while (!validInput)
+            {
+                Console.Write("Pris: ");
+                validInput = int.TryParse(Console.ReadLine(), out Price);
+            }
+            newVehicle.Price = Price;
+
+        }
+
         public void RemoveTypeOfVehicle()
         {
             Menus.ShowCurrentMenu(lists.currentList);
@@ -140,60 +194,6 @@ namespace Labb_4
             } while (!validInput);
             Console.WriteLine("Fordonet har tagits bort!");
             Console.ReadLine();
-        }
-
-        public void AddTypeOfVehicle()
-        {
-            Menus.ShowCurrentMenu(lists.currentList);
-            bool loop = false;
-
-            do
-            {
-                loop = false;
-                Console.WriteLine("Är det en (b)il eller en (m)otorcykel?");
-
-                var input = Console.ReadKey(true).Key;
-
-                switch (input)
-                {
-                    case ConsoleKey.B: AddNewTypeOfCar(); break;
-                    case ConsoleKey.M: AddNewTypeOfMotorcycle(); break;
-                    default: loop = true; break;
-                }
-            } while (loop);
-        }
-
-        private void AddNewTypeOfCar()
-        {
-            Car newCar = new Car();
-            AddNewTypeOfVehicle(newCar);
-            lists.AddType(newCar);
-        }
-
-        private void AddNewTypeOfMotorcycle()
-        {
-            Motorcycle newMotorcycle = new Motorcycle();
-            AddNewTypeOfVehicle(newMotorcycle);
-            lists.AddType(newMotorcycle);
-        }
-
-        private void AddNewTypeOfVehicle(Vehicle newVehicle)
-        {
-            Console.WriteLine("Vem är tillverkaren?");
-            newVehicle.Manufacturer = Console.ReadLine();
-            Console.WriteLine("Vilken modell är bilen?");
-            newVehicle.Model = Console.ReadLine();
-            Console.WriteLine("Vad är priset?");
-            bool validInput = false;
-
-            int Price = 0;
-            while (!validInput)
-            {
-                Console.Write("Pris: ");
-                validInput = int.TryParse(Console.ReadLine(), out Price);
-            }
-            newVehicle.Price = Price;
-
         }
     }
 }
