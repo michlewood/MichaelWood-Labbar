@@ -36,13 +36,10 @@ namespace Labb_4
                 int index = 1;
                 foreach (var vehicle in currentList)
                 {
-                    if ((Runtime.InStockOn && (vehicle.NewInStock != 0 || vehicle.UsedInStock != 0)) || !Runtime.InStockOn)
-                    {
                         Console.WriteLine("{0}. {1}: {2} {3} price: {4}. Det finns {5} nya och {6} begagnade.",
                                         index, vehicle.GetType().ToString().Substring(7), vehicle.Manufacturer, vehicle.Model, vehicle.Price,
                                         vehicle.NewInStock, vehicle.UsedInStock);
                         index++;
-                    }
                 }
             }
             else Console.WriteLine("Listan tom (kolla filterna)");

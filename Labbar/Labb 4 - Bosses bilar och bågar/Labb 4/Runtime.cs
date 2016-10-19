@@ -78,10 +78,13 @@ namespace Labb_4
                     break;
             }
             vehicleManager.lists.currentList = vehicleManager.lists.VehiclesInStock;
-            if(!CarOn) vehicleManager.lists.currentList = vehicleManager.lists.currentList
+            if (InStockOn) vehicleManager.lists.currentList = vehicleManager.lists.currentList
+                         .Where(vehicle => (vehicle.NewInStock != 0 || vehicle.UsedInStock != 0)
+                         || !InStockOn).ToList();
+            if (!CarOn) vehicleManager.lists.currentList = vehicleManager.lists.currentList
                         .Where(vehicle => vehicle.GetType().ToString() != "Labb_4.Car").ToList();
             if (!MotorcycleOn) vehicleManager.lists.currentList = vehicleManager.lists.currentList
-                          .Where(vehicle => vehicle.GetType().ToString() != "Labb_4.Motorcycle").ToList();
+                        .Where(vehicle => vehicle.GetType().ToString() != "Labb_4.Motorcycle").ToList();
         }
     }
 }
