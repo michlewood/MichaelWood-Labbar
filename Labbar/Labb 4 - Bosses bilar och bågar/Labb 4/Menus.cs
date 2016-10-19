@@ -7,13 +7,47 @@ namespace Labb_4
 {
     public class Menus
     {
-        internal static void MainMenu()
+        public static void MainMenu()
         {
             Console.WriteLine("Välkomen till Bosses bilar och bågar!");
             Console.WriteLine("Vad vill du göra?");
-            Console.WriteLine("1. Visa inventarie");
-            Console.WriteLine("2. ");
-            Console.WriteLine("3. Exit");
+            Console.WriteLine("Lägg till (n)ytt fordons typ");
+            Console.WriteLine("(T)a bort ett fordons typ");
+            Console.WriteLine("Lägg till (f)ordon");
+            Console.WriteLine("Ta (b)ort fordon");
+            Console.WriteLine("(E)xit");
+        }
+
+        public static void Filters()
+        {
+            Console.SetCursorPosition(95, 0);
+            Console.WriteLine("Filter:");
+            Console.SetCursorPosition(95, 1);
+            Console.WriteLine("1. Bilar {0}", Runtime.CarOn == true ? "på" : "av");
+            Console.SetCursorPosition(95, 2);
+            Console.WriteLine("2. Motorcyklar {0}", Runtime.MotorcycleOn == true ? "på" : "av");
+            Console.SetCursorPosition(0, 0);
+
+        }
+
+        public static void ShowCurrentMenu(List<Vehicle> currentList)
+        {
+            for (int i = 0; i < currentList.Count; i++)
+            {
+                Console.SetCursorPosition(93, i);
+                Console.WriteLine("|"); 
+            }
+            Console.SetCursorPosition(0, 0);
+            int index = 1;
+            foreach (var vehicle in currentList)
+            {
+                Console.WriteLine("{0}. {1}: {2} {3} price: {4}. Det finns {5} nya och {6} begagnade.",
+                    index, vehicle.GetType().ToString().Substring(7), vehicle.Manufacturer, vehicle.Model, vehicle.Price,
+                    vehicle.NewInStock, vehicle.UsedInStock);
+                index++;
+            }
+
+            Console.WriteLine("----------------------------------------------------------------------------------------------");
         }
     }
 }

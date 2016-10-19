@@ -14,7 +14,6 @@ namespace Labb3
         {
             Console.WriteLine("Enter name of user: ");
             User = Console.ReadLine();
-
             MainMenu();
             
         }
