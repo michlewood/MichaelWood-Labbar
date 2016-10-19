@@ -16,6 +16,7 @@ namespace Labb_4
 
         public void Start()
         {
+            if(Console.WindowWidth < 130) Console.SetWindowSize(130, 30);
             vehicleManager.lists.currentList = vehicleManager.lists.VehiclesInStock;
             MainMenu();
         }
@@ -84,6 +85,7 @@ namespace Labb_4
 
         private void UpdateCurrentList()
         {
+            vehicleManager.lists.VehiclesInStock = vehicleManager.lists.VehiclesInStock.OrderBy(vehicle => vehicle.GetType().ToString()).ToList();
             vehicleManager.lists.currentList = vehicleManager.lists.VehiclesInStock;
             if (InStockOn) vehicleManager.lists.currentList = vehicleManager.lists.currentList
                          .Where(vehicle => (vehicle.NewInStock != 0 || vehicle.UsedInStock != 0)

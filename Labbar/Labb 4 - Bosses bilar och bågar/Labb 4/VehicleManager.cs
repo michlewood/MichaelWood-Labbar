@@ -15,7 +15,7 @@ namespace Labb_4
             lists.AddType(new Car { Price = 200, Manufacturer = "ManufacturerNr1", Model = "CarModel1" });
             lists.AddType(new Car { Price = 123, Manufacturer = "ManufacturerNr1", Model = "CarModel2" });
             lists.AddType(new Car { Price = 290, Manufacturer = "ManufacturerNr2", Model = "CarModel3" });
-            lists.AddType(new Car { Price = 290, Manufacturer = "ManufacturerNr2", Model = "CarModel4" });
+            lists.AddType(new Car { Price = 100, Manufacturer = "ManufacturerNr2", Model = "CarModel4" });
             lists.AddType(new Motorcycle { Price = 100, Manufacturer = "ManufacturerNr3", Model = "MotorbikeModel1" });
             lists.AddType(new Motorcycle { Price = 200, Manufacturer = "ManufacturerNr3", Model = "MotorbikeModel2" });
 
@@ -106,7 +106,7 @@ namespace Labb_4
         public void AddToStock()
         {
             Menus.ShowCurrentMenu(lists.currentList);
-            Console.WriteLine("Välj ett fordonstyp att lägga till:");
+            Console.WriteLine("Välj ett fordontyp att öka mängden hos:");
 
             int vehicleToAddToo;
 
