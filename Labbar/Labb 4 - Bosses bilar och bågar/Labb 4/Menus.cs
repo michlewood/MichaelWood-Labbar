@@ -79,9 +79,7 @@ namespace Labb_4
                         Console.BackgroundColor = ConsoleColor.White;
                         Console.ForegroundColor = ConsoleColor.Black;
                     }
-                    Console.WriteLine(" {1}: {2} {3}. Pris som ny: {4}. Det finns {5} nya och {6} begagnade.",
-                                    index, vehicle.GetType().ToString().Substring(7), vehicle.Manufacturer, vehicle.Model, vehicle.Price,
-                                    vehicle.NewInStock, vehicle.UsedInStock);
+                    VehicleManager.ShowSingleVehicle(vehicle);
                     Console.ResetColor();
                     index++;
                 }
@@ -92,7 +90,7 @@ namespace Labb_4
             return vehicleToReturn;
         }
 
-        private static void FiltersMenu()
+        static void FiltersMenu()
         {
             int left = 110;
             Console.SetCursorPosition(left, height);
