@@ -38,6 +38,8 @@ namespace Labb_4
         public void AddTypeOfVehicle()
         {
             Menus.ShowCurrentMenu(lists.currentList);
+            Console.CursorVisible = true;
+
             bool loop = false;
 
             do
@@ -51,6 +53,7 @@ namespace Labb_4
                 {
                     case ConsoleKey.B: AddNewTypeOfCar(); break;
                     case ConsoleKey.M: AddNewTypeOfMotorcycle(); break;
+                    case ConsoleKey.Escape: return;
                     default: loop = true; break;
                 }
             } while (loop);
@@ -92,21 +95,12 @@ namespace Labb_4
         public void RemoveTypeOfVehicle()
         {
             Menus.ShowCurrentMenu(lists.currentList);
-            Console.WriteLine("Välj ett fordonstyp att ta bort:");
-
-            int vehicleToRemove;
-
-            bool validInput = int.TryParse(Console.ReadLine(), out vehicleToRemove);
-            if (!validInput || vehicleToRemove > lists.currentList.Count || vehicleToRemove < 1)
-            {
-                Console.WriteLine("Inget borttaget");
-                Console.ReadKey(true);
-                return;
-            }
-            lists.VehiclesInStock.Remove(lists.currentList[vehicleToRemove - 1]);
-
+            Vehicle vehicleChoice = VehicleChooser("Välj ett fordonstyp att ta bort");
+            if (vehicleChoice == null) return;
+            lists.VehiclesInStock.Remove(vehicleChoice);
+            Menus.ShowCurrentMenu(lists.currentList);
             Console.WriteLine("Fordonstyp borttagen!");
-            Console.ReadLine();
+            Console.ReadKey(true);
         }
 
         public void AddToStock()
@@ -114,8 +108,11 @@ namespace Labb_4
             Menus.ShowCurrentMenu(lists.currentList);
             Vehicle vehicleChoice = VehicleChooser("Välj ett fordontyp att öka mängden hos");
 
+            if (vehicleChoice == null) return;
+
             bool validInput = false;
             int amount = 0;
+            Console.CursorVisible = true;
 
             while (!validInput)
             {
@@ -124,6 +121,8 @@ namespace Labb_4
                 validInput = int.TryParse(Console.ReadLine(), out amount);
             }
             Runtime.MenuChoice = 0;
+            Console.CursorVisible = false;
+
             while (true)
             {
                 Menus.ShowCurrentMenuChooser(lists.currentList);
@@ -163,8 +162,11 @@ namespace Labb_4
             Menus.ShowCurrentMenu(lists.currentList);
             Vehicle vehicleChoice = VehicleChooser("Välj ett fordonstyp att ta bort ifrån");
 
+            if (vehicleChoice == null) return;
             bool validInput = false;
             int amount = 0;
+            Console.CursorVisible = true;
+
             while (!validInput)
             {
                 Menus.ShowCurrentMenuChooser(lists.currentList);
@@ -172,6 +174,8 @@ namespace Labb_4
                 validInput = int.TryParse(Console.ReadLine(), out amount);
             }
             Runtime.MenuChoice = 0;
+            Console.CursorVisible = false;
+
             while (true)
             {
                 Menus.ShowCurrentMenuChooser(lists.currentList);
@@ -245,6 +249,8 @@ namespace Labb_4
                         if (CurrentMenuChoice == 0) CurrentMenuChoice = lists.currentList.Count - 1;
                         else CurrentMenuChoice--;
                         break;
+                    case ConsoleKey.Escape:
+                        return null;
                     default: break;
                 }
             }

@@ -23,11 +23,10 @@ namespace Labb_4
         {
             while (true)
             {
-                Console.Clear();
                 vehicleManager.UpdateCurrentList();
                 Menus.ShowCurrentMenu(vehicleManager.lists.currentList);
                 Menus.MainMenu();
-
+                Console.CursorVisible = false;
                 var input = Console.ReadKey(true).Key;
                 vehicleManager.FiltersMenu(input);
                 switch (input)
