@@ -119,7 +119,7 @@ namespace Labb_4
 
         public static void NewOrUsed()
         {
-            Console.WriteLine("Är bilen ny eller begagnad?");
+            Console.WriteLine("Nya eller begagnade?");
             if (VehicleManager.NewOrUsedMenuChoice == 0)
             {
                 Console.BackgroundColor = ConsoleColor.White;
