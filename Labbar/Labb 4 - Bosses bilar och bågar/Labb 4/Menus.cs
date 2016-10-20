@@ -53,7 +53,7 @@ namespace Labb_4
         public static void ShowCurrentMenu(List<Vehicle> currentList)
         {
             Console.Clear();
-            Filters();
+            FiltersMenu();
             Console.WriteLine("Bosses bilar och bågar datorsystem");
             Console.WriteLine("┌────────────────────────────────────────────────────────────────────────────────────────────────────────┐");
 
@@ -86,7 +86,7 @@ namespace Labb_4
         {
             Console.Clear();
             Vehicle vehicleToReturn = new Car();
-            Filters();
+            FiltersMenu();
             Console.WriteLine("Bosses bilar och bågar datorsystem");
             Console.WriteLine("┌────────────────────────────────────────────────────────────────────────────────────────────────────────┐");
 
@@ -124,26 +124,30 @@ namespace Labb_4
             return vehicleToReturn;
         }
 
-        private static void Filters()
+        private static void FiltersMenu()
         {
             int left = 110;
             Console.SetCursorPosition(left, height);
+            Console.Write("Press Esc to return to the Main menu.");
+
+            Console.SetCursorPosition(left, height+2);
             Console.WriteLine("Filter:");
-            Console.SetCursorPosition(left, height+1);
+            Console.SetCursorPosition(left, height+3);
             Console.Write("1. Finns i lager ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("{0}", VehicleManager.InStockOn == true ? "på" : "av");
             Console.ForegroundColor = ConsoleColor.Gray;
-            Console.SetCursorPosition(left, height+2);
+            Console.SetCursorPosition(left, height+4);
             Console.Write("2. Bilar ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("{0}", VehicleManager.CarOn == true ? "på" : "av");
             Console.ForegroundColor = ConsoleColor.Gray;
-            Console.SetCursorPosition(left, height+3);
+            Console.SetCursorPosition(left, height+5);
             Console.Write("3. Motorcyklar ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("{0}", VehicleManager.MotorcycleOn == true ? "på" : "av");
             Console.ForegroundColor = ConsoleColor.Gray;
+
             Console.SetCursorPosition(0, 0);
         }
 

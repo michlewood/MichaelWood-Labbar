@@ -14,7 +14,7 @@ namespace Labb_4
 
         public void Start()
         {
-            if (Console.WindowWidth < 130) Console.SetWindowSize(130, 30);
+            if (Console.WindowWidth < 150) Console.SetWindowSize(150, 30);
             vehicleManager.lists.currentList = vehicleManager.lists.VehiclesInStock;
             MainMenu();
         }
