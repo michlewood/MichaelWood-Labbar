@@ -133,7 +133,7 @@ namespace Labb_4
 
             while (true)
             {
-                Menus.ShowCurrentMenuChooser(lists.currentList);
+                Menus.ShowCurrentMenu(lists.currentList, true);
                 Console.WriteLine("{0}: {1} {2} pris som ny: {3}. Det finns {4} nya och {5} begagnade.",
                                     vehicleChoice.GetType().ToString().Substring(7), vehicleChoice.Manufacturer,
                                     vehicleChoice.Model, vehicleChoice.Price,
@@ -152,7 +152,7 @@ namespace Labb_4
                 case ConsoleKey.Enter:
                     if (NewOrUsedMenuChoice == 0) vehicleToAddToo.NewInStock += amount;
                     if (NewOrUsedMenuChoice == 1) vehicleToAddToo.UsedInStock += amount;
-                    Menus.ShowCurrentMenuChooser(lists.currentList);
+                    Menus.ShowCurrentMenu(lists.currentList, true);
                     Console.WriteLine("{0}: {1} {2} pris som ny: {3}. Det finns {4} nya och {5} begagnade.",
                                     vehicleToAddToo.GetType().ToString().Substring(7), vehicleToAddToo.Manufacturer,
                                     vehicleToAddToo.Model, vehicleToAddToo.Price,
@@ -185,7 +185,7 @@ namespace Labb_4
 
             while (!validInput)
             {
-                Menus.ShowCurrentMenuChooser(lists.currentList);
+                Menus.ShowCurrentMenu(lists.currentList, true);
                 Console.WriteLine("{0}: {1} {2} pris som ny: {3}. Det finns {4} nya och {5} begagnade.",
                                     vehicleChoice.GetType().ToString().Substring(7), vehicleChoice.Manufacturer,
                                     vehicleChoice.Model, vehicleChoice.Price,
@@ -198,7 +198,7 @@ namespace Labb_4
 
             while (true)
             {
-                Menus.ShowCurrentMenuChooser(lists.currentList);
+                Menus.ShowCurrentMenu(lists.currentList, true);
                 Console.WriteLine("{0}: {1} {2} pris som ny: {3}. Det finns {4} nya och {5} begagnade.",
                                     vehicleChoice.GetType().ToString().Substring(7), vehicleChoice.Manufacturer,
                                     vehicleChoice.Model, vehicleChoice.Price,
@@ -229,7 +229,7 @@ namespace Labb_4
                         if (vehicleToRemoveFrom.UsedInStock < 0)
                             vehicleToRemoveFrom.UsedInStock = 0;
                     }
-                    Menus.ShowCurrentMenuChooser(lists.currentList);
+                    Menus.ShowCurrentMenu(lists.currentList, true);
                     Console.WriteLine("{0}: {1} {2} pris som ny: {3}. Det finns {4} nya och {5} begagnade.",
                                      vehicleToRemoveFrom.GetType().ToString().Substring(7), vehicleToRemoveFrom.Manufacturer,
                                      vehicleToRemoveFrom.Model, vehicleToRemoveFrom.Price,
@@ -257,7 +257,7 @@ namespace Labb_4
             while (true)
             {
                 Console.Clear();
-                Vehicle vehicleToReturn = Menus.ShowCurrentMenuChooser(lists.currentList);
+                Vehicle vehicleToReturn = Menus.ShowCurrentMenu(lists.currentList, true);
                 Console.WriteLine(comment);
 
                 var input = Console.ReadKey(true).Key;
@@ -267,7 +267,7 @@ namespace Labb_4
                 switch (input)
                 {
                     case ConsoleKey.Enter:
-                        Menus.ShowCurrentMenuChooser(lists.currentList);
+                        Menus.ShowCurrentMenu(lists.currentList, true);
                         return vehicleToReturn;
                     case ConsoleKey.DownArrow:
                         if (CurrentMenuChoice == lists.currentList.Count - 1) CurrentMenuChoice = 0;

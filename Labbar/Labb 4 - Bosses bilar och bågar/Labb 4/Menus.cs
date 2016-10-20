@@ -50,9 +50,10 @@ namespace Labb_4
             Console.ResetColor();
         }
 
-        public static void ShowCurrentMenu(List<Vehicle> currentList)
+        public static Vehicle ShowCurrentMenu(List<Vehicle> currentList, bool isInteractable = false)
         {
             Console.Clear();
+            Vehicle vehicleToReturn = new Car();
             FiltersMenu();
             Console.WriteLine("Bosses bilar och bågar datorsystem");
             Console.WriteLine("┌────────────────────────────────────────────────────────────────────────────────────────────────────────┐");
@@ -71,47 +72,14 @@ namespace Labb_4
                 int index = 1;
                 foreach (var vehicle in currentList)
                 {
-                    Console.WriteLine("│ {1}: {2} {3}. Pris som ny: {4}. Det finns {5} nya och {6} begagnade.",
-                                    index, vehicle.GetType().ToString().Substring(7), vehicle.Manufacturer, vehicle.Model, vehicle.Price,
-                                    vehicle.NewInStock, vehicle.UsedInStock);
-                    index++;
-                }
-            }
-            else Console.WriteLine("│ Listan tom (kolla filterna eller lägg till nya fordontyper) ");
-
-            Console.WriteLine("└────────────────────────────────────────────────────────────────────────────────────────────────────────┘");
-        }
-
-        public static Vehicle ShowCurrentMenuChooser(List<Vehicle> currentList)
-        {
-            Console.Clear();
-            Vehicle vehicleToReturn = new Car();
-            FiltersMenu();
-            Console.WriteLine("Bosses bilar och bågar datorsystem");
-            Console.WriteLine("┌────────────────────────────────────────────────────────────────────────────────────────────────────────┐");
-
-            Console.SetCursorPosition(left, height);
-            Console.WriteLine("│");
-
-            for (int i = 1; i < currentList.Count; i++)
-            {
-                Console.SetCursorPosition(left, i+ height);
-                Console.WriteLine("│");
-            }
-            Console.SetCursorPosition(0, height);
-            if (currentList.Count != 0)
-            {
-                int index = 1;
-                foreach (var vehicle in currentList)
-                {
                     Console.Write("│");
-                    if(index == VehicleManager.CurrentMenuChoice + 1)
+                    if (index == VehicleManager.CurrentMenuChoice + 1 && isInteractable)
                     {
                         vehicleToReturn = vehicle;
                         Console.BackgroundColor = ConsoleColor.White;
                         Console.ForegroundColor = ConsoleColor.Black;
                     }
-                    Console.WriteLine(" {1}: {2} {3} pris som ny: {4}. Det finns {5} nya och {6} begagnade.",
+                    Console.WriteLine(" {1}: {2} {3}. Pris som ny: {4}. Det finns {5} nya och {6} begagnade.",
                                     index, vehicle.GetType().ToString().Substring(7), vehicle.Manufacturer, vehicle.Model, vehicle.Price,
                                     vehicle.NewInStock, vehicle.UsedInStock);
                     Console.ResetColor();
