@@ -8,7 +8,7 @@ namespace Labb_4
 {
     class Runtime
     {
-        public static int MenuChoice { get; set; }
+        public static int MainMenuChoice { get; set; }
         VehicleManager vehicleManager = new VehicleManager();
 
 
@@ -33,19 +33,19 @@ namespace Labb_4
                 {
                     case ConsoleKey.Enter:
                         Console.Clear();
-                        if (MenuChoice == 0) vehicleManager.AddTypeOfVehicle();
-                        if (MenuChoice == 1) { vehicleManager.RemoveTypeOfVehicle(); MenuChoice = 0; }
-                        if (MenuChoice == 2) { vehicleManager.AddToStock(); MenuChoice = 0; }
-                        if (MenuChoice == 3) { vehicleManager.RemoveFromStock(); MenuChoice = 0; }
-                        if (MenuChoice == 4) return;
+                        if (MainMenuChoice == 0) vehicleManager.AddTypeOfVehicle();
+                        if (MainMenuChoice == 1) { vehicleManager.RemoveTypeOfVehicle(); MainMenuChoice = 0; }
+                        if (MainMenuChoice == 2) { vehicleManager.AddToStock(); MainMenuChoice = 0; }
+                        if (MainMenuChoice == 3) { vehicleManager.RemoveFromStock(); MainMenuChoice = 0; }
+                        if (MainMenuChoice == 4) return;
                         break;
                     case ConsoleKey.DownArrow:
-                        if (MenuChoice == 4) MenuChoice = 0;
-                        else MenuChoice++;
+                        if (MainMenuChoice == 4) MainMenuChoice = 0;
+                        else MainMenuChoice++;
                         break;
                     case ConsoleKey.UpArrow:
-                        if (MenuChoice == 0) MenuChoice = 4;
-                        else MenuChoice--;
+                        if (MainMenuChoice == 0) MainMenuChoice = 4;
+                        else MainMenuChoice--;
                         break;
 
                     default:

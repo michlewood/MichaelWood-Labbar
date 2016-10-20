@@ -14,6 +14,7 @@ namespace Labb_4
         public static bool MotorcycleOn { get; private set; } = true;
 
         public static int CurrentMenuChoice { get; set; }
+        public static int NewOrUsedMenuChoice { get; set; }
 
         public VehicleManager()
         {
@@ -48,47 +49,51 @@ namespace Labb_4
                 Console.WriteLine("Är det en (b)il eller en (m)otorcykel?");
 
                 var input = Console.ReadKey(true).Key;
-
                 switch (input)
                 {
-                    case ConsoleKey.B: AddNewTypeOfCar(); break;
-                    case ConsoleKey.M: AddNewTypeOfMotorcycle(); break;
+                    case ConsoleKey.B: Car newCar = new Car(); AddNewTypeOfVehicle(newCar); break;
+                    case ConsoleKey.M: Motorcycle newMotorcycle = new Motorcycle(); AddNewTypeOfVehicle(newMotorcycle); break;
                     case ConsoleKey.Escape: return;
                     default: loop = true; break;
                 }
             } while (loop);
         }
 
-        private void AddNewTypeOfCar()
-        {
-            Car newCar = new Car();
-            AddNewTypeOfVehicle(newCar);
-            lists.AddType(newCar);
-        }
-
-        private void AddNewTypeOfMotorcycle()
-        {
-            Motorcycle newMotorcycle = new Motorcycle();
-            AddNewTypeOfVehicle(newMotorcycle);
-            lists.AddType(newMotorcycle);
-        }
-
         private void AddNewTypeOfVehicle(Vehicle newVehicle)
         {
+            Menus.ShowCurrentMenu(lists.currentList);
+            Console.WriteLine("Typ: {0}.",
+                newVehicle.GetType().ToString().Substring(7) == "Car" ? "Bil" : "Motorcyckel" );
             Console.WriteLine("Vem är tillverkaren?");
             newVehicle.Manufacturer = Console.ReadLine();
+            Menus.ShowCurrentMenu(lists.currentList);
+            Console.WriteLine("Typ: {0}. Tillverkare: {1}",
+                newVehicle.GetType().ToString().Substring(7) == "Car" ? "Bil" : "Motorcyckel",
+                newVehicle.Manufacturer);
             Console.WriteLine("Vilken modell är bilen?");
             newVehicle.Model = Console.ReadLine();
-            Console.WriteLine("Vad är priset?");
             bool validInput = false;
 
             int Price = 0;
             while (!validInput)
             {
-                Console.Write("Pris: ");
+                Menus.ShowCurrentMenu(lists.currentList);
+                Console.WriteLine("Typ: {0}. Tillverkare: {1} Modell: {2}",
+                newVehicle.GetType().ToString().Substring(7) == "Car" ? "Bil" : "Motorcyckel",
+                newVehicle.Manufacturer, newVehicle.Model);
+                Console.WriteLine("Vad är priset?");
                 validInput = int.TryParse(Console.ReadLine(), out Price);
             }
             newVehicle.Price = Price;
+
+            lists.AddType(newVehicle);
+            UpdateCurrentList();
+            Menus.ShowCurrentMenu(lists.currentList);
+            Console.WriteLine("Typ: {0}. Tillverkare: {1} Modell: {2} Pris: {3}.",
+                newVehicle.GetType().ToString().Substring(7) == "Car" ? "Bil" : "Motorcyckel",
+                newVehicle.Manufacturer, newVehicle.Model, newVehicle.Price);
+            Console.WriteLine("Tillagd i listan!");
+            Console.ReadKey(true);
 
         }
 
@@ -116,16 +121,23 @@ namespace Labb_4
 
             while (!validInput)
             {
-                Menus.ShowCurrentMenuChooser(lists.currentList);
+                Console.WriteLine("{0}: {1} {2} pris som ny: {3}. Det finns {4} nya och {5} begagnade.",
+                                    vehicleChoice.GetType().ToString().Substring(7), vehicleChoice.Manufacturer,
+                                    vehicleChoice.Model, vehicleChoice.Price,
+                                    vehicleChoice.NewInStock, vehicleChoice.UsedInStock);
                 Console.WriteLine("Hur många vill du lägga till?");
                 validInput = int.TryParse(Console.ReadLine(), out amount);
             }
-            Runtime.MenuChoice = 0;
+            NewOrUsedMenuChoice = 0;
             Console.CursorVisible = false;
 
             while (true)
             {
                 Menus.ShowCurrentMenuChooser(lists.currentList);
+                Console.WriteLine("{0}: {1} {2} pris som ny: {3}. Det finns {4} nya och {5} begagnade.",
+                                    vehicleChoice.GetType().ToString().Substring(7), vehicleChoice.Manufacturer,
+                                    vehicleChoice.Model, vehicleChoice.Price,
+                                    vehicleChoice.NewInStock, vehicleChoice.UsedInStock);
                 Menus.NewOrUsed();
                 if (AddNewOrOld(vehicleChoice, amount)) return;
             }
@@ -138,19 +150,23 @@ namespace Labb_4
             switch (input)
             {
                 case ConsoleKey.Enter:
-                    if (Runtime.MenuChoice == 0) vehicleToAddToo.NewInStock += amount;
-                    if (Runtime.MenuChoice == 1) vehicleToAddToo.UsedInStock += amount;
+                    if (NewOrUsedMenuChoice == 0) vehicleToAddToo.NewInStock += amount;
+                    if (NewOrUsedMenuChoice == 1) vehicleToAddToo.UsedInStock += amount;
                     Menus.ShowCurrentMenuChooser(lists.currentList);
+                    Console.WriteLine("{0}: {1} {2} pris som ny: {3}. Det finns {4} nya och {5} begagnade.",
+                                    vehicleToAddToo.GetType().ToString().Substring(7), vehicleToAddToo.Manufacturer,
+                                    vehicleToAddToo.Model, vehicleToAddToo.Price,
+                                    vehicleToAddToo.NewInStock, vehicleToAddToo.UsedInStock);
                     Console.WriteLine("Fordonen har lagts till!");
                     Console.ReadKey(true);
                     return true;
                 case ConsoleKey.DownArrow:
-                    if (Runtime.MenuChoice == 1) Runtime.MenuChoice = 0;
-                    else Runtime.MenuChoice++;
+                    if (NewOrUsedMenuChoice == 1) NewOrUsedMenuChoice = 0;
+                    else NewOrUsedMenuChoice++;
                     break;
                 case ConsoleKey.UpArrow:
-                    if (Runtime.MenuChoice == 0) Runtime.MenuChoice = 1;
-                    else Runtime.MenuChoice--;
+                    if (NewOrUsedMenuChoice == 0) NewOrUsedMenuChoice = 1;
+                    else NewOrUsedMenuChoice--;
                     break;
                 default: break;
             }
@@ -170,17 +186,25 @@ namespace Labb_4
             while (!validInput)
             {
                 Menus.ShowCurrentMenuChooser(lists.currentList);
+                Console.WriteLine("{0}: {1} {2} pris som ny: {3}. Det finns {4} nya och {5} begagnade.",
+                                    vehicleChoice.GetType().ToString().Substring(7), vehicleChoice.Manufacturer,
+                                    vehicleChoice.Model, vehicleChoice.Price,
+                                    vehicleChoice.NewInStock, vehicleChoice.UsedInStock);
                 Console.WriteLine("Hur många vill du ta bort?");
                 validInput = int.TryParse(Console.ReadLine(), out amount);
             }
-            Runtime.MenuChoice = 0;
+            NewOrUsedMenuChoice = 0;
             Console.CursorVisible = false;
 
             while (true)
             {
                 Menus.ShowCurrentMenuChooser(lists.currentList);
+                Console.WriteLine("{0}: {1} {2} pris som ny: {3}. Det finns {4} nya och {5} begagnade.",
+                                    vehicleChoice.GetType().ToString().Substring(7), vehicleChoice.Manufacturer,
+                                    vehicleChoice.Model, vehicleChoice.Price,
+                                    vehicleChoice.NewInStock, vehicleChoice.UsedInStock);
                 Menus.NewOrUsed();
-                if(RemoveNewOrOld(vehicleChoice, amount)) return;
+                if (RemoveNewOrOld(vehicleChoice, amount)) return;
             }
         }
 
@@ -193,29 +217,33 @@ namespace Labb_4
             switch (input)
             {
                 case ConsoleKey.Enter:
-                    if (Runtime.MenuChoice == 0)
+                    if (NewOrUsedMenuChoice == 0)
                     {
                         vehicleToRemoveFrom.NewInStock -= amount;
                         if (vehicleToRemoveFrom.NewInStock < 0)
                             vehicleToRemoveFrom.NewInStock = 0;
                     }
-                    if (Runtime.MenuChoice == 1)
+                    if (NewOrUsedMenuChoice == 1)
                     {
                         vehicleToRemoveFrom.UsedInStock -= amount;
                         if (vehicleToRemoveFrom.UsedInStock < 0)
                             vehicleToRemoveFrom.UsedInStock = 0;
                     }
                     Menus.ShowCurrentMenuChooser(lists.currentList);
+                    Console.WriteLine("{0}: {1} {2} pris som ny: {3}. Det finns {4} nya och {5} begagnade.",
+                                     vehicleToRemoveFrom.GetType().ToString().Substring(7), vehicleToRemoveFrom.Manufacturer,
+                                     vehicleToRemoveFrom.Model, vehicleToRemoveFrom.Price,
+                                     vehicleToRemoveFrom.NewInStock, vehicleToRemoveFrom.UsedInStock);
                     Console.WriteLine("Fordonen har tagits bort!");
                     Console.ReadKey(true);
                     return true;
                 case ConsoleKey.DownArrow:
-                    if (Runtime.MenuChoice == 1) Runtime.MenuChoice = 0;
-                    else Runtime.MenuChoice++;
+                    if (NewOrUsedMenuChoice == 1) NewOrUsedMenuChoice = 0;
+                    else NewOrUsedMenuChoice++;
                     break;
                 case ConsoleKey.UpArrow:
-                    if (Runtime.MenuChoice == 0) Runtime.MenuChoice = 1;
-                    else Runtime.MenuChoice--;
+                    if (NewOrUsedMenuChoice == 0) NewOrUsedMenuChoice = 1;
+                    else NewOrUsedMenuChoice--;
                     break;
                 default: break;
             }

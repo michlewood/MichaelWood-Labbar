@@ -7,12 +7,12 @@ namespace Labb_4
 {
     public class Menus
     {
+        static int left = 105;
+        static int height = 2;
 
         public static void MainMenu()
         {
-            Console.WriteLine("Välkomen till Bosses bilar och bågar!");
-            Console.WriteLine("Vad vill du göra?");
-            if (Runtime.MenuChoice == 0)
+            if (Runtime.MainMenuChoice == 0)
             {
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Black;
@@ -20,28 +20,28 @@ namespace Labb_4
             }
             Console.WriteLine("Lägg till ny fordons typ");
             Console.ResetColor();
-            if (Runtime.MenuChoice == 1)
+            if (Runtime.MainMenuChoice == 1)
             {
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Black;
             }
             Console.WriteLine("Ta bort ett fordons typ");
             Console.ResetColor();
-            if (Runtime.MenuChoice == 2)
+            if (Runtime.MainMenuChoice == 2)
             {
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Black;
             }
             Console.WriteLine("Lägg till fordon");
             Console.ResetColor();
-            if (Runtime.MenuChoice == 3)
+            if (Runtime.MainMenuChoice == 3)
             {
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Black;
             }
             Console.WriteLine("Ta bort fordon");
             Console.ResetColor();
-            if (Runtime.MenuChoice == 4)
+            if (Runtime.MainMenuChoice == 4)
             {
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Black;
@@ -53,25 +53,25 @@ namespace Labb_4
         public static void ShowCurrentMenu(List<Vehicle> currentList)
         {
             Console.Clear();
-            int left = 105;
             Filters();
+            Console.WriteLine("Bosses bilar och bågar datorsystem");
             Console.WriteLine("┌────────────────────────────────────────────────────────────────────────────────────────────────────────┐");
 
-            Console.SetCursorPosition(left, 1);
+            Console.SetCursorPosition(left, height);
             Console.WriteLine("│");
 
             for (int i = 1; i < currentList.Count; i++)
             {
-                Console.SetCursorPosition(left, i + 1);
+                Console.SetCursorPosition(left, i + height);
                 Console.WriteLine("│");
             }
-            Console.SetCursorPosition(0, 1);
+            Console.SetCursorPosition(0, height);
             if (currentList.Count != 0)
             {
                 int index = 1;
                 foreach (var vehicle in currentList)
                 {
-                    Console.WriteLine("│ {0}. {1}: {2} {3} pris som ny: {4}. Det finns {5} nya och {6} begagnade.",
+                    Console.WriteLine("│ {1}: {2} {3}. Pris som ny: {4}. Det finns {5} nya och {6} begagnade.",
                                     index, vehicle.GetType().ToString().Substring(7), vehicle.Manufacturer, vehicle.Model, vehicle.Price,
                                     vehicle.NewInStock, vehicle.UsedInStock);
                     index++;
@@ -86,19 +86,19 @@ namespace Labb_4
         {
             Console.Clear();
             Vehicle vehicleToReturn = new Car();
-            int left = 105;
             Filters();
+            Console.WriteLine("Bosses bilar och bågar datorsystem");
             Console.WriteLine("┌────────────────────────────────────────────────────────────────────────────────────────────────────────┐");
 
-            Console.SetCursorPosition(left, 1);
+            Console.SetCursorPosition(left, height);
             Console.WriteLine("│");
 
             for (int i = 1; i < currentList.Count; i++)
             {
-                Console.SetCursorPosition(left, i+1);
+                Console.SetCursorPosition(left, i+ height);
                 Console.WriteLine("│");
             }
-            Console.SetCursorPosition(0, 1);
+            Console.SetCursorPosition(0, height);
             if (currentList.Count != 0)
             {
                 int index = 1;
@@ -111,7 +111,7 @@ namespace Labb_4
                         Console.BackgroundColor = ConsoleColor.White;
                         Console.ForegroundColor = ConsoleColor.Black;
                     }
-                    Console.WriteLine("{0}. {1}: {2} {3} pris som ny: {4}. Det finns {5} nya och {6} begagnade.",
+                    Console.WriteLine(" {1}: {2} {3} pris som ny: {4}. Det finns {5} nya och {6} begagnade.",
                                     index, vehicle.GetType().ToString().Substring(7), vehicle.Manufacturer, vehicle.Model, vehicle.Price,
                                     vehicle.NewInStock, vehicle.UsedInStock);
                     Console.ResetColor();
@@ -124,7 +124,7 @@ namespace Labb_4
             return vehicleToReturn;
         }
 
-        private static void Filters(int height = 0)
+        private static void Filters()
         {
             int left = 110;
             Console.SetCursorPosition(left, height);
@@ -144,14 +144,13 @@ namespace Labb_4
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("{0}", VehicleManager.MotorcycleOn == true ? "på" : "av");
             Console.ForegroundColor = ConsoleColor.Gray;
-            Console.SetCursorPosition(0, height);
-
+            Console.SetCursorPosition(0, 0);
         }
 
         public static void NewOrUsed()
         {
             Console.WriteLine("Är bilen ny eller begagnad?");
-            if (Runtime.MenuChoice == 0)
+            if (VehicleManager.NewOrUsedMenuChoice == 0)
             {
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Black;
@@ -159,7 +158,7 @@ namespace Labb_4
             }
             Console.WriteLine("Ny");
             Console.ResetColor();
-            if (Runtime.MenuChoice == 1)
+            if (VehicleManager.NewOrUsedMenuChoice == 1)
             {
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Black;

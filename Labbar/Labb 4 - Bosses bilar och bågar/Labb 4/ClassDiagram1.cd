@@ -1,52 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Labb_4.Program" Collapsed="true">
+  <Class Name="Labb_4.Lists" Collapsed="true">
     <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAABgABAAAAAAAAAA=</HashCode>
+      <FileName>Lists.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Labb_4.Menus" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABIQAAIAAAAAUAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Menus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Labb_4.Program" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Labb_4.Runtime" Collapsed="true">
-    <Position X="7" Y="0.5" Width="1.5" />
+    <Position X="5.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAACgAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Runtime.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Labb_4.Vehicle">
-    <Position X="1.75" Y="0.5" Width="1.5" />
+  <Class Name="Labb_4.VehicleManager" Collapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
-      <FileName>Vehicle.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Labb_4.Car">
-    <Position X="0.5" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Car.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Labb_4.Motorcycle">
-    <Position X="3" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Motorcycle.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Labb_4.VehicleManager">
-    <Position X="5.25" Y="1.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AQAAAAAAAIkAAAAAAAAAACABEJAAQFAECAAAAAAAAiA=</HashCode>
       <FileName>VehicleManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Labb_4.Menus">
-    <Position X="7" Y="1.75" Width="1.5" />
+  <Class Name="Labb_4.Car" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Menus.cs</FileName>
+      <FileName>Vehicles\Car.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Labb_4.Motorcycle" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Vehicles\Motorcycle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Labb_4.Vehicle" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAQAAAAAAAAAAEAAAAAAAAAAAAAgAAAAAAEA=</HashCode>
+      <FileName>Vehicles\Vehicle.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
