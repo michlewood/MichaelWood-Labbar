@@ -35,8 +35,8 @@ namespace Labb_4
                         Console.Clear();
                         if (MainMenuChoice == 0) vehicleManager.AddTypeOfVehicle();
                         if (MainMenuChoice == 1) { vehicleManager.RemoveTypeOfVehicle(); MainMenuChoice = 0; }
-                        if (MainMenuChoice == 2) { vehicleManager.AddToStock(); MainMenuChoice = 0; }
-                        if (MainMenuChoice == 3) { vehicleManager.RemoveFromStock(); MainMenuChoice = 0; }
+                        if (MainMenuChoice == 2) { vehicleManager.EditStock(true); MainMenuChoice = 0; }
+                        if (MainMenuChoice == 3) { vehicleManager.EditStock(false); MainMenuChoice = 0; }
                         if (MainMenuChoice == 4) return;
                         break;
                     case ConsoleKey.DownArrow:
@@ -52,6 +52,6 @@ namespace Labb_4
                         break;
                 }
             }
-        }   
+        }
     }
 }

@@ -63,7 +63,7 @@ namespace Labb_4
         {
             Menus.ShowCurrentMenu(lists.currentList);
             Console.WriteLine("Typ: {0}.",
-                newVehicle.GetType().ToString().Substring(7) == "Car" ? "Bil" : "Motorcyckel" );
+                newVehicle.GetType().ToString().Substring(7) == "Car" ? "Bil" : "Motorcyckel");
             Console.WriteLine("Vem är tillverkaren?");
             newVehicle.Manufacturer = Console.ReadLine();
             Menus.ShowCurrentMenu(lists.currentList);
@@ -108,13 +108,15 @@ namespace Labb_4
             Console.ReadKey(true);
         }
 
-        public void AddToStock()
+        public void EditStock(bool isAdd)
         {
+            Vehicle vehicleChoice;
             Menus.ShowCurrentMenu(lists.currentList);
-            Vehicle vehicleChoice = VehicleChooser("Välj ett fordontyp att öka mängden hos");
+            if (isAdd) vehicleChoice = VehicleChooser("Välj ett fordontyp att öka mängden hos"); 
+            else vehicleChoice = VehicleChooser("Välj ett fordonstyp att ta bort ifrån");
+
 
             if (vehicleChoice == null) return;
-
             bool validInput = false;
             int amount = 0;
             Console.CursorVisible = true;
@@ -122,7 +124,9 @@ namespace Labb_4
             while (!validInput)
             {
                 ShowSingleVehicle(vehicleChoice);
-                Console.WriteLine("Hur många vill du lägga till?");
+                if (isAdd) Console.WriteLine("Hur många vill du lägga till?");
+                else Console.WriteLine("Hur många vill du ta bort?");
+
                 validInput = int.TryParse(Console.ReadLine(), out amount);
             }
             NewOrUsedMenuChoice = 0;
@@ -133,36 +137,8 @@ namespace Labb_4
                 Menus.ShowCurrentMenu(lists.currentList, true);
                 ShowSingleVehicle(vehicleChoice);
                 Menus.NewOrUsed();
-                if (AmountEditor(vehicleChoice, amount, "Fordonen har lagts till!")) return;
-            }
-        }
-
-        public void RemoveFromStock()
-        {
-            Menus.ShowCurrentMenu(lists.currentList);
-            Vehicle vehicleChoice = VehicleChooser("Välj ett fordonstyp att ta bort ifrån");
-
-            if (vehicleChoice == null) return;
-            bool validInput = false;
-            int amount = 0;
-            Console.CursorVisible = true;
-
-            while (!validInput)
-            {
-                Menus.ShowCurrentMenu(lists.currentList, true);
-                ShowSingleVehicle(vehicleChoice);
-                Console.WriteLine("Hur många vill du ta bort?");
-                validInput = int.TryParse(Console.ReadLine(), out amount);
-            }
-            NewOrUsedMenuChoice = 0;
-            Console.CursorVisible = false;
-
-            while (true)
-            {
-                Menus.ShowCurrentMenu(lists.currentList, true);
-                ShowSingleVehicle(vehicleChoice);
-                Menus.NewOrUsed();
-                if (AmountEditor(vehicleChoice, -amount, "Fordonen har tagits bort!")) return;
+                if (isAdd) { if (AmountEditor(vehicleChoice, amount, "Fordonen har lagts till!")) return; }
+                else { if (AmountEditor(vehicleChoice, -amount, "Fordonen har tagits bort!")) return; }
             }
         }
 
