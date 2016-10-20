@@ -111,71 +111,88 @@ namespace Labb_4
         {
             Vehicle vehicleChoice;
             Menus.ShowCurrentMenu(lists.currentList);
-            if (isAdd) vehicleChoice = VehicleChooser("Välj ett fordontyp att öka mängden hos"); 
+            if (isAdd) vehicleChoice = VehicleChooser("Välj ett fordontyp att öka mängden hos");
             else vehicleChoice = VehicleChooser("Välj ett fordonstyp att ta bort ifrån");
 
 
             if (vehicleChoice == null) return;
+            NewOrUsedMenuChoice = 0;
+            bool isNew = NewOrUsed(vehicleChoice);
+
             bool validInput = false;
             int amount = 0;
             Console.CursorVisible = true;
 
             while (!validInput)
             {
+                Menus.ShowCurrentMenu(lists.currentList, true);
                 ShowSingleVehicle(vehicleChoice);
-                if (isAdd) Console.WriteLine("Hur många vill du lägga till?");
-                else Console.WriteLine("Hur många vill du ta bort?");
+                if (isAdd) Console.WriteLine("Hur många {0} vill du lägga till?", isNew ? "nya" : "begagnade");
+                else Console.WriteLine("Hur många {0} vill du ta bort?", isNew ? "nya" : "begagnade");
 
                 validInput = int.TryParse(Console.ReadLine(), out amount);
+                if (amount < 0) validInput = false;
             }
-            NewOrUsedMenuChoice = 0;
             Console.CursorVisible = false;
 
+            Menus.ShowCurrentMenu(lists.currentList, true);
+            ShowSingleVehicle(vehicleChoice);
+            if (isAdd) AmountEditor(vehicleChoice, amount, isNew, "Fordonen har lagts till!");
+            else AmountEditor(vehicleChoice, -amount, isNew, "Fordonen har tagits bort!");
+        }
+
+        private bool NewOrUsed(Vehicle vehicleChoice)
+        {
             while (true)
             {
                 Menus.ShowCurrentMenu(lists.currentList, true);
                 ShowSingleVehicle(vehicleChoice);
                 Menus.NewOrUsed();
-                if (isAdd) { if (AmountEditor(vehicleChoice, amount, "Fordonen har lagts till!")) return; }
-                else { if (AmountEditor(vehicleChoice, -amount, "Fordonen har tagits bort!")) return; }
+                var input = Console.ReadKey(true).Key;
+
+                switch (input)
+                {
+                    case ConsoleKey.Enter:
+                        if (NewOrUsedMenuChoice == 0)
+                        {
+                            return true;
+                        }
+                        if (NewOrUsedMenuChoice == 1)
+                        {
+                            return false;
+                        }
+                        return true;
+                    case ConsoleKey.DownArrow:
+                        if (NewOrUsedMenuChoice == 1) NewOrUsedMenuChoice = 0;
+                        else NewOrUsedMenuChoice++;
+                        break;
+                    case ConsoleKey.UpArrow:
+                        if (NewOrUsedMenuChoice == 0) NewOrUsedMenuChoice = 1;
+                        else NewOrUsedMenuChoice--;
+                        break;
+                    default: break;
+                }
             }
         }
 
-        bool AmountEditor(Vehicle vehicleToEdit, int amount, string comment)
+        void AmountEditor(Vehicle vehicleToEdit, int amount, bool isNew, string comment)
         {
-            var input = Console.ReadKey(true).Key;
-
-            switch (input)
+            if (isNew)
             {
-                case ConsoleKey.Enter:
-                    if (NewOrUsedMenuChoice == 0)
-                    {
-                        vehicleToEdit.NewInStock += amount;
-                        if (vehicleToEdit.NewInStock < 0)
-                            vehicleToEdit.NewInStock = 0;
-                    }
-                    if (NewOrUsedMenuChoice == 1)
-                    {
-                        vehicleToEdit.UsedInStock += amount;
-                        if (vehicleToEdit.UsedInStock < 0)
-                            vehicleToEdit.UsedInStock = 0;
-                    }
-                    Menus.ShowCurrentMenu(lists.currentList, true);
-                    ShowSingleVehicle(vehicleToEdit);
-                    Console.WriteLine(comment);
-                    Console.ReadKey(true);
-                    return true;
-                case ConsoleKey.DownArrow:
-                    if (NewOrUsedMenuChoice == 1) NewOrUsedMenuChoice = 0;
-                    else NewOrUsedMenuChoice++;
-                    break;
-                case ConsoleKey.UpArrow:
-                    if (NewOrUsedMenuChoice == 0) NewOrUsedMenuChoice = 1;
-                    else NewOrUsedMenuChoice--;
-                    break;
-                default: break;
+                vehicleToEdit.NewInStock += amount;
+                if (vehicleToEdit.NewInStock < 0)
+                    vehicleToEdit.NewInStock = 0;
             }
-            return false;
+            else
+            {
+                vehicleToEdit.UsedInStock += amount;
+                if (vehicleToEdit.UsedInStock < 0)
+                    vehicleToEdit.UsedInStock = 0;
+            }
+            Menus.ShowCurrentMenu(lists.currentList, true);
+            ShowSingleVehicle(vehicleToEdit);
+            Console.WriteLine(comment);
+            Console.ReadKey(true);
         }
 
         Vehicle VehicleChooser(string comment)
