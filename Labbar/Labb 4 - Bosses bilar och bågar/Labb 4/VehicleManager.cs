@@ -9,6 +9,12 @@ namespace Labb_4
     {
         public Lists lists = new Lists();
 
+        public static bool InStockOn { get; private set; }
+        public static bool CarOn { get; private set; } = true;
+        public static bool MotorcycleOn { get; private set; } = true;
+
+        public static int CurrentMenuChoice { get; set; }
+
         public VehicleManager()
         {
 
@@ -106,94 +112,178 @@ namespace Labb_4
         public void AddToStock()
         {
             Menus.ShowCurrentMenu(lists.currentList);
-            Console.WriteLine("Välj ett fordontyp att öka mängden hos:");
+            Vehicle vehicleChoice = VehicleChooser("Välj ett fordontyp att öka mängden hos");
 
-            int vehicleToAddToo;
-
-            bool validInput = int.TryParse(Console.ReadLine(), out vehicleToAddToo);
-            if (!validInput || vehicleToAddToo > lists.currentList.Count || vehicleToAddToo < 1)
-            {
-                Console.WriteLine("Inget tillagd");
-                Console.ReadKey(true);
-                return;
-            }
-
-            validInput = false;
+            bool validInput = false;
             int amount = 0;
 
             while (!validInput)
             {
+                Menus.ShowCurrentMenuChooser(lists.currentList);
                 Console.WriteLine("Hur många vill du lägga till?");
                 validInput = int.TryParse(Console.ReadLine(), out amount);
             }
-
-            do
+            Runtime.MenuChoice = 0;
+            while (true)
             {
-                validInput = true;
-                Console.WriteLine("Är bilen begagnad (Y/N)?");
-                var input = Console.ReadKey(true).Key;
+                Menus.ShowCurrentMenuChooser(lists.currentList);
+                Menus.NewOrUsed();
+                if (AddNewOrOld(vehicleChoice, amount)) return;
+            }
+        }
 
-                switch (input)
-                {
-                    case ConsoleKey.Y:
-                        lists.currentList[vehicleToAddToo - 1].UsedInStock += amount;
-                        break;
-                    case ConsoleKey.N:
-                        lists.currentList[vehicleToAddToo - 1].NewInStock += amount;
-                        break;
-                    default: validInput = false; break;
-                }
-            } while (!validInput);
+        private bool AddNewOrOld(Vehicle vehicleToAddToo, int amount)
+        {
+            var input = Console.ReadKey(true).Key;
 
-            Console.WriteLine("Fordonen har lagts till!");
-            Console.ReadLine();
+            switch (input)
+            {
+                case ConsoleKey.Enter:
+                    if (Runtime.MenuChoice == 0) vehicleToAddToo.NewInStock += amount;
+                    if (Runtime.MenuChoice == 1) vehicleToAddToo.UsedInStock += amount;
+                    Menus.ShowCurrentMenuChooser(lists.currentList);
+                    Console.WriteLine("Fordonen har lagts till!");
+                    Console.ReadKey(true);
+                    return true;
+                case ConsoleKey.DownArrow:
+                    if (Runtime.MenuChoice == 1) Runtime.MenuChoice = 0;
+                    else Runtime.MenuChoice++;
+                    break;
+                case ConsoleKey.UpArrow:
+                    if (Runtime.MenuChoice == 0) Runtime.MenuChoice = 1;
+                    else Runtime.MenuChoice--;
+                    break;
+                default: break;
+            }
+            return false;
         }
 
         public void RemoveFromStock()
         {
             Menus.ShowCurrentMenu(lists.currentList);
-            Console.WriteLine("Välj ett fordonstyp att ta bort ifrån:");
+            Vehicle vehicleChoice = VehicleChooser("Välj ett fordonstyp att ta bort ifrån");
 
-            int vehicleToRemoveFrom;
-
-            bool validInput = int.TryParse(Console.ReadLine(), out vehicleToRemoveFrom);
-            if (!validInput || vehicleToRemoveFrom > lists.currentList.Count || vehicleToRemoveFrom < 1)
-            {
-                Console.WriteLine("Inget borttaget");
-                Console.ReadKey(true);
-                return;
-            }
-
-            validInput = false;
+            bool validInput = false;
             int amount = 0;
             while (!validInput)
             {
+                Menus.ShowCurrentMenuChooser(lists.currentList);
                 Console.WriteLine("Hur många vill du ta bort?");
                 validInput = int.TryParse(Console.ReadLine(), out amount);
             }
-            do
+            Runtime.MenuChoice = 0;
+            while (true)
             {
-                validInput = true;
-                Console.WriteLine("vill du ta bort begagnade (Y/N)?");
+                Menus.ShowCurrentMenuChooser(lists.currentList);
+                Menus.NewOrUsed();
+                if(RemoveNewOrOld(vehicleChoice, amount)) return;
+            }
+        }
+
+        private bool RemoveNewOrOld(Vehicle vehicleToRemoveFrom, int amount)
+        {
+            var input = Console.ReadKey(true).Key;
+
+            FiltersMenu(input);
+
+            switch (input)
+            {
+                case ConsoleKey.Enter:
+                    if (Runtime.MenuChoice == 0)
+                    {
+                        vehicleToRemoveFrom.NewInStock -= amount;
+                        if (vehicleToRemoveFrom.NewInStock < 0)
+                            vehicleToRemoveFrom.NewInStock = 0;
+                    }
+                    if (Runtime.MenuChoice == 1)
+                    {
+                        vehicleToRemoveFrom.UsedInStock -= amount;
+                        if (vehicleToRemoveFrom.UsedInStock < 0)
+                            vehicleToRemoveFrom.UsedInStock = 0;
+                    }
+                    Menus.ShowCurrentMenuChooser(lists.currentList);
+                    Console.WriteLine("Fordonen har tagits bort!");
+                    Console.ReadKey(true);
+                    return true;
+                case ConsoleKey.DownArrow:
+                    if (Runtime.MenuChoice == 1) Runtime.MenuChoice = 0;
+                    else Runtime.MenuChoice++;
+                    break;
+                case ConsoleKey.UpArrow:
+                    if (Runtime.MenuChoice == 0) Runtime.MenuChoice = 1;
+                    else Runtime.MenuChoice--;
+                    break;
+                default: break;
+            }
+            return false;
+        }
+
+        private Vehicle VehicleChooser(string comment)
+        {
+            CurrentMenuChoice = 0;
+
+            while (true)
+            {
+                Console.Clear();
+                Vehicle vehicleToReturn = Menus.ShowCurrentMenuChooser(lists.currentList);
+                Console.WriteLine(comment);
+
                 var input = Console.ReadKey(true).Key;
+
+                FiltersMenu(input);
 
                 switch (input)
                 {
-                    case ConsoleKey.Y:
-                        lists.currentList[vehicleToRemoveFrom - 1].UsedInStock -= amount;
-                        if (lists.currentList[vehicleToRemoveFrom - 1].UsedInStock < 0)
-                            lists.currentList[vehicleToRemoveFrom - 1].UsedInStock = 0;
+                    case ConsoleKey.Enter:
+                        Menus.ShowCurrentMenuChooser(lists.currentList);
+                        return vehicleToReturn;
+                    case ConsoleKey.DownArrow:
+                        if (CurrentMenuChoice == lists.currentList.Count - 1) CurrentMenuChoice = 0;
+                        else CurrentMenuChoice++;
                         break;
-                    case ConsoleKey.N:
-                        lists.currentList[vehicleToRemoveFrom - 1].NewInStock -= amount;
-                        if (lists.currentList[vehicleToRemoveFrom - 1].NewInStock < 0)
-                            lists.currentList[vehicleToRemoveFrom - 1].NewInStock = 0;
+                    case ConsoleKey.UpArrow:
+                        if (CurrentMenuChoice == 0) CurrentMenuChoice = lists.currentList.Count - 1;
+                        else CurrentMenuChoice--;
                         break;
-                    default: validInput = false; break;
+                    default: break;
                 }
-            } while (!validInput);
-            Console.WriteLine("Fordonet har tagits bort!");
-            Console.ReadLine();
+            }
+        }
+
+        public void FiltersMenu(ConsoleKey input)
+        {
+            switch (input)
+            {
+                case ConsoleKey.D1:
+                case ConsoleKey.NumPad1:
+                    InStockOn = !InStockOn;
+                    break;
+                case ConsoleKey.D2:
+                case ConsoleKey.NumPad2:
+                    CarOn = !CarOn;
+                    break;
+                case ConsoleKey.D3:
+                case ConsoleKey.NumPad3:
+                    MotorcycleOn = !MotorcycleOn;
+                    break;
+
+                default:
+                    break;
+            }
+            UpdateCurrentList();
+        }
+
+        public void UpdateCurrentList()
+        {
+            lists.VehiclesInStock = lists.VehiclesInStock.OrderBy(vehicle => vehicle.GetType().ToString()).ToList();
+            lists.currentList = lists.VehiclesInStock;
+            if (InStockOn) lists.currentList = lists.currentList
+                         .Where(vehicle => (vehicle.NewInStock != 0 || vehicle.UsedInStock != 0)
+                         || !InStockOn).ToList();
+            if (!CarOn) lists.currentList = lists.currentList
+                        .Where(vehicle => vehicle.GetType().ToString() != "Labb_4.Car").ToList();
+            if (!MotorcycleOn) lists.currentList = lists.currentList
+                        .Where(vehicle => vehicle.GetType().ToString() != "Labb_4.Motorcycle").ToList();
         }
     }
 }

@@ -8,15 +8,13 @@ namespace Labb_4
 {
     class Runtime
     {
+        public static int MenuChoice { get; set; }
         VehicleManager vehicleManager = new VehicleManager();
 
-        public static bool InStockOn { get; private set; }
-        public static bool CarOn { get; private set; } = true;
-        public static bool MotorcycleOn { get; private set; } = true;
 
         public void Start()
         {
-            if(Console.WindowWidth < 130) Console.SetWindowSize(130, 30);
+            if (Console.WindowWidth < 130) Console.SetWindowSize(130, 30);
             vehicleManager.lists.currentList = vehicleManager.lists.VehiclesInStock;
             MainMenu();
         }
@@ -26,74 +24,35 @@ namespace Labb_4
             while (true)
             {
                 Console.Clear();
-                UpdateCurrentList();
+                vehicleManager.UpdateCurrentList();
                 Menus.ShowCurrentMenu(vehicleManager.lists.currentList);
                 Menus.MainMenu();
 
                 var input = Console.ReadKey(true).Key;
-                FiltersMenu(input);
+                vehicleManager.FiltersMenu(input);
                 switch (input)
                 {
-                    case ConsoleKey.N:
+                    case ConsoleKey.Enter:
                         Console.Clear();
-                        vehicleManager.AddTypeOfVehicle();
+                        if (MenuChoice == 0) vehicleManager.AddTypeOfVehicle();
+                        if (MenuChoice == 1) { vehicleManager.RemoveTypeOfVehicle(); MenuChoice = 0; }
+                        if (MenuChoice == 2) { vehicleManager.AddToStock(); MenuChoice = 0; }
+                        if (MenuChoice == 3) { vehicleManager.RemoveFromStock(); MenuChoice = 0; }
+                        if (MenuChoice == 4) return;
                         break;
-                    case ConsoleKey.T:
-                        Console.Clear();
-                        vehicleManager.RemoveTypeOfVehicle();
+                    case ConsoleKey.DownArrow:
+                        if (MenuChoice == 4) MenuChoice = 0;
+                        else MenuChoice++;
                         break;
-                    case ConsoleKey.F:
-                        Console.Clear();
-                        vehicleManager.AddToStock();
+                    case ConsoleKey.UpArrow:
+                        if (MenuChoice == 0) MenuChoice = 4;
+                        else MenuChoice--;
                         break;
-                    case ConsoleKey.B:
-                        Console.Clear();
-                        vehicleManager.RemoveFromStock();
-                        break;
-                    case ConsoleKey.E:
-                        return;
 
                     default:
                         break;
                 }
             }
-        }
-
-        private void FiltersMenu(ConsoleKey input)
-        {
-            switch (input)
-            {
-                case ConsoleKey.D1:
-                case ConsoleKey.NumPad1:
-                    InStockOn = !InStockOn;
-                    break;
-                case ConsoleKey.D2:
-                case ConsoleKey.NumPad2:
-                    CarOn = !CarOn;
-                    break;
-                case ConsoleKey.D3:
-                case ConsoleKey.NumPad3:
-                    MotorcycleOn = !MotorcycleOn;
-                    break;
-
-                default:
-                    break;
-            }
-            UpdateCurrentList();
-            
-        }
-
-        private void UpdateCurrentList()
-        {
-            vehicleManager.lists.VehiclesInStock = vehicleManager.lists.VehiclesInStock.OrderBy(vehicle => vehicle.GetType().ToString()).ToList();
-            vehicleManager.lists.currentList = vehicleManager.lists.VehiclesInStock;
-            if (InStockOn) vehicleManager.lists.currentList = vehicleManager.lists.currentList
-                         .Where(vehicle => (vehicle.NewInStock != 0 || vehicle.UsedInStock != 0)
-                         || !InStockOn).ToList();
-            if (!CarOn) vehicleManager.lists.currentList = vehicleManager.lists.currentList
-                        .Where(vehicle => vehicle.GetType().ToString() != "Labb_4.Car").ToList();
-            if (!MotorcycleOn) vehicleManager.lists.currentList = vehicleManager.lists.currentList
-                        .Where(vehicle => vehicle.GetType().ToString() != "Labb_4.Motorcycle").ToList();
-        }
+        }   
     }
 }
