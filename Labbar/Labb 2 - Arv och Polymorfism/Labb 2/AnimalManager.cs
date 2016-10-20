@@ -172,7 +172,7 @@ namespace Labb_2
                 return;
             }
 
-            Console.WriteLine("Choose a animal to remove:");
+            Console.WriteLine("Choose an animal to remove:");
 
             int animalToRemove;
 
