@@ -99,7 +99,6 @@ namespace Labb_4
 
         public void RemoveTypeOfVehicle()
         {
-            Menus.ShowCurrentMenu(lists.currentList);
             Vehicle vehicleChoice = VehicleChooser("Välj ett fordonstyp att ta bort");
             if (vehicleChoice == null) return;
             lists.VehiclesInStock.Remove(vehicleChoice);
