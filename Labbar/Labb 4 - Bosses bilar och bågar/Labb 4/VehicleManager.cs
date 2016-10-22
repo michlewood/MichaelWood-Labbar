@@ -113,8 +113,8 @@ namespace Labb_4
         {
             Vehicle vehicleChoice;
             Menus.ShowCurrentMenu(lists.currentList);
-            if (isAdd) vehicleChoice = VehicleChooser("Välj ett fordontyp att öka mängden hos");
-            else vehicleChoice = VehicleChooser("Välj ett fordonstyp att ta bort ifrån");
+
+            vehicleChoice = VehicleChooser(isAdd ? "Välj ett fordontyp att öka mängden hos" : "Välj ett fordonstyp att ta bort ifrån");
 
 
             if (vehicleChoice == null) return;
@@ -129,8 +129,7 @@ namespace Labb_4
             {
                 Menus.ShowCurrentMenu(lists.currentList, true);
                 ShowSingleVehicle(vehicleChoice);
-                if (isAdd) Console.WriteLine("Hur många {0} vill du lägga till?", isNew ? "nya" : "begagnade");
-                else Console.WriteLine("Hur många {0} vill du ta bort?", isNew ? "nya" : "begagnade");
+                Console.WriteLine("Hur många {0} vill du {1}", isNew ? "nya" : "begagnade", isAdd ? "lägga till?" : "ta bort?");
 
                 validInput = int.TryParse(Console.ReadLine(), out amount);
                 if (amount < 0) validInput = false;
@@ -139,8 +138,7 @@ namespace Labb_4
 
             Menus.ShowCurrentMenu(lists.currentList, true);
             ShowSingleVehicle(vehicleChoice);
-            if (isAdd) AmountEditor(vehicleChoice, amount, isNew, "Fordonen har lagts till!");
-            else AmountEditor(vehicleChoice, -amount, isNew, "Fordonen har tagits bort!");
+            AmountEditor(vehicleChoice, isAdd ? amount : -amount, isNew, isAdd ? "Fordonen har lagts till!" : "Fordonen har tagits bort!");
         }
 
         private bool NewOrUsed(Vehicle vehicleChoice)
