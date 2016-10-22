@@ -7,7 +7,7 @@ namespace Labb_4
 {
     public class Menus
     {
-        static int left = 97;
+        static int left = 98;
         static int height = 2;
 
         public static void MainMenu()
@@ -16,7 +16,6 @@ namespace Labb_4
             {
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Black;
-
             }
             Console.WriteLine("Lägg till ny fordons typ");
             Console.ResetColor();
@@ -81,6 +80,7 @@ namespace Labb_4
                         Console.BackgroundColor = ConsoleColor.White;
                         Console.ForegroundColor = ConsoleColor.Black;
                     }
+                    Console.Write(" ");
                     VehicleManager.ShowSingleVehicle(vehicle);
                     Console.ResetColor();
                     index++;
@@ -99,26 +99,24 @@ namespace Labb_4
         {
             int left = Menus.left + 3;
             Console.SetCursorPosition(left, height);
-            Console.Write("Tryck Esc för att återvända till huvudmenyn.");
-
-            Console.SetCursorPosition(left, height+2);
+            Console.Write("Tryck Esc för att återvända till huvudmenyn");
+            Console.SetCursorPosition(left, height + 2);
             Console.WriteLine("Filter:");
-            Console.SetCursorPosition(left, height+3);
+            Console.SetCursorPosition(left, height + 3);
             Console.Write("1. Finns i lager ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("{0}", VehicleManager.InStockOn == true ? "på" : "av");
             Console.ForegroundColor = ConsoleColor.Gray;
-            Console.SetCursorPosition(left, height+4);
+            Console.SetCursorPosition(left, height + 4);
             Console.Write("2. Bilar ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("{0}", VehicleManager.CarOn == true ? "på" : "av");
             Console.ForegroundColor = ConsoleColor.Gray;
-            Console.SetCursorPosition(left, height+5);
+            Console.SetCursorPosition(left, height + 5);
             Console.Write("3. Motorcyklar ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("{0}", VehicleManager.MotorcycleOn == true ? "på" : "av");
             Console.ForegroundColor = ConsoleColor.Gray;
-
             Console.SetCursorPosition(0, 0);
         }
 
@@ -129,7 +127,6 @@ namespace Labb_4
             {
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Black;
-
             }
             Console.WriteLine("Ny");
             Console.ResetColor();
@@ -137,7 +134,6 @@ namespace Labb_4
             {
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Black;
-
             }
             Console.WriteLine("Begagnad");
             Console.ResetColor();

@@ -11,7 +11,6 @@ namespace Labb_4
         public static int MainMenuChoice { get; set; }
         VehicleManager vehicleManager = new VehicleManager();
 
-
         public void Start()
         {
             if (Console.WindowWidth < 146) Console.SetWindowSize(146, 30);
@@ -47,7 +46,6 @@ namespace Labb_4
                         if (MainMenuChoice == 0) MainMenuChoice = 4;
                         else MainMenuChoice--;
                         break;
-
                     default:
                         break;
                 }

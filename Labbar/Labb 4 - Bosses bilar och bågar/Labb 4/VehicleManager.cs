@@ -8,17 +8,14 @@ namespace Labb_4
     public class VehicleManager
     {
         public Lists lists = new Lists();
-
         public static bool InStockOn { get; private set; }
         public static bool CarOn { get; private set; } = true;
         public static bool MotorcycleOn { get; private set; } = true;
-
         public static int CurrentMenuChoice { get; set; }
         public static int NewOrUsedMenuChoice { get; set; }
 
         public VehicleManager()
         {
-
             lists.AddType(new Car { Price = 200, Manufacturer = "ManufacturerNr1", Model = "CarModel1" });
             lists.AddType(new Car { Price = 123, Manufacturer = "ManufacturerNr1", Model = "CarModel2" });
             lists.AddType(new Car { Price = 290, Manufacturer = "ManufacturerNr2", Model = "CarModel3" });
@@ -40,9 +37,7 @@ namespace Labb_4
         {
             Menus.ShowCurrentMenu(lists.currentList);
             Console.CursorVisible = true;
-
             bool loop = false;
-
             do
             {
                 loop = false;
@@ -116,7 +111,6 @@ namespace Labb_4
 
             vehicleChoice = VehicleChooser(isAdd ? "Välj ett fordontyp att öka mängden hos" : "Välj ett fordonstyp att ta bort ifrån");
 
-
             if (vehicleChoice == null) return;
             NewOrUsedMenuChoice = 0;
             bool isNew = NewOrUsed(vehicleChoice);
@@ -130,18 +124,16 @@ namespace Labb_4
                 Menus.ShowCurrentMenu(lists.currentList, true);
                 ShowSingleVehicle(vehicleChoice);
                 Console.WriteLine("Hur många {0} vill du {1}", isNew ? "nya" : "begagnade", isAdd ? "lägga till?" : "ta bort?");
-
                 validInput = int.TryParse(Console.ReadLine(), out amount);
                 if (amount < 0) validInput = false;
             }
             Console.CursorVisible = false;
-
             Menus.ShowCurrentMenu(lists.currentList, true);
             ShowSingleVehicle(vehicleChoice);
             AmountEditor(vehicleChoice, isAdd ? amount : -amount, isNew, isAdd ? "Fordonen har lagts till!" : "Fordonen har tagits bort!");
         }
 
-        private bool NewOrUsed(Vehicle vehicleChoice)
+        bool NewOrUsed(Vehicle vehicleChoice)
         {
             while (true)
             {
@@ -153,14 +145,8 @@ namespace Labb_4
                 switch (input)
                 {
                     case ConsoleKey.Enter:
-                        if (NewOrUsedMenuChoice == 0)
-                        {
-                            return true;
-                        }
-                        if (NewOrUsedMenuChoice == 1)
-                        {
-                            return false;
-                        }
+                        if (NewOrUsedMenuChoice == 0) return true;
+                        else if (NewOrUsedMenuChoice == 1) return false;
                         return true;
                     case ConsoleKey.DownArrow:
                         if (NewOrUsedMenuChoice == 1) NewOrUsedMenuChoice = 0;
@@ -180,14 +166,12 @@ namespace Labb_4
             if (isNew)
             {
                 vehicleToEdit.NewInStock += amount;
-                if (vehicleToEdit.NewInStock < 0)
-                    vehicleToEdit.NewInStock = 0;
+                if (vehicleToEdit.NewInStock < 0) vehicleToEdit.NewInStock = 0;
             }
             else
             {
                 vehicleToEdit.UsedInStock += amount;
-                if (vehicleToEdit.UsedInStock < 0)
-                    vehicleToEdit.UsedInStock = 0;
+                if (vehicleToEdit.UsedInStock < 0) vehicleToEdit.UsedInStock = 0;
             }
             Menus.ShowCurrentMenu(lists.currentList, true);
             ShowSingleVehicle(vehicleToEdit);
@@ -198,15 +182,12 @@ namespace Labb_4
         Vehicle VehicleChooser(string comment)
         {
             CurrentMenuChoice = 0;
-
             while (true)
             {
-                Console.Clear();
                 Vehicle vehicleToReturn = Menus.ShowCurrentMenu(lists.currentList, true);
                 Console.WriteLine(comment);
 
                 var input = Console.ReadKey(true).Key;
-
                 FiltersMenu(input);
 
                 switch (input)
@@ -245,7 +226,6 @@ namespace Labb_4
                 case ConsoleKey.NumPad3:
                     MotorcycleOn = !MotorcycleOn;
                     break;
-
                 default:
                     break;
             }
@@ -254,7 +234,8 @@ namespace Labb_4
 
         public void UpdateCurrentList()
         {
-            lists.VehiclesInStock = lists.VehiclesInStock.OrderBy(vehicle => vehicle.GetType().ToString()).ToList();
+            lists.VehiclesInStock = lists.VehiclesInStock.
+                OrderBy(vehicle => vehicle.GetType().ToString()).ToList();
             lists.currentList = lists.VehiclesInStock;
             if (InStockOn) lists.currentList = lists.currentList
                          .Where(vehicle => (vehicle.NewInStock != 0 || vehicle.UsedInStock != 0)
