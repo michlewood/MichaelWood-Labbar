@@ -7,7 +7,7 @@ namespace Labb_4
 {
     public class Menus
     {
-        static int left = 105;
+        static int left = 97;
         static int height = 2;
 
         public static void MainMenu()
@@ -56,7 +56,9 @@ namespace Labb_4
             Vehicle vehicleToReturn = new Car();
             FiltersMenu();
             Console.WriteLine("Bosses bilar och bågar datorsystem");
-            Console.WriteLine("┌────────────────────────────────────────────────────────────────────────────────────────────────────────┐");
+            Console.Write("┌");
+            for (int i = 1; i < left; i++) Console.Write("─");
+            Console.WriteLine("┐");
 
             Console.SetCursorPosition(left, height);
             Console.WriteLine("│");
@@ -86,15 +88,18 @@ namespace Labb_4
             }
             else Console.WriteLine("│ Listan tom (kolla filterna eller lägg till nya fordontyper) ");
 
-            Console.WriteLine("└────────────────────────────────────────────────────────────────────────────────────────────────────────┘");
+            Console.Write("└");
+            for (int i = 1; i < left; i++) Console.Write("─");
+            Console.WriteLine("┘");
+
             return vehicleToReturn;
         }
 
         static void FiltersMenu()
         {
-            int left = 110;
+            int left = Menus.left + 3;
             Console.SetCursorPosition(left, height);
-            Console.Write("Press Esc to return to the Main menu.");
+            Console.Write("Tryck Esc för att återvända till huvudmenyn.");
 
             Console.SetCursorPosition(left, height+2);
             Console.WriteLine("Filter:");

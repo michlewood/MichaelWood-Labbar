@@ -70,7 +70,9 @@ namespace Labb_4
             Console.WriteLine("Typ: {0}. Tillverkare: {1}",
                 newVehicle.GetType().ToString().Substring(7) == "Car" ? "Bil" : "Motorcyckel",
                 newVehicle.Manufacturer);
-            Console.WriteLine("Vilken modell är bilen?");
+            Console.WriteLine("Vilken modell är {0}?",
+                newVehicle.GetType().ToString().Substring(7) == "Car" ? "bilen" : "motorcykeln",
+                newVehicle.Manufacturer);
             newVehicle.Model = Console.ReadLine();
             bool validInput = false;
 
