@@ -17,7 +17,6 @@ namespace Labb5
             while (loop)
             {
                 Console.Clear();
-                UI.PrintMainMenu();
                 loop = menuController.MainMenuChooser(loop);
             }
         }

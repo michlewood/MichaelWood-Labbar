@@ -9,7 +9,7 @@ namespace Labb5.Controllers
 {
     class GamesController
     {
-        private IRepository repository = new ListGameRepository();
+        private IRepository repository = new FileGameRepository();
 
         public void CreateGame()
         {

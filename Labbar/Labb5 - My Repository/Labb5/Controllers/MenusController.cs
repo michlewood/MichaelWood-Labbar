@@ -10,9 +10,11 @@ namespace Labb5.Controllers
     class MenusController
     {
         public static int MainMenuChoice { get; set; }
+        public static int MenuChoice { get; set; }
 
         public bool MainMenuChooser(bool loop)
         {
+            UI.PrintMainMenu();
             var input = Console.ReadKey(true).Key;
             MainMenuChoice = MenuChooser(MainMenuChoice, 3, input);
             if(input == ConsoleKey.Enter)
@@ -22,10 +24,12 @@ namespace Labb5.Controllers
                     case 0:
                         Console.Clear();
                         Games();
+                        MenuChoice = 0;
                         break;
                     case 1:
                         Console.Clear();
                         Books();
+                        MenuChoice = 0;
                         break;
                     case 2:
                         loop = false;
@@ -46,24 +50,27 @@ namespace Labb5.Controllers
             {
                 UI.PrintMenu("game");
                 var input = Console.ReadKey(true).Key;
-
-                switch (input)
+                MenuChoice = MenuChooser(MenuChoice, 5, input);
+                if (input == ConsoleKey.Enter)
                 {
-                    case ConsoleKey.D1:
-                        games.CreateGame();
-                        break;
-                    case ConsoleKey.D2:
-                        games.RemoveGame();
-                        break;
-                    case ConsoleKey.D3:
-                        games.PrintGameList();
-                        break;
-                    case ConsoleKey.D4:
-                        games.EditGame();
-                        break;
-                    case ConsoleKey.D5:
-                        loop = false;
-                        break;
+                    switch (MenuChoice)
+                    {
+                        case 0:
+                            games.CreateGame();
+                            break;
+                        case 1:
+                            games.RemoveGame();
+                            break;
+                        case 2:
+                            games.PrintGameList();
+                            break;
+                        case 3:
+                            games.EditGame();
+                            break;
+                        case 4:
+                            loop = false;
+                            break;
+                    }
                 }
             }
         }
@@ -77,24 +84,27 @@ namespace Labb5.Controllers
             {
                 UI.PrintMenu("book");
                 var input = Console.ReadKey(true).Key;
-
-                switch (input)
+                MenuChoice = MenuChooser(MenuChoice, 5, input);
+                if (input == ConsoleKey.Enter)
                 {
-                    case ConsoleKey.D1:
-                        books.CreateBook();
-                        break;
-                    case ConsoleKey.D2:
-                        books.RemoveBook();
-                        break;
-                    case ConsoleKey.D3:
-                        books.PrintBookList();
-                        break;
-                    case ConsoleKey.D4:
-                        books.EditBook();
-                        break;
-                    case ConsoleKey.D5:
-                        loop = false;
-                        break;
+                    switch (MenuChoice)
+                    {
+                        case 0:
+                            books.CreateBook();
+                            break;
+                        case 1:
+                            books.RemoveBook();
+                            break;
+                        case 2:
+                            books.PrintBookList();
+                            break;
+                        case 3:
+                            books.EditBook();
+                            break;
+                        case 4:
+                            loop = false;
+                            break;
+                    }
                 }
             }
         }

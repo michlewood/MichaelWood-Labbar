@@ -36,11 +36,21 @@ namespace Labb5
         public static void PrintMenu(string ord)
         {
             Console.Clear();
+            CheckChoice(MenusController.MenuChoice, 0);
             Console.WriteLine("1. Add {0}", ord);
+            Console.ResetColor();
+            CheckChoice(MenusController.MenuChoice, 1);
             Console.WriteLine("2. Remove {0}", ord);
+            Console.ResetColor();
+            CheckChoice(MenusController.MenuChoice, 2);
             Console.WriteLine("3. Show all {0}s", ord);
+            Console.ResetColor();
+            CheckChoice(MenusController.MenuChoice, 3);
             Console.WriteLine("4. Edit {0}", ord);
+            Console.ResetColor();
+            CheckChoice(MenusController.MenuChoice, 4);
             Console.WriteLine("5. Return");
+            Console.ResetColor();
         }
 
         public static Game CreateGame()
@@ -164,6 +174,7 @@ namespace Labb5
         public static void PrintGameList(Game[] games)
         {
             Console.Clear();
+
             foreach (var game in games)
             {
                 Console.WriteLine("{0}. Game: {1}, Genre: {2}",
