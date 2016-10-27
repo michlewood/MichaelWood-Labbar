@@ -32,6 +32,7 @@ namespace Labb5.Controllers
             int index = UI.SelectGame(games) - 1;
 
             UI.EditGame(games[index]);
+            repository.Update();
         }
 
         public void PrintGameList()

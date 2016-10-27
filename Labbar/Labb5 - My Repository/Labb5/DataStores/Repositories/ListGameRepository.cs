@@ -38,5 +38,10 @@ namespace Labb5.DataStores.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public void Update()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

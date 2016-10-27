@@ -9,11 +9,14 @@ namespace Labb5.DataStores.Repositories
 {
     interface IRepository
     {
+        void Update();
+
         Game[] GetGames();
-        Book[] GetBooks();
         void AddGame(Game newGame);
-        void AddBook(Book newBook);
         void RemoveGame(Game game);
+
+        Book[] GetBooks();
+        void AddBook(Book newBook);
         void RemoveBook(Book book);
     }
 }

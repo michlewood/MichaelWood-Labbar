@@ -9,7 +9,7 @@ namespace Labb5.Controllers
 {
     class BooksController
     {
-        private IRepository repository = new ListBookRepository();
+        private IRepository repository = new FileBookRepository();
 
         public void CreateBook()
         {
@@ -32,6 +32,7 @@ namespace Labb5.Controllers
             int index = UI.SelectBook(books) - 1;
 
             UI.EditBook(books[index]);
+            repository.Update();
         }
 
         public void PrintBookList()

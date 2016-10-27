@@ -18,7 +18,6 @@ namespace Labb5.Models
             GameGuide
         }
 
-
         public string Name { get; set; }
         public GenreType Genre { get; set; }
     }

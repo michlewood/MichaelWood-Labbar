@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace Labb5.DataStores.Repositories
 {
-    class FileGameRepository : IRepository
+    class FileBookRepository : IRepository
     {
-        public FileGameRepository()
+        public FileBookRepository()
         {
-            if (MyLists.Games.Count == 0) MyLists.Games.AddRange(GetFile());
+            if (MyLists.Books.Count == 0) MyLists.Books.AddRange(GetFile());
         }
 
-        private Game[] GetFile()
+        private Book[] GetFile()
         {
             string[] fromFile;
 
@@ -29,14 +29,14 @@ namespace Labb5.DataStores.Repositories
                 fromFile = File.ReadAllLines(FindFileLocation());
             }
 
-            Game[] tempList = new Game[fromFile.Length / 2];
+            Book[] tempList = new Book[fromFile.Length / 2];
 
             for (int i = 0; i < tempList.Length; i++)
             {
-                tempList[i] = new Game()
+                tempList[i] = new Book()
                 {
                     Name = fromFile[i * 2],
-                    Genre = (Game.GenreType)int.Parse(fromFile[i * 2 + 1])
+                    Genre = (Book.GenreType)int.Parse(fromFile[i * 2 + 1])
                 };
             }
 
@@ -46,24 +46,25 @@ namespace Labb5.DataStores.Repositories
         private string FindFileLocation()
         {
             string filePath = Environment.CurrentDirectory;
-            filePath = filePath.Remove(filePath.Length - 9, 9) + @"DataStores\games.txt";
+            filePath = filePath.Remove(filePath.Length - 9, 9) + @"DataStores\books.txt";
             return filePath;
         }
 
-        public Game[] GetGames()
+
+        public Book[] GetBooks()
         {
-            return MyLists.Games.ToArray();
+            return MyLists.Books.ToArray();
         }
 
-        public void AddGame(Game newGame)
+        public void AddBook(Book newBook)
         {
-            MyLists.Games.Add(newGame);
+            MyLists.Books.Add(newBook);
             Update();
         }
 
-        public void RemoveGame(Game game)
+        public void RemoveBook(Book book)
         {
-            MyLists.Games.Remove(game);
+            MyLists.Books.Remove(book);
             Update();
         }
 
@@ -71,28 +72,29 @@ namespace Labb5.DataStores.Repositories
         {
             List<string> tempList = new List<string>();
 
-            foreach (var game in MyLists.Games)
+            foreach (var book in MyLists.Books)
             {
-                tempList.Add(game.Name);
-                tempList.Add(((int)game.Genre).ToString());
+                tempList.Add(book.Name);
+                tempList.Add(((int)book.Genre).ToString());
             }
 
             File.WriteAllLines(FindFileLocation(), tempList);
         }
 
-        Book[] IRepository.GetBooks()
+        public Game[] GetGames()
         {
             throw new NotImplementedException();
         }
 
-        void IRepository.AddBook(Book newBook)
+        public void AddGame(Game newGame)
         {
             throw new NotImplementedException();
         }
 
-        void IRepository.RemoveBook(Book book)
+        public void RemoveGame(Game game)
         {
             throw new NotImplementedException();
         }
+
     }
 }
