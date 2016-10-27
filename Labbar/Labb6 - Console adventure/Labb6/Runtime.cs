@@ -12,13 +12,14 @@ namespace Labb6
 {
     class Runtime
     {
-        IEnvironment currentEnvironment;
+        public static IEnvironment CurrentEnvironment { get; private set; }
+
         public void Start()
         {
             HelpScreen();
             Console.ReadKey(true);
             CreateEnvironments();
-            currentEnvironment = MyLists.Environments[0];
+            CurrentEnvironment = MyLists.Environments[0];
             GameLoop();
 
             Console.Clear();
@@ -29,15 +30,17 @@ namespace Labb6
         private void CreateEnvironments()
         {
             Room newRoom = new Room(0, "You are in a dark room lit only by some candles", "You see a man in the flickering candlelight");
-            newRoom.NonPlayerCharacters.Add(new Human { Name = "Old man" });
+            newRoom.NonPlayerCharacters.Add(new QuestGiver { Name = "Old man" });
             MyLists.Environments.Add(newRoom);
 
             newRoom = new Room(1, "You are in a lit room", "You see sunlight come in through the window, you realize you must be near the outdoors");
 
             MyLists.Environments.Add(newRoom);
 
-            Yard newYard = new Yard(2, "You are outside", "The sun shines down on you as you bask in the sun. As you look around you see a dog sitting infront of you.");
-            newYard.NonPlayerCharacters.Add(new Dog { Name = "Dog" });
+            Yard newYard = new Yard(2, "You are outside",
+                "The sun shines down on you as you bask in the sun. As you look around you see a dog sitting infront of you.",
+                "The sun shines down on you as you bask in the sun.");
+            newYard.NonPlayerCharacters.Add(new Dog());
             MyLists.Environments.Add(newYard);
         }
 
@@ -47,107 +50,136 @@ namespace Labb6
             {
                 Console.Clear();
                 Map();
-                Console.WriteLine("{0}", currentEnvironment.Description);
+                Console.WriteLine("{0}", CurrentEnvironment.Description);
                 Commands();
+                CurrentEnvironment.UpdateDescription();
             }
         }
 
         private void Commands()
         {
+
             Console.WriteLine("What do you want to do: ");
             var input = Console.ReadLine();
 
-            checkMovement(input);
+            if (checkMovement(input)) { }
 
-            if (input.ToLower() == "h")
+            else if (input.ToLower() == "h")
             {
                 HelpScreen();
             }
 
-            if (input.ToLower() == "observe")
+            else if (input.ToLower() == "observe")
             {
                 Console.Clear();
-                currentEnvironment.Observe();
+                CurrentEnvironment.Observe();
             }
-            if (input.Length > 5 && input.Substring(0, 5).ToLower() == "talk ")
-                foreach (var npc in currentEnvironment.NonPlayerCharacters)
+
+            else if (checkTalk(input)) { }
+
+            else Console.WriteLine("Invalid action");
+
+            Console.ReadKey(true);
+        }
+
+        private bool checkTalk(string input)
+        {
+            INonPlayerCharacter npcToRemove = null;
+            if (input.ToLower() == "talk" && CurrentEnvironment.NonPlayerCharacters.Count == 1)
+            {
+                Console.Clear();
+                if (CurrentEnvironment.NonPlayerCharacters[0].Talk()) npcToRemove = CurrentEnvironment.NonPlayerCharacters[0];
+                if (npcToRemove != null) CurrentEnvironment.NonPlayerCharacters.Remove(npcToRemove);
+                return true;
+            }
+            else if (input.Length > 5 && input.Substring(0, 5).ToLower() == "talk ")
+            {
+                foreach (var npc in CurrentEnvironment.NonPlayerCharacters)
                 {
                     if (input.Substring(5).ToLower() == npc.Name.ToLower())
                     {
                         Console.Clear();
-                        npc.Talk();
+                        if (npc.Talk()) npcToRemove = npc;
                     }
                     else Console.WriteLine("There is no such creature");
                 }
-            if (3 < input.Length && input.Length <= 5 && input.Substring(0, 4).ToLower() == "talk")
+                if (npcToRemove != null) CurrentEnvironment.NonPlayerCharacters.Remove(npcToRemove);
+                return true;
+            }
+            else if (3 < input.Length && input.Length <= 5 && input.Substring(0, 4).ToLower() == "talk")
             {
                 Console.WriteLine("Please enter with whom you wish to speak");
+                return true;
             }
-
-            Console.ReadKey(true);
+            return false;
         }
 
         private void HelpScreen()
         {
             Console.Clear();
-            Map();
             Console.WriteLine("Movment:");
-            Console.WriteLine("n (to go north)");
-            Console.WriteLine("s (to go south)");
-            Console.WriteLine("e (to go east)");
-            Console.WriteLine("w (to go west)");
+            Console.WriteLine("\"n\" (to go north)");
+            Console.WriteLine("\"s\" (to go south)");
+            Console.WriteLine("\"e\" (to go east)");
+            Console.WriteLine("\"w\" (to go west)");
             Console.WriteLine();
-            Console.WriteLine("observe (see a description of the room and whats in the room. Creatures you can talk to names are in white)");
-            Console.WriteLine("talk [name] (enter the name of the person/animal you wish to speak to");
+            Console.WriteLine("\"observe\" (see a description of the room and whats in the room. Creatures you can talk to names are in white)");
+            Console.WriteLine("\"talk\" (if there is only one creature in the Envornment you can just type talk to speak to it.)");
+            Console.WriteLine("\"talk [name]\" (enter the name of the person/animal you wish to speak to");
             Console.WriteLine();
-            Console.WriteLine("h to open the help screen (this screen)");
+            Console.WriteLine("\"h\" to open the help screen (this screen)");
         }
 
-        private void checkMovement(string input)
+        private bool checkMovement(string input)
         {
-            if (input == "n")
+            if (input != "n" && input != "s" && input != "e" && input != "w") return false;
+
+            else if (input == "n")
             {
-                if (currentEnvironment.PositionInMap % 3 != 0 && MyLists.Environments[currentEnvironment.PositionInMap - 1] != null)
+                if (CurrentEnvironment.PositionInMap % 3 != 0 && MyLists.Environments[CurrentEnvironment.PositionInMap - 1] != null)
                 {
-                    currentEnvironment = MyLists.Environments[currentEnvironment.PositionInMap - 1];
+                    CurrentEnvironment = MyLists.Environments[CurrentEnvironment.PositionInMap - 1];
                     Console.WriteLine("You went north");
                 }
                 else Console.WriteLine("Can't go there!");
             }
 
-            if (input == "s")
+            else if (input == "s")
             {
-                if (currentEnvironment.PositionInMap % 3 != 2 && MyLists.Environments[currentEnvironment.PositionInMap + 1] != null)
+                if (CurrentEnvironment.PositionInMap % 3 != 2 && MyLists.Environments[CurrentEnvironment.PositionInMap + 1] != null)
                 {
-                    currentEnvironment = MyLists.Environments[currentEnvironment.PositionInMap + 1];
+                    CurrentEnvironment = MyLists.Environments[CurrentEnvironment.PositionInMap + 1];
                     Console.WriteLine("You went south");
                 }
                 else Console.WriteLine("Can't go there!");
             }
 
-            if (input == "e")
+            else if (input == "e")
             {
-                if (currentEnvironment.PositionInMap + 3 < MyLists.Environments.Count && MyLists.Environments[currentEnvironment.PositionInMap + 3] != null)
+                if (CurrentEnvironment.PositionInMap + 3 < MyLists.Environments.Count && MyLists.Environments[CurrentEnvironment.PositionInMap + 3] != null)
                 {
-                    currentEnvironment = MyLists.Environments[currentEnvironment.PositionInMap + 1];
+                    CurrentEnvironment = MyLists.Environments[CurrentEnvironment.PositionInMap + 1];
                     Console.WriteLine("You went east");
                 }
                 else Console.WriteLine("Can't go there!");
             }
 
-            if (input == "w")
+            else if (input == "w")
             {
-                if (currentEnvironment.PositionInMap - 3 > 0 && MyLists.Environments[currentEnvironment.PositionInMap - 3] != null)
+                if (CurrentEnvironment.PositionInMap - 3 > 0 && MyLists.Environments[CurrentEnvironment.PositionInMap - 3] != null)
                 {
-                    currentEnvironment = MyLists.Environments[currentEnvironment.PositionInMap - 3];
+                    CurrentEnvironment = MyLists.Environments[CurrentEnvironment.PositionInMap - 3];
                     Console.WriteLine("You went west");
                 }
                 else Console.WriteLine("Can't go there!");
             }
+
+            return true;
         }
 
         private void Map()
         {
+            Console.WriteLine("Map:");
             int highestPositionInMap = 0;
             foreach (var room in MyLists.Environments)
             {
@@ -159,11 +191,10 @@ namespace Labb6
             for (int i = 0; i < mapTiles.Length; i++)
             {
                 if (MyLists.Environments.Find(x => x.PositionInMap == i) == null) mapTiles[i] = "";
-                else if (i == currentEnvironment.PositionInMap)
+                else if (i == CurrentEnvironment.PositionInMap)
                 {
                     mapTiles[i] = "@";
                 }
-
                 else mapTiles[i] = "#";
             }
 

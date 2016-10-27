@@ -8,7 +8,11 @@ namespace Labb6.Models.Creatures
 {
     class Dog : Animal
     {
-        public override void Talk()
+        public Dog(string name = "Dog") : base (name)
+        {
+
+        }
+        public override bool Talk()
         {
             if (!TheEpicQuest.QuestStarted)
             {
@@ -24,7 +28,7 @@ namespace Labb6.Models.Creatures
                     case ConsoleKey.Y:
                         TheEpicQuest.HalfwayPoint = true;
                         Console.WriteLine("You pick up the dog and put it in your backpack.");
-                        break;
+                        return true;
                     case ConsoleKey.N:
                         Console.WriteLine("The dog just looks at you.");
                         break;
@@ -32,7 +36,7 @@ namespace Labb6.Models.Creatures
                         break;
                 }
             }
-        }
-        
+            return false;
+        }  
     }
 }

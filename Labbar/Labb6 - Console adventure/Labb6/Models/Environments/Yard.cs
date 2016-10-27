@@ -23,12 +23,14 @@ namespace Labb6.Models.Environments
         }
 
         public int PositionInMap { get; private set; }
+        public string EnemyRemovedDescription { get; private set; }
 
-        public Yard(int positionInMap, string description, string observationDescription)
+        public Yard(int positionInMap, string description, string observationDescription, string enemyRemovedDescription = "")
         {
             PositionInMap = positionInMap;
             Description = description;
             ObservationDescription = observationDescription;
+            EnemyRemovedDescription = enemyRemovedDescription;
         }
 
         public void Observe()
@@ -41,6 +43,14 @@ namespace Labb6.Models.Environments
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(nonPlayerCharacter.Name);
                 Console.ResetColor();
+            }
+        }
+
+        public void UpdateDescription()
+        {
+            if (NonPlayerCharacters.Count == 0 && EnemyRemovedDescription != "")
+            {
+                ObservationDescription = EnemyRemovedDescription;
             }
         }
     }

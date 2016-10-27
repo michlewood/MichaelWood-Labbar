@@ -48,6 +48,7 @@
     <Compile Include="Models\Creatures\Animal.cs" />
     <Compile Include="Models\Creatures\Dog.cs" />
     <Compile Include="Models\Creatures\Human.cs" />
+    <Compile Include="Models\Creatures\QuestGiver.cs" />
     <Compile Include="Models\Environments\Room.cs" />
     <Compile Include="Models\Environments\Yard.cs" />
     <Compile Include="Models\TheEpicQuest.cs" />

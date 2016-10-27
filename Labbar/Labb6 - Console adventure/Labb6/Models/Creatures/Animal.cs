@@ -11,14 +11,20 @@ namespace Labb6.Models.Creatures
     {
         public string Name { get; set; }
 
+        public Animal(string name)
+        {
+            Name = name;
+        }
+
         public virtual string Observe()
         {
             return "You see an animal";
         }
 
-        public virtual void Talk()
+        public virtual bool Talk()
         {
             Console.WriteLine("The {0} looks at you", Name);
+            return false;
         }
     }
 }

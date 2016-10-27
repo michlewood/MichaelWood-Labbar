@@ -10,7 +10,7 @@ namespace Labb6.Interfaces
     {
         string Name { get; set; }
 
-        void Talk();
+        bool Talk();
         string Observe();
     }
 }
