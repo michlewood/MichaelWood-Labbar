@@ -13,6 +13,6 @@ namespace Labb6.Interfaces
         string Description { get; }
         string ObservationDescription { get; }
 
-        string Observe();
+        void Observe();
     }
 }

@@ -34,16 +34,17 @@ namespace Labb6.Models.Environments
             ObservationDescription = observationDescription;
         }
 
-        public string Observe()
+        public void Observe()
         {
-            string observation = ObservationDescription;
+            Console.WriteLine(ObservationDescription);
 
             foreach (var nonPlayerCharacter in NonPlayerCharacters)
             {
-                observation += "\nYou see a " + nonPlayerCharacter.Name;
+                Console.Write("You see a(n) ");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(nonPlayerCharacter.Name);
+                Console.ResetColor();
             }
-
-            return observation;
         }
     }
 }

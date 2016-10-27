@@ -1,4 +1,5 @@
 ﻿using Labb6.Interfaces;
+using Labb6.Models;
 using Labb6.Models.Creatures;
 using Labb6.Models.Environments;
 using System;
@@ -14,9 +15,15 @@ namespace Labb6
         IEnvironment currentEnvironment;
         public void Start()
         {
+            HelpScreen();
+            Console.ReadKey(true);
             CreateEnvironments();
             currentEnvironment = MyLists.Environments[0];
             GameLoop();
+
+            Console.Clear();
+            Console.WriteLine("You won!");
+            Console.ReadKey(true);
         }
 
         private void CreateEnvironments()
@@ -26,7 +33,7 @@ namespace Labb6
             MyLists.Environments.Add(newRoom);
 
             newRoom = new Room(1, "You are in a lit room", "You see sunlight come in through the window, you realize you must be near the outdoors");
-            
+
             MyLists.Environments.Add(newRoom);
 
             Yard newYard = new Yard(2, "You are outside", "The sun shines down on you as you bask in the sun. As you look around you see a dog sitting infront of you.");
@@ -36,7 +43,7 @@ namespace Labb6
 
         private void GameLoop()
         {
-            while (true)
+            while (!TheEpicQuest.QuestComplete)
             {
                 Console.Clear();
                 Map();
@@ -52,16 +59,25 @@ namespace Labb6
 
             checkMovement(input);
 
+            if (input.ToLower() == "h")
+            {
+                HelpScreen();
+            }
+
             if (input.ToLower() == "observe")
             {
                 Console.Clear();
-                Console.WriteLine(currentEnvironment.Observe());
+                currentEnvironment.Observe();
             }
             if (input.Length > 5 && input.Substring(0, 5).ToLower() == "talk ")
                 foreach (var npc in currentEnvironment.NonPlayerCharacters)
                 {
-                    Console.Clear();
-                    if (input.Substring(5).ToLower() == npc.Name.ToLower()) npc.Talk();
+                    if (input.Substring(5).ToLower() == npc.Name.ToLower())
+                    {
+                        Console.Clear();
+                        npc.Talk();
+                    }
+                    else Console.WriteLine("There is no such creature");
                 }
             if (3 < input.Length && input.Length <= 5 && input.Substring(0, 4).ToLower() == "talk")
             {
@@ -69,6 +85,22 @@ namespace Labb6
             }
 
             Console.ReadKey(true);
+        }
+
+        private void HelpScreen()
+        {
+            Console.Clear();
+            Map();
+            Console.WriteLine("Movment:");
+            Console.WriteLine("n (to go north)");
+            Console.WriteLine("s (to go south)");
+            Console.WriteLine("e (to go east)");
+            Console.WriteLine("w (to go west)");
+            Console.WriteLine();
+            Console.WriteLine("observe (see a description of the room and whats in the room. Creatures you can talk to names are in white)");
+            Console.WriteLine("talk [name] (enter the name of the person/animal you wish to speak to");
+            Console.WriteLine();
+            Console.WriteLine("h to open the help screen (this screen)");
         }
 
         private void checkMovement(string input)

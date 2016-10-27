@@ -12,15 +12,15 @@ namespace Labb5
         public static void PrintMainMenu()
         {
             CheckChoice(MenusController.MainMenuChoice, 0);
-            Console.WriteLine("1. Games");
+            Console.WriteLine("Games");
             Console.ResetColor();
 
             CheckChoice(MenusController.MainMenuChoice, 1);
-            Console.WriteLine("2. Books");
+            Console.WriteLine("Books");
             Console.ResetColor();
 
             CheckChoice(MenusController.MainMenuChoice, 2);
-            Console.WriteLine("3. Exit");
+            Console.WriteLine("Exit");
             Console.ResetColor();
         }
 
@@ -37,19 +37,19 @@ namespace Labb5
         {
             Console.Clear();
             CheckChoice(MenusController.MenuChoice, 0);
-            Console.WriteLine("1. Add {0}", ord);
+            Console.WriteLine("Add {0}", ord);
             Console.ResetColor();
             CheckChoice(MenusController.MenuChoice, 1);
-            Console.WriteLine("2. Remove {0}", ord);
+            Console.WriteLine("Remove {0}", ord);
             Console.ResetColor();
             CheckChoice(MenusController.MenuChoice, 2);
-            Console.WriteLine("3. Show all {0}s", ord);
+            Console.WriteLine("Show all {0}s", ord);
             Console.ResetColor();
             CheckChoice(MenusController.MenuChoice, 3);
-            Console.WriteLine("4. Edit {0}", ord);
+            Console.WriteLine("Edit {0}", ord);
             Console.ResetColor();
             CheckChoice(MenusController.MenuChoice, 4);
-            Console.WriteLine("5. Return");
+            Console.WriteLine("Return");
             Console.ResetColor();
         }
 
