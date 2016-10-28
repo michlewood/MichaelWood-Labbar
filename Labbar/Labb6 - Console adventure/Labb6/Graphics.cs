@@ -46,30 +46,22 @@ namespace Labb6
                 else mapTiles[i] = "#";
             }
 
-            for (int i = 0; i < mapTiles.Length; i++)
+            for (int i = 0; i < mapTiles.Length; i+=3)
             {
-                if ((i) % 3 == 0)
-                {
                     if (mapTiles[i] == "") Console.Write("   ");
                     else Console.Write("[{0}]", mapTiles[i]);
-                }
             }
             Console.WriteLine();
-            for (int i = 0; i < mapTiles.Length; i++)
+            for (int i = 1; i < mapTiles.Length; i+=3)
             {
-                if ((i) % 3 == 1)
-                {
                     if (mapTiles[i] == "") Console.Write("   ");
                     else Console.Write("[{0}]", mapTiles[i]);
-                }
             }
-            Console.WriteLine(); for (int i = 0; i < mapTiles.Length; i++)
+            Console.WriteLine();
+            for (int i = 2; i < mapTiles.Length; i+=3)
             {
-                if ((i) % 3 == 2)
-                {
                     if (mapTiles[i] == "") Console.Write("   ");
                     else Console.Write("[{0}]", mapTiles[i]);
-                }
             }
             Console.WriteLine();
         }

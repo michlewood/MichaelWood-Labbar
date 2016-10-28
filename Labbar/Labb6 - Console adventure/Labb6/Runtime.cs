@@ -37,7 +37,6 @@ namespace Labb6
             newRoom = new Room(1, "You are in a lit room", "You see sunlight come in through the window, you realize you must be near the outdoors");
             MyLists.Environments.Add(newRoom);
 
-
             Yard newYard = new Yard(2, "You are outside",
                 "The sun shines down on you as you bask in the sun. As you look around you see a dog sitting infront of you.",
                 "The sun shines down on you as you bask in the sun.");
@@ -108,7 +107,7 @@ namespace Labb6
                         return true;
                     }
                 }
-                    Console.WriteLine("There is no such creature");
+                Console.WriteLine("There is no such creature");
             }
             else if (3 < input.Length && input.Length <= 5 && input.Substring(0, 4).ToLower() == "talk")
             {
@@ -125,10 +124,11 @@ namespace Labb6
             else if (input == "n")
             {
                 if (MyLists.Environments.
-                    Find(environment => environment.PositionInMap == CurrentEnvironment.PositionInMap -1) != null)
-                {
-                    CurrentEnvironment = MyLists.Environments.
-                        Find(environment => environment.PositionInMap == CurrentEnvironment.PositionInMap - 1);
+                    Find(environment => environment.PositionInMap == CurrentEnvironment.PositionInMap - 1) != null)
+                    {
+                        CurrentEnvironment = MyLists.Environments.
+                            Find(environment => environment.PositionInMap == CurrentEnvironment.PositionInMap - 1);
+
                     Console.WriteLine("You went north");
                 }
                 else Console.WriteLine("Can't go there!");
@@ -140,7 +140,8 @@ namespace Labb6
                     Find(environment => environment.PositionInMap == CurrentEnvironment.PositionInMap + 1) != null)
                 {
                     CurrentEnvironment = MyLists.Environments.
-                        Find(environment => environment.PositionInMap == CurrentEnvironment.PositionInMap+1);
+                        Find(environment => environment.PositionInMap == CurrentEnvironment.PositionInMap + 1);
+
                     Console.WriteLine("You went south");
                 }
                 else Console.WriteLine("Can't go there!");
