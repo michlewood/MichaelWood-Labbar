@@ -21,17 +21,16 @@ namespace Labb6.Models.Environments
         }
 
         public int PositionInMap { get; private set; }
-
         public string Description { get; private set; }
         public string ObservationDescription { get; private set; }
-        public string EnemyRemovedDescription { get; private set; }
+        public string NewDescriptionIfNonPlayerCharacterIsRemoved { get; private set; }
 
         public Room(int positionInMap, string description, string observationDescription, string enemyRemovedDescription = "")
         {
             PositionInMap = positionInMap;
             Description = description;
             ObservationDescription = observationDescription;
-            EnemyRemovedDescription = enemyRemovedDescription;
+            NewDescriptionIfNonPlayerCharacterIsRemoved = enemyRemovedDescription;
         }
 
         public void Observe()
@@ -49,9 +48,9 @@ namespace Labb6.Models.Environments
 
         public void UpdateDescription()
         {
-            if (NonPlayerCharacters.Count == 0 && EnemyRemovedDescription != "")
+            if (NonPlayerCharacters.Count == 0 && NewDescriptionIfNonPlayerCharacterIsRemoved != "")
             {
-                ObservationDescription = EnemyRemovedDescription;
+                ObservationDescription = NewDescriptionIfNonPlayerCharacterIsRemoved;
             }
         }
     }

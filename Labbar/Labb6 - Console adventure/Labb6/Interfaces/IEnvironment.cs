@@ -12,7 +12,7 @@ namespace Labb6.Interfaces
         int PositionInMap { get; }
         string Description { get; }
         string ObservationDescription { get; }
-        string EnemyRemovedDescription { get; }
+        string NewDescriptionIfNonPlayerCharacterIsRemoved { get; }
 
         void Observe();
 

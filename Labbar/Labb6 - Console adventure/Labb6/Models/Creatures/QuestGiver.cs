@@ -26,7 +26,7 @@ namespace Labb6.Models.Creatures
                         Console.WriteLine("{0}: Thank you", Name);
                         break;
                     case ConsoleKey.N:
-                        Console.WriteLine("{0}: To bad, if you change your mind i'll be here.", Name);
+                        Console.WriteLine("{0}: To bad. i'll be here, if you change your mind.", Name);
                         break;
                     default:
                         break;

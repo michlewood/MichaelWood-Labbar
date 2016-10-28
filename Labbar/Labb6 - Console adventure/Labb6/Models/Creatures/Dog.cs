@@ -16,7 +16,11 @@ namespace Labb6.Models.Creatures
         {
             if (!TheEpicQuest.QuestStarted)
             {
-                base.Talk();
+                Console.WriteLine("You try talking to the dog, it does not reply. You feel foolish.");
+                Console.ReadKey(true);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("You take 5 damage from embarrassment");
+                Console.ResetColor();
             }
 
             else if (!TheEpicQuest.HalfwayPoint)

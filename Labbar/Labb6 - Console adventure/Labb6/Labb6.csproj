@@ -43,12 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Graphics.cs" />
     <Compile Include="Interfaces\IEnvironment.cs" />
     <Compile Include="Interfaces\INonPlayerCharacter.cs" />
     <Compile Include="Models\Creatures\Animal.cs" />
     <Compile Include="Models\Creatures\Dog.cs" />
     <Compile Include="Models\Creatures\Human.cs" />
     <Compile Include="Models\Creatures\QuestGiver.cs" />
+    <Compile Include="Models\Creatures\Rat.cs" />
     <Compile Include="Models\Environments\Room.cs" />
     <Compile Include="Models\Environments\Yard.cs" />
     <Compile Include="Models\TheEpicQuest.cs" />
