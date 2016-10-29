@@ -56,5 +56,20 @@ namespace Labb6
             }
             Console.WriteLine("──────");
         }
+
+        public static void Clear(int row, int amountOfRows)
+        {
+            Console.SetCursorPosition(0, row);
+            for (int i = 0; i < amountOfRows; i++)
+            {
+                Console.SetCursorPosition(0, row + i);
+                for (int j = 0; j < 150; j++)
+                {
+                    Console.Write(" ");
+                }
+            }
+            Console.SetCursorPosition(0, row);
+
+        }
     }
 }

@@ -11,5 +11,9 @@ namespace Labb6.Models.Creatures
         public Rat() : base("Rat")
         {
         }
+        public override string Observe()
+        {
+            return "The rat avoids you as it looks for anything to call food (propaply with an intent to eat it).";
+        }
     }
 }

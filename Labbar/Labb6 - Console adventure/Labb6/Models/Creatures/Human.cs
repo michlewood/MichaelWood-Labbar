@@ -11,7 +11,7 @@ namespace Labb6.Models.Creatures
     {
         public string Name { get; set; }
 
-        public string Observe()
+        public virtual string Observe()
         {
             return "You see a person";
         }

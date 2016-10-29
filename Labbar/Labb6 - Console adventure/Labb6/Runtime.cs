@@ -49,20 +49,34 @@ namespace Labb6
 
         private void GameLoop()
         {
+            //while (!TheEpicQuest.QuestComplete)
+            //{
+            //    Console.Clear();
+            //    Graphics.Map(CurrentEnvironment);
+            //    Console.WriteLine("{0}", CurrentEnvironment.Description);
+            //    Commands();
+            //    CurrentEnvironment.UpdateDescription();
+            //}
+            Console.CursorVisible = false;
             while (!TheEpicQuest.QuestComplete)
             {
-                Console.Clear();
+                Graphics.Clear(0, 7);
                 Graphics.Map(CurrentEnvironment);
                 Console.WriteLine("{0}", CurrentEnvironment.Description);
+                Console.WriteLine("What do you want to do: ");
+                Graphics.Clear(7, 6);
                 Commands();
                 CurrentEnvironment.UpdateDescription();
             }
         }
 
+        
+
         private void Commands()
         {
-            Console.WriteLine("What do you want to do: ");
+            Console.CursorVisible = true;
             var input = Console.ReadLine();
+            Console.CursorVisible = false;
 
             if (CheckMovement(input)) { }
 
@@ -70,12 +84,8 @@ namespace Labb6
             {
                 Graphics.HelpScreen();
             }
+            else if (CheckObserve(input)) { }
 
-            else if (input.ToLower() == "observe")
-            {
-                Console.Clear();
-                CurrentEnvironment.Observe();
-            }
 
             else if (CheckTalk(input)) { }
 
@@ -84,12 +94,38 @@ namespace Labb6
             Console.ReadKey(true);
         }
 
+        private bool CheckObserve(string input)
+        {
+            if (input.ToLower() == "observe")
+            {
+                Console.Clear();
+                Graphics.Map(CurrentEnvironment);
+                CurrentEnvironment.Observe();
+                return true;
+            }
+            else if (input.Length > 8 && input.Substring(0, 8).ToLower() == "observe ")
+            {
+                foreach (var npc in CurrentEnvironment.NonPlayerCharacters)
+                {
+                    if (input.Substring(8).ToLower() == npc.Name.ToLower())
+                    {
+                        Console.Clear();
+                        Graphics.Map(CurrentEnvironment);
+                        Console.WriteLine(npc.Observe());
+                        return true;
+                    }
+                }
+                Console.WriteLine("There is no such thing");
+                return true;
+            }
+            return false;
+        }
+
         private bool CheckTalk(string input)
         {
             INonPlayerCharacter npcToRemove = null;
             if (input.ToLower() == "talk" && CurrentEnvironment.NonPlayerCharacters.Count == 1)
             {
-                Console.Clear();
                 if (CurrentEnvironment.NonPlayerCharacters[0].Talk()) npcToRemove = CurrentEnvironment.NonPlayerCharacters[0];
                 if (npcToRemove != null) CurrentEnvironment.NonPlayerCharacters.Remove(npcToRemove);
                 return true;
@@ -101,12 +137,14 @@ namespace Labb6
                     if (input.Substring(5).ToLower() == npc.Name.ToLower())
                     {
                         Console.Clear();
+                        Graphics.Map(CurrentEnvironment);
                         if (npc.Talk()) npcToRemove = npc;
                         if (npcToRemove != null) CurrentEnvironment.NonPlayerCharacters.Remove(npcToRemove);
                         return true;
                     }
                 }
                 Console.WriteLine("There is no such creature");
+                return true;
             }
             else if (3 < input.Length && input.Length <= 5 && input.Substring(0, 4).ToLower() == "talk")
             {
@@ -124,9 +162,9 @@ namespace Labb6
             {
                 if (MyLists.Environments.
                     Find(environment => environment.PositionInMap == CurrentEnvironment.PositionInMap - 1) != null)
-                    {
-                        CurrentEnvironment = MyLists.Environments.
-                            Find(environment => environment.PositionInMap == CurrentEnvironment.PositionInMap - 1);
+                {
+                    CurrentEnvironment = MyLists.Environments.
+                        Find(environment => environment.PositionInMap == CurrentEnvironment.PositionInMap - 1);
 
                     Console.WriteLine("You went north");
                 }

@@ -23,7 +23,7 @@ namespace Labb6.Models.Creatures
 
         public virtual bool Talk()
         {
-            Console.WriteLine("The {0} looks at you", Name);
+            Console.WriteLine("The {0} looks at you confused and does not reply.", Name.ToLower());
             return false;
         }
     }
