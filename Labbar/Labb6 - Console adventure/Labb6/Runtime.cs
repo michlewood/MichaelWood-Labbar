@@ -29,23 +29,22 @@ namespace Labb6
 
         private void CreateEnvironments()
         {
-            Room newRoom = new Room(0, "You are in a dark room lit only by some candles", "You see a man in the flickering candlelight");
-            newRoom.NonPlayerCharacters.Add(new QuestGiver { Name = "Old man" });
-            newRoom.NonPlayerCharacters.Add(new Rat());
-            MyLists.Environments.Add(newRoom);
+            IEnvironment newEnvironment = new Room(0, "You are in a dark room lit only by some candles", "You see a man in the flickering candlelight");
+            newEnvironment.NonPlayerCharacters.Add(new QuestGiver { Name = "Old man" });
+            newEnvironment.NonPlayerCharacters.Add(new Rat());
+            MyLists.Environments.Add(newEnvironment);
 
-            newRoom = new Room(1, "You are in a lit room", "You see sunlight come in through the window, you realize you must be near the outdoors");
-            MyLists.Environments.Add(newRoom);
+            newEnvironment = new Room(1, "You are in a lit room", "You see sunlight come in through the window, you realize you must be near the outdoors");
+            MyLists.Environments.Add(newEnvironment);
 
-            Yard newYard = new Yard(2, "You are outside",
+            newEnvironment = new Yard(2, "You are outside",
                 "The sun shines down on you as you bask in the sun. As you look around you see a dog sitting infront of you.",
                 "The sun shines down on you as you bask in the sun.");
-            newYard.NonPlayerCharacters.Add(new Dog());
-            MyLists.Environments.Add(newYard);
+            newEnvironment.NonPlayerCharacters.Add(new Dog());
+            MyLists.Environments.Add(newEnvironment);
 
-            newRoom = new Room(5, "You are in a lit room", "You see sunlight come in through the window, you realize you must be near the outdoors");
-            MyLists.Environments.Add(newRoom);
-
+            newEnvironment = new Yard(5, "You are in a garden", "You see lots of pretty flowers");
+            MyLists.Environments.Add(newEnvironment);
         }
 
         private void GameLoop()
