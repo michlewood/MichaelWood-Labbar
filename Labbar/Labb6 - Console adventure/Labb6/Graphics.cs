@@ -38,12 +38,12 @@ namespace Labb6
 
             for (int i = 0; i < mapTiles.Length; i++)
             {
-                if (MyLists.Environments.Find(x => x.PositionInMap == i) == null) mapTiles[i] = "   ";
+                if (MyLists.Environments.Find(x => x.PositionInMap == i) == null) mapTiles[i] = "  ";
                 else if (i == currentEnvironment.PositionInMap)
                 {
-                    mapTiles[i] = "[@]";
+                    mapTiles[i] = "@ ";
                 }
-                else mapTiles[i] = "[#]";
+                else mapTiles[i] = "# ";
             }
 
             for (int i = 0; i < 3; i++)
@@ -54,6 +54,7 @@ namespace Labb6
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine("──────");
         }
     }
 }
