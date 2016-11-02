@@ -14,7 +14,7 @@ namespace Labb5.Controllers
 
         public bool MainMenuChooser(bool loop)
         {
-            UI.PrintMainMenu();
+            Graphics.PrintMainMenu();
             var input = Console.ReadKey(true).Key;
             MainMenuChoice = MenuChooser(MainMenuChoice, 3, input);
             if(input == ConsoleKey.Enter)
@@ -48,7 +48,7 @@ namespace Labb5.Controllers
 
             while (loop)
             {
-                UI.PrintMenu("game");
+                Graphics.PrintMenu("game");
                 var input = Console.ReadKey(true).Key;
                 MenuChoice = MenuChooser(MenuChoice, 5, input);
                 if (input == ConsoleKey.Enter)
@@ -82,7 +82,7 @@ namespace Labb5.Controllers
 
             while (loop)
             {
-                UI.PrintMenu("book");
+                Graphics.PrintMenu("book");
                 var input = Console.ReadKey(true).Key;
                 MenuChoice = MenuChooser(MenuChoice, 5, input);
                 if (input == ConsoleKey.Enter)

@@ -13,14 +13,14 @@ namespace Labb5.Controllers
 
         public void CreateGame()
         {
-            var newGame = UI.CreateGame();
+            var newGame = Graphics.CreateGame();
             repository.AddGame(newGame);
         }
 
         public void RemoveGame()
         {
             var games = repository.GetGames();
-            var index = UI.SelectGame(games) - 1;
+            var index = Graphics.SelectGame(games) - 1;
             repository.RemoveGame(games[index]);
 
         }
@@ -28,17 +28,17 @@ namespace Labb5.Controllers
         public void EditGame()
         {
             var games = repository.GetGames();
-            UI.PrintGameList(games);
-            int index = UI.SelectGame(games) - 1;
+            Graphics.PrintGameList(games);
+            int index = Graphics.SelectGame(games) - 1;
 
-            UI.EditGame(games[index]);
+            Graphics.EditGame(games[index]);
             repository.Update();
         }
 
         public void PrintGameList()
         {
             Console.Clear();
-            UI.PrintGameList(repository.GetGames());
+            Graphics.PrintGameList(repository.GetGames());
             Console.ReadKey(true);
         }
     }

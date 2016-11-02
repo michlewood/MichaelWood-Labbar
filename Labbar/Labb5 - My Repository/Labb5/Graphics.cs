@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Labb5
 {
-    class UI
+    class Graphics
     {
         public static void PrintMainMenu()
         {

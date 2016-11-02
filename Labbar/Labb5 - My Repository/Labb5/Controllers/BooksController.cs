@@ -13,14 +13,14 @@ namespace Labb5.Controllers
 
         public void CreateBook()
         {
-            var newBook = UI.CreateBook();
+            var newBook = Graphics.CreateBook();
             repository.AddBook(newBook);
         }
 
         public void RemoveBook()
         {
             var book = repository.GetBooks();
-            var index = UI.SelectBook(book) - 1;
+            var index = Graphics.SelectBook(book) - 1;
             repository.RemoveBook(book[index]);
 
         }
@@ -28,17 +28,17 @@ namespace Labb5.Controllers
         public void EditBook()
         {
             var books = repository.GetBooks();
-            UI.PrintBookList(books);
-            int index = UI.SelectBook(books) - 1;
+            Graphics.PrintBookList(books);
+            int index = Graphics.SelectBook(books) - 1;
 
-            UI.EditBook(books[index]);
+            Graphics.EditBook(books[index]);
             repository.Update();
         }
 
         public void PrintBookList()
         {
             Console.Clear();
-            UI.PrintBookList(repository.GetBooks());
+            Graphics.PrintBookList(repository.GetBooks());
             Console.ReadKey(true);
         }
     }
