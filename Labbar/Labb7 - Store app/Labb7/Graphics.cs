@@ -93,11 +93,11 @@ namespace Labb7
         public static void PrintMainMenu()
         {
             CheckChoice(MenusManager.MainMenuChoice, 0);
-            Console.WriteLine("Electronics");
+            Console.WriteLine("Add new product");
             Console.ResetColor();
 
             CheckChoice(MenusManager.MainMenuChoice, 1);
-            Console.WriteLine("Toys");
+            Console.WriteLine("Remove Product");
             Console.ResetColor();
 
             CheckChoice(MenusManager.MainMenuChoice, 2);

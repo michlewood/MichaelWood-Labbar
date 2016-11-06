@@ -19,7 +19,7 @@ namespace Labb7
             {
                 Console.Clear();
                 Graphics.ShowCurrentMenu(productManager.lists.CurrentProducts);
-                loop = menusManager.MainMenuChooser(productManager.lists); 
+                loop = menusManager.MainMenuChooser(productManager); 
             }
         }
     }

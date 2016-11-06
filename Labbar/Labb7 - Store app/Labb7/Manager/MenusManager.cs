@@ -36,13 +36,13 @@ namespace Labb7.Manager
             myLists.UpdateCurrentList();
         }
 
-        public bool MainMenuChooser(MyLists myLists)
+        public bool MainMenuChooser(ProductManager productManager)
         {
             bool loop = true;
             Console.CursorVisible = false;
             Graphics.PrintMainMenu();
             var input = Console.ReadKey(true).Key;
-            FiltersMenu(input, myLists);
+            FiltersMenu(input, productManager.lists);
             MainMenuChoice = MenuChooser(MainMenuChoice, 3, input);
             if (input == ConsoleKey.Enter)
             {
@@ -50,13 +50,12 @@ namespace Labb7.Manager
                 {
                     case 0:
                         Console.Clear();
-                        Console.WriteLine("Hello");
-                        Console.ReadKey(true);
+                        productManager.TypeOfProductToAdd();
                         MenuChoice = 0;
                         break;
                     case 1:
                         Console.Clear();
-                        Console.WriteLine("Hi");
+                        Console.WriteLine("Remove product.");
                         Console.ReadKey(true);
                         MenuChoice = 0;
                         break;

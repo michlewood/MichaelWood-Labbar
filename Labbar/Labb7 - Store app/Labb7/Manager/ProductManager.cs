@@ -47,7 +47,6 @@ namespace Labb7.Manager
                 {
                     Console.WriteLine("{0}. {1}", (int)name, name);
                 }
-                validInput = true;
                 Console.WriteLine("What type of product do you want to add?");
                 int typeOfProduct;
                 validInput = int.TryParse(Console.ReadLine(), out typeOfProduct);
@@ -56,15 +55,26 @@ namespace Labb7.Manager
                     case 1:
                         AddCommonElements(new Electronic(), 1);
                         break;
+                    case 2:
+                        AddCommonElements(new Toy(), 1);
+                        break;
+                    case 3:
+                        VideoGame newVideoGame = new VideoGame();
+                        AddCommonElements(newVideoGame, 1);
+                        newVideoGame.GenreType = VideoGame.Genre.RolePlayingGame;
+                        break;
                     default:
                         validInput = false;
                         break;
                 } 
             }
+            lists.UpdateCurrentList();
         }
 
         private void AddCommonElements(Product newProduct, int typeOfProduct)
         {
+            lists.Products.Add(newProduct);
+
             newProduct.Type = (Product.TypesOfProduct)typeOfProduct;
             Console.WriteLine("Enter name of the product");
             newProduct.Name = Console.ReadLine();
@@ -80,8 +90,6 @@ namespace Labb7.Manager
 
             Console.WriteLine("Enter a description of the product");
             newProduct.ProductInformation = Console.ReadLine();
-
-            lists.Products.Add(newProduct);
         }
 
         public static void PrintSingleProduct(Product product)
