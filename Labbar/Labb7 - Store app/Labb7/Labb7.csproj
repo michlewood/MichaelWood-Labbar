@@ -45,12 +45,13 @@
   <ItemGroup>
     <Compile Include="DataStores\MyLists.cs" />
     <Compile Include="Graphics.cs" />
-    <Compile Include="InterFaces\ISellable.cs" />
+    <Compile Include="Interfaces\ISellable.cs" />
     <Compile Include="Manager\MenusManager.cs" />
     <Compile Include="Manager\ProductManager.cs" />
     <Compile Include="Models\Electronic.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Toy.cs" />
+    <Compile Include="Models\VideoGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Runtime.cs" />

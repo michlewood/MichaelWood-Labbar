@@ -26,6 +26,10 @@ namespace Labb7.Manager
                 case ConsoleKey.NumPad2:
                     Graphics.ToysOn = !Graphics.ToysOn;
                     break;
+                case ConsoleKey.D3:
+                case ConsoleKey.NumPad3:
+                    Graphics.VideoGamesOn = !Graphics.VideoGamesOn;
+                    break;
                 default:
                     break;
             }

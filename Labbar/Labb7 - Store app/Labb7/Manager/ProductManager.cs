@@ -26,6 +26,13 @@ namespace Labb7.Manager
                 Price = 50,
                 ProductInformation = "This is a small, cute plushie"
             });
+            lists.Products.Add(new VideoGame
+            {
+                Name = "Dark Souls",
+                Price = 60,
+                ProductInformation = "A action, roleplaying game",
+                GenreType = VideoGame.Genre.RolePlayingGame
+            });
 
             lists.UpdateCurrentList();
         }
@@ -79,15 +86,9 @@ namespace Labb7.Manager
 
         public static void PrintSingleProduct(Product product)
         {
-            Console.WriteLine("{0}: {1} monies. {2}", product.Name, product.Price, product.ProductInformation);
-        }
+            string output = string.Format("{0}: {1} monies. {2}.", product.Name, product.Price, product.ProductInformation);
 
-        public void PrintSellables()
-        {
-            foreach (var item in lists.CurrentProducts)
-            {
-                Console.WriteLine("{0}: {1} monies. {2}", item.Name, item.Price, item.ProductInformation);
-            }
+            Console.WriteLine(output);
         }
     }
 }

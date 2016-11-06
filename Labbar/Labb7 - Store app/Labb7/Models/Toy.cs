@@ -10,7 +10,7 @@ namespace Labb7.Models
     {
         public Toy()
         {
-            Type = (Product.TypesOfProduct)1;
+            Type = TypesOfProduct.Toys;
         }
     }
 }

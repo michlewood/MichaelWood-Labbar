@@ -14,10 +14,10 @@ namespace Labb7
         static int height = 2;
         public static bool ElecronicsOn { get; set; } = true;
         public static bool ToysOn { get; set; } = true;
+        public static bool VideoGamesOn { get; set; } = true;
 
         public static Product ShowCurrentMenu(List<Product> currentList, bool isInteractable = false)
         {
-            
             Console.Clear();
             Product productToReturn = new Electronic();
 
@@ -68,7 +68,7 @@ namespace Labb7
             int left = Graphics.left + 3;
             int row = 0;
             Console.SetCursorPosition(left, height + row++);
-            Console.Write("Tryck Esc för att återvända till huvudmenyn");
+            Console.Write("Tryck Esc to return to main menu");
             row++;
 
             Console.SetCursorPosition(left, height + (row++));
@@ -82,6 +82,10 @@ namespace Labb7
             Console.Write("2. Toys ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("{0}", Graphics.ToysOn == true ? "på" : "av");
+            Console.ForegroundColor = ConsoleColor.Gray; Console.SetCursorPosition(left, height + row++);
+            Console.Write("3. Video Games ");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("{0}", Graphics.VideoGamesOn == true ? "på" : "av");
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.SetCursorPosition(0, 0);
         }
@@ -89,11 +93,11 @@ namespace Labb7
         public static void PrintMainMenu()
         {
             CheckChoice(MenusManager.MainMenuChoice, 0);
-            Console.WriteLine("Games");
+            Console.WriteLine("Electronics");
             Console.ResetColor();
 
             CheckChoice(MenusManager.MainMenuChoice, 1);
-            Console.WriteLine("Books");
+            Console.WriteLine("Toys");
             Console.ResetColor();
 
             CheckChoice(MenusManager.MainMenuChoice, 2);

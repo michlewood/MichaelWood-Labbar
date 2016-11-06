@@ -1,4 +1,4 @@
-﻿using Labb7.InterFaces;
+﻿using Labb7.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,8 @@ namespace Labb7.Models
         public enum TypesOfProduct
         {
             Electronics = 1,
-            Toys
+            Toys,
+            VideoGames
         }
 
         public TypesOfProduct Type { get; set; }

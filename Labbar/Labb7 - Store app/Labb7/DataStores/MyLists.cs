@@ -30,9 +30,11 @@ namespace Labb7.DataStores
                 OrderBy(product => product.GetType().ToString()).ToList();
             CurrentProducts = Products;
             if (!Graphics.ElecronicsOn) CurrentProducts = CurrentProducts
-                        .Where(product => product.GetType().ToString() != "Labb7.Models.Electronic").ToList();
+                        .Where(product => product.GetType() != typeof(Electronic)).ToList();
             if (!Graphics.ToysOn) CurrentProducts = CurrentProducts
-                        .Where(product => product.GetType().ToString() != "Labb7.Models.Toy").ToList();
+                        .Where(product => product.GetType() != typeof(Toy)).ToList();
+            if (!Graphics.VideoGamesOn) CurrentProducts = CurrentProducts
+                        .Where(product => product.GetType() != typeof(VideoGame)).ToList();
         }
     }
 }

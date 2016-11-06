@@ -10,7 +10,7 @@ namespace Labb7.Models
     {
         public Electronic()
         {
-            Type = (Product.TypesOfProduct)0;
+           Type = TypesOfProduct.Electronics;
         }
     }
 }
