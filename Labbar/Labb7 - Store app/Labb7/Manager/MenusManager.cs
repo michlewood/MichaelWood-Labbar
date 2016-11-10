@@ -43,7 +43,7 @@ namespace Labb7.Manager
             Graphics.PrintMainMenu();
             var input = Console.ReadKey(true).Key;
             FiltersMenu(input, productManager.lists);
-            MainMenuChoice = MenuChooser(MainMenuChoice, 3, input);
+            MainMenuChoice = MenuChooser(MainMenuChoice, 4, input);
             if (input == ConsoleKey.Enter)
             {
                 switch (MainMenuChoice)
@@ -55,11 +55,13 @@ namespace Labb7.Manager
                         break;
                     case 1:
                         Console.Clear();
-                        Console.WriteLine("Remove product.");
-                        Console.ReadKey(true);
+                        RemoveMenu(productManager);
                         MenuChoice = 0;
                         break;
                     case 2:
+                        CartMenu(productManager);
+                        break;
+                    case 3:
                         loop = false;
                         break;
                     default:
@@ -67,6 +69,37 @@ namespace Labb7.Manager
                 }
             }
             return loop;
+        }
+
+        private void CartMenu(ProductManager productManager)
+        {
+            while (true)
+            {
+                Graphics.ShowCurrentMenu(productManager.lists.CartList);
+                var input = Console.ReadKey(true).Key;
+                if (input == ConsoleKey.Escape)
+                {
+                    return;
+                }
+            }
+        }
+
+        private void RemoveMenu(ProductManager productManager)
+        {
+            CurrentMenuChoice = 0;
+            while (true)
+            {
+                Graphics.ShowCurrentMenu(productManager.lists.CurrentProducts, true);
+                var input = Console.ReadKey(true).Key;
+                CurrentMenuChoice = MenuChooser(CurrentMenuChoice, productManager.lists.CurrentProducts.Count, input);
+                if (input == ConsoleKey.Enter)
+                {
+                    Product productToRemove = productManager.lists.CurrentProducts[CurrentMenuChoice];
+                    productManager.lists.Products.Remove(productToRemove);
+                    productManager.lists.UpdateCurrentList();
+                    return;
+                }
+            }
         }
 
         private int MenuChooser(int menuChoice, int sizeOfMenu, ConsoleKey input)

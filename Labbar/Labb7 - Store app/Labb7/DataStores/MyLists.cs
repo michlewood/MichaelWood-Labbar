@@ -22,6 +22,19 @@ namespace Labb7.DataStores
             }
         }
 
+        List<Product> cartList = new List<Product>();
+        public List<Product> CartList
+        {
+            get
+            {
+                return cartList;
+            }
+            set
+            {
+                cartList = value;
+            }
+        }
+
         public List<Product> CurrentProducts { get; set; }
 
         public void UpdateCurrentList()

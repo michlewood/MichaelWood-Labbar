@@ -101,6 +101,10 @@ namespace Labb7
             Console.ResetColor();
 
             CheckChoice(MenusManager.MainMenuChoice, 2);
+            Console.WriteLine("Cart");
+            Console.ResetColor();
+
+            CheckChoice(MenusManager.MainMenuChoice, 3);
             Console.WriteLine("Exit");
             Console.ResetColor();
         }
