@@ -16,7 +16,8 @@ namespace Labb7
         public static bool ToysOn { get; set; } = true;
         public static bool VideoGamesOn { get; set; } = true;
 
-        public static Product ShowCurrentMenu(List<Product> currentList, bool isInteractable = false)
+        public static Product ShowCurrentMenu(List<Product> currentList, ProductManager productManager,
+            bool isInteractable = false, bool isCart = false)
         {
             Console.Clear();
             Product productToReturn = new Electronic();
@@ -49,12 +50,13 @@ namespace Labb7
                         Console.ForegroundColor = ConsoleColor.Black;
                     }
                     Console.Write(" ");
-                    ProductManager.PrintSingleProduct(product);
+                    if (isCart == false) productManager.PrintSingleProduct(product);
+                    else productManager.PrintSingleProductForCart(product);
                     Console.ResetColor();
                     index++;
                 }
             }
-            else Console.WriteLine("│ Listan tom (kolla filterna eller lägg till nya fordontyper) ");
+            else Console.WriteLine("│ The list is empty");
 
             Console.Write("└");
             for (int i = 1; i < left; i++) Console.Write("─");
@@ -106,6 +108,21 @@ namespace Labb7
 
             CheckChoice(MenusManager.MainMenuChoice, 3);
             Console.WriteLine("Exit");
+            Console.ResetColor();
+        }
+
+       public static void PrintCartMenu()
+        {
+            CheckChoice(MenusManager.CartMenuChoice, 0);
+            Console.WriteLine("Add new product to cart.");
+            Console.ResetColor();
+
+            CheckChoice(MenusManager.CartMenuChoice, 1);
+            Console.WriteLine("Edit amount in cart.");
+            Console.ResetColor();
+
+            CheckChoice(MenusManager.CartMenuChoice, 2);
+            Console.WriteLine("Return to main menu");
             Console.ResetColor();
         }
 

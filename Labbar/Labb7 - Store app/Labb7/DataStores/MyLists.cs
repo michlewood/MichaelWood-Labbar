@@ -35,6 +35,19 @@ namespace Labb7.DataStores
             }
         }
 
+        List<int> amountList = new List<int>();
+        public List<int> AmountList
+        {
+            get
+            {
+                return amountList;
+            }
+            set
+            {
+                amountList = value;
+            }
+        }
+
         public List<Product> CurrentProducts { get; set; }
 
         public void UpdateCurrentList()

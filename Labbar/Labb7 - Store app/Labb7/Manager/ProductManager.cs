@@ -92,9 +92,18 @@ namespace Labb7.Manager
             newProduct.ProductInformation = Console.ReadLine();
         }
 
-        public static void PrintSingleProduct(Product product)
+        public void PrintSingleProduct(Product product)
         {
             string output = string.Format("{0}: {1} monies. {2}.", product.Name, product.Price, product.ProductInformation);
+
+            Console.WriteLine(output);
+        }
+
+        public void PrintSingleProductForCart(Product product)
+        {
+            string output = string.Format("{0}: {1} monies. {2}. Amount: {3}",
+                product.Name, product.Price, product.ProductInformation, 
+                lists.AmountList.ElementAt(lists.CartList.IndexOf(product)));
 
             Console.WriteLine(output);
         }
