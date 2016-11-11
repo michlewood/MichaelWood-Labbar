@@ -68,9 +68,9 @@ namespace Labb9
             Console.SetCursorPosition(8, row++);
             Console.WriteLine("Scores:");
             Console.SetCursorPosition(8, row++);
-            Console.WriteLine("Player one: {0}", Runtime.PlayerScores[0]);
+            Console.WriteLine("Player One: {0}", Runtime.PlayerScores[0]);
             Console.SetCursorPosition(8, row++);
-            Console.WriteLine("Player two: {0}", Runtime.PlayerScores[1]);
+            Console.WriteLine("Player Two: {0}", Runtime.PlayerScores[1]);
             Console.SetCursorPosition(0, 1);
         }
     }

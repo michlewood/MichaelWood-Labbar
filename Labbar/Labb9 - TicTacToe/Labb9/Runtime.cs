@@ -23,6 +23,30 @@ namespace Labb9
         private void GameLoop()
         {
             var loop = true;
+
+            GameOverScreen();
+
+            while (loop)
+            {
+                Console.Clear();
+                Console.WriteLine("Player {0} turn", CurrentPlayer == 1 ? "Ones" : "Twos");
+                Graphics.GameboardGraphics(gb);
+
+
+                bool validMove = ReadInput();
+
+                CheckIfOver();
+
+                if (validMove)
+                {
+                    if (CurrentPlayer == 1) CurrentPlayer = 2;
+                    else CurrentPlayer = 1;
+                }
+            }
+        }
+
+        private void GameOverScreen()
+        {
             GameOver += (sender, e) =>
             {
                 Console.Clear();
@@ -40,24 +64,6 @@ namespace Labb9
                 gb = new Gameboard();
                 CurrentPlayer = 0;
             };
-
-            while (loop)
-            {
-                Console.Clear();
-                Console.WriteLine("Player {0} turn", CurrentPlayer == 1 ? "Ones" : "Twos");
-                Graphics.GameboardGraphics(gb);
-
-
-                bool validMove = ReadInput();
-
-                CheckIfOver();
-
-                if (validMove)
-                {
-                    if (CurrentPlayer == 1) CurrentPlayer = 2;
-                    else CurrentPlayer = 1; 
-                }
-            }
         }
 
         private void CheckIfOver()
@@ -79,8 +85,8 @@ namespace Labb9
         {
             for (int i = 0; i < 3; i++)
             {
-                if (gb.Grid[i, 0].Taken && gb.Grid[i, 1].Taken && gb.Grid[i, 2].Taken 
-                    && gb.Grid[i, 0].Player == gb.Grid[i, 1].Player 
+                if (gb.Grid[i, 0].Taken && gb.Grid[i, 1].Taken && gb.Grid[i, 2].Taken
+                    && gb.Grid[i, 0].Player == gb.Grid[i, 1].Player
                     && gb.Grid[i, 0].Player == gb.Grid[i, 2].Player)
                 {
                     won = true;
@@ -93,9 +99,9 @@ namespace Labb9
                 }
             }
 
-            if (gb.Grid[0, 0].Taken && gb.Grid[1,1].Taken && gb.Grid[2, 2].Taken
+            if (gb.Grid[0, 0].Taken && gb.Grid[1, 1].Taken && gb.Grid[2, 2].Taken
                     && gb.Grid[0, 0].Player == gb.Grid[1, 1].Player
-                    && gb.Grid[0, 0].Player == gb.Grid[2, 2].Player 
+                    && gb.Grid[0, 0].Player == gb.Grid[2, 2].Player
                     || gb.Grid[0, 2].Taken && gb.Grid[1, 1].Taken && gb.Grid[2, 0].Taken
                     && gb.Grid[0, 2].Player == gb.Grid[1, 1].Player
                     && gb.Grid[0, 2].Player == gb.Grid[2, 0].Player)
@@ -111,14 +117,20 @@ namespace Labb9
 
         private bool ReadInput()
         {
-            Console.WriteLine("Make a move (format: row,column)");
-            
-            var input = Console.ReadLine();
-
-            int row = int.Parse(input[0].ToString())-1;
-            int column = int.Parse(input[2].ToString())-1;
-
-            return gb.PlaceMarker(row, column, CurrentPlayer);
+            var row = 0;
+            int column = 0;
+            while (true)
+            {
+                Console.WriteLine("Make a move (format: row,column)");
+                var input = Console.ReadLine();
+                if (input.Length == 3 
+                    && int.TryParse(input[0].ToString(), out row)  && 0 < row && row < 4
+                    && int.TryParse(input[2].ToString(), out column) && 0 < column && column < 4)
+                {
+                    return gb.PlaceMarker(row - 1, column - 1, CurrentPlayer);
+                }
+                return false;
+            }
         }
 
         protected virtual void OnGameOver(EventArgs e)
