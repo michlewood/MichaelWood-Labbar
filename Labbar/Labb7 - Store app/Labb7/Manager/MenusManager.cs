@@ -126,10 +126,10 @@ namespace Labb7.Manager
                 Graphics.ShowCurrentMenu(productManager.lists.CartList, productManager, true, true);
                 var input = Console.ReadKey(true).Key;
                 FiltersMenu(input, productManager.lists);
-                CurrentMenuChoice = MenuChooser(CurrentMenuChoice, productManager.lists.CurrentProducts.Count, input);
+                CurrentMenuChoice = MenuChooser(CurrentMenuChoice, productManager.lists.CartList.Count, input);
                 if (input == ConsoleKey.Enter)
                 {
-                    Product ProductToEditAmount = productManager.lists.CurrentProducts[CurrentMenuChoice];
+                    Product ProductToEditAmount = productManager.lists.CartList[CurrentMenuChoice];
                     EditAmount(ProductToEditAmount, productManager);
                     return;
                 }
@@ -153,6 +153,7 @@ namespace Labb7.Manager
             productManager.lists.AmountList[productManager.lists.CartList.IndexOf(productToEditAmount)] = newAmount;
             if (productManager.lists.AmountList[productManager.lists.CartList.IndexOf(productToEditAmount)] == 0)
             {
+                productManager.lists.AmountList.RemoveAt(productManager.lists.CartList.IndexOf(productToEditAmount));
                 productManager.lists.CartList.Remove(productToEditAmount);
             }
         }
