@@ -100,7 +100,10 @@ namespace Labb10.Managers
                 case ConsoleKey.NumPad7:
                     PrintWhere(IsExpensive);
                     break;
+                default:
+                    return;
             }
+            Console.ReadKey(true);
         }
 
         public void PrintWhere(BookFilter filter)

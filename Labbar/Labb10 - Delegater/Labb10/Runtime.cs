@@ -13,6 +13,7 @@ namespace Labb10
 
         public void Start()
         {
+            Console.CursorVisible = false;
             Loop();
         }
 
@@ -37,7 +38,6 @@ namespace Labb10
         {
             Console.Clear();
             bookManager.FiltersChoice(input);
-            Console.ReadKey(true);
         }
     }
 }
