@@ -33,7 +33,7 @@ namespace Labb11
 
             else
             {
-                for (int i = 3; i < (int)Math.Sqrt(input)+1; i += 2)
+                for (int i = 3; i <= (int)Math.Sqrt(input); i += 2)
                 {
                     if (input % i == 0)
                         notPrime = true;
