@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Labb13.Managers;
+using Labb13.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +10,7 @@ namespace Labb13
 {
     class Graphics
     {
-        public static void PrintTypesList(List<Type> typeList)
+        public static void PrintTypesList(List<Models.Type> typeList)
         {
             foreach (var type in typeList)
             {
@@ -25,9 +27,9 @@ namespace Labb13
 
         internal static void FiltesMenu()
         {
-            Console.WriteLine("1. Filter1");
-            Console.WriteLine("2. Filter2");
-            Console.WriteLine("3. Filter3");
+            Console.WriteLine("1. Show types with low typeness");
+            Console.WriteLine("2. Show types with high typeness");
+            Console.WriteLine("3. Show types of type 1s");
             Console.WriteLine("4. Return");
         }
     }

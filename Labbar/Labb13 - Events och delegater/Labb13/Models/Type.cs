@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Labb13
+namespace Labb13.Models
 {
-    class Type
+    public class Type
     {
         public string Name { get; set; }
         public enum TypesOfType
