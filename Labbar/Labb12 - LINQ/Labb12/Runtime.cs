@@ -11,9 +11,15 @@ namespace Labb12
         public void Start()
         {
             FilmManager filmManager = new FilmManager();
+
             Film film = filmManager.GetFilmWithName("Film2");
-            Console.WriteLine("Film called film2:");
+            Console.WriteLine("Film called Film2:");
             Console.WriteLine(filmManager.Print(film));
+
+            film = filmManager.GetFilmWithName("Film6");
+            Console.WriteLine("\nFilm called Film6:");
+            Console.WriteLine(filmManager.Print(film));
+
             Console.WriteLine("\nFilms of the genre genre3:");
             List<Film> films = filmManager.GetListOfFilmsWithGenre(Film.Genres.Genre3);
             foreach (var movie in films)

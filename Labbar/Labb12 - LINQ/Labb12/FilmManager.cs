@@ -19,7 +19,7 @@ namespace Labb12
 
         public Film GetFilmWithName(string name)
         {
-            return films.Find(film => film.Title == name);
+            return films.SingleOrDefault(film => film.Title == name);
         }
 
         public List<Film> GetListOfFilmsWithGenre(Film.Genres genre)
@@ -44,7 +44,7 @@ namespace Labb12
 
         public string Print(Film film)
         {
-            return string.Format("{0}: Genre: {1}. Length: {2}", film.Title, film.Genre, film.Length);
+            return film != null ? string.Format("{0}: Genre: {1}. Length: {2}", film.Title, film.Genre, film.Length) : "No such film";
         }
     }
 }
