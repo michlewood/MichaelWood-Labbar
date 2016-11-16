@@ -25,13 +25,22 @@ namespace Labb11
         public void IsPrime(int input)
         {
             var notPrime = false;
-            for (int i = 2; i < input; i++)
+            
+            if ((input % 2 == 0 && input != 2) || input == 1)
             {
-                if (input % i == 0)
-                    notPrime = true;
+                notPrime = true;
             }
 
-            Console.WriteLine("{0}", !notPrime && input != 1 ? "Is prime" : "Is not prime");
+            else
+            {
+                for (int i = 3; i < (int)Math.Sqrt(input)+1; i += 2)
+                {
+                    if (input % i == 0)
+                        notPrime = true;
+                } 
+            }
+
+            Console.WriteLine("{0}", !notPrime ? "Is prime" : "Is not prime");
         }
 
         public void Start()
