@@ -8,42 +8,21 @@ namespace Labb11
 {
     class Runtime
     {
-        public event EventHandler NumberInput;
+        public delegate void AnalyzeNumber(int input);
 
-        protected virtual void OnNumberInput(EventArgs e, int input)
+        public event AnalyzeNumber NumberInput;
+
+        public void IsEven(int input)
         {
-            EventHandler handler = NumberInput;
-
-            if (handler != null)
-            {
-                AnalyzeNumber even = IsEven;
-                AnalyzeNumber divisableByThree = IsDivisableByThree;
-                AnalyzeNumber prime = IsPrime;
-                Console.WriteLine("{0}", even(input) ? "Is even" : "Is not even");
-                Console.WriteLine("{0}", divisableByThree(input) ? "Is divisable by three" : "Is not divisable by three");
-                Console.WriteLine("{0}", prime(input) ? "Is prime" : "Is not prime");
-                Console.ReadLine();
-                handler(this, e);
-            }
+            Console.WriteLine("{0}", input % 2 == 0 ? "Is even" : "Is not even");
         }
 
-        public delegate bool AnalyzeNumber(int input);
-
-        public bool IsEven(int input)
+        public void IsDivisableByThree(int input)
         {
-            if (input % 2 == 0)
-                return true;
-            else return false;
+            Console.WriteLine("{0}", input % 3 == 0 ? "Is divisable by three" : "Is not divisable by three");
         }
 
-        public bool IsDivisableByThree(int input)
-        {
-            if (input % 3 == 0)
-                return true;
-            else return false;
-        }
-
-        public bool IsPrime(int input)
+        public void IsPrime(int input)
         {
             var notPrime = false;
             for (int i = 2; i < input; i++)
@@ -51,14 +30,15 @@ namespace Labb11
                 if (input % i == 0)
                     notPrime = true;
             }
-            if (!notPrime && input != 1)
-                return true;
-            else return false;
+
+            Console.WriteLine("{0}", !notPrime && input != 1 ? "Is prime" : "Is not prime");
         }
 
         public void Start()
         {
-            NumberInput += (sender, e) => { };
+            NumberInput += IsEven;
+            NumberInput += IsDivisableByThree;
+            NumberInput += IsPrime;
             Loop();
         }
 
@@ -73,8 +53,8 @@ namespace Labb11
                 Console.WriteLine("Enter a number");
                 validInput = int.TryParse(Console.ReadLine(), out input);
 
-                if (validInput) OnNumberInput(EventArgs.Empty, input);
-
+                if (validInput) NumberInput(input);
+                Console.ReadKey(true);
             }
         }
     }
