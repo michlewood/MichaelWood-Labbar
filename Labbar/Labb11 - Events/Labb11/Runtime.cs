@@ -17,11 +17,11 @@ namespace Labb11
             if (handler != null)
             {
                 AnalyzeNumber even = IsEven;
-                AnalyzeNumber divisByThree = IsDivisableByThree;
+                AnalyzeNumber divisableByThree = IsDivisableByThree;
                 AnalyzeNumber prime = IsPrime;
-                if (even(input)) Console.WriteLine("Is Even");
-                if (divisByThree(input)) Console.WriteLine("Is divisable by three");
-                if (prime(input)) Console.WriteLine("Is Prime");
+                Console.WriteLine("{0}", even(input) ? "Is even" : "Is not even");
+                Console.WriteLine("{0}", divisableByThree(input) ? "Is divisable by three" : "Is not divisable by three");
+                Console.WriteLine("{0}", prime(input) ? "Is prime" : "Is not prime");
                 Console.ReadLine();
                 handler(this, e);
             }
@@ -45,28 +45,26 @@ namespace Labb11
 
         public bool IsPrime(int input)
         {
-            if (!(input % 2 == 0 || input % 3 == 0 || input % 5 == 0 || input % 7 == 0
-                || input % 11 == 0 || input % 13 == 0 || input % 17 == 0 || input % 19 == 0
-                || input % 23 == 0 || input % 29 == 0 || input % 31 == 0 || input % 37 == 0))
+            var notPrime = false;
+            for (int i = 2; i < input; i++)
+            {
+                if (input % i == 0)
+                    notPrime = true;
+            }
+            if (!notPrime && input != 1)
                 return true;
             else return false;
         }
 
         public void Start()
         {
-            var loop = true;
-            NumberInput += (sender, e) =>
-            {
-                
-
-                loop = false;
-            };
-            Loop(loop);
+            NumberInput += (sender, e) => { };
+            Loop();
         }
 
-        private void Loop(bool loop)
+        private void Loop()
         {
-            while (loop)
+            while (true)
             {
                 Console.Clear();
                 var input = 0;
@@ -75,12 +73,9 @@ namespace Labb11
                 Console.WriteLine("Enter a number");
                 validInput = int.TryParse(Console.ReadLine(), out input);
 
-                if ((validInput && -1000 <= input && input <= 1000)) OnNumberInput(EventArgs.Empty, input);
+                if (validInput) OnNumberInput(EventArgs.Empty, input);
 
             }
         }
-
-
-
     }
 }

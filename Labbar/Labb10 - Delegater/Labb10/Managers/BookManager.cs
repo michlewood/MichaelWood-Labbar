@@ -16,7 +16,7 @@ namespace Labb10.Managers
 
         public bool IsNovel(Book book)
         {
-            if (book.Pages > 160) return true;
+            if (book.Pages > 100) return true;
             else return false;
         }
 
