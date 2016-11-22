@@ -43,8 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IPushable.cs" />
+    <Compile Include="Interfaces\IVehicle.cs" />
+    <Compile Include="Models\Bicycle.cs" />
+    <Compile Include="Models\Boulder.cs" />
+    <Compile Include="Models\Button.cs" />
+    <Compile Include="Models\Car.cs" />
+    <Compile Include="Models\Spaceship.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Runtime.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
