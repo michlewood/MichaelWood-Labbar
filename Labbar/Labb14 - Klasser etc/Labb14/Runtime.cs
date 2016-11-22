@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Labb14
 {
-    class Program
+    class Runtime
     {
-        static void Main(string[] args)
+        public void Start()
         {
-            Runtime runtime = new Runtime();
-            runtime.Start();
+
         }
     }
 }
