@@ -12,6 +12,7 @@ namespace Labb13
     {
         TypeManager typeManager = new TypeManager();
         TypeFilter filter;
+        TypeFilter[] filters = { TypeFilters.LowTypeness, TypeFilters.HighTypeness, TypeFilters.IsTypeType1, null};
 
         public void Start()
         {
@@ -55,28 +56,50 @@ namespace Labb13
                 Console.WriteLine("-------");
                 Graphics.FiltesMenu();
                 var input = Console.ReadKey(true).Key;
-                switch (input)
+
+                #region Method1
+                //switch (input)
+                //{
+                //    case ConsoleKey.D1:
+                //    case ConsoleKey.NumPad1:
+                //        filter = TypeFilters.LowTypeness;
+                //        break;
+                //    case ConsoleKey.D2:
+                //    case ConsoleKey.NumPad2:
+                //        filter = TypeFilters.HighTypeness;
+                //        break;
+                //    case ConsoleKey.D3:
+                //    case ConsoleKey.NumPad3:
+                //        filter = TypeFilters.IsTypeType1;
+                //        break;
+                //    case ConsoleKey.D4:
+                //    case ConsoleKey.NumPad4:
+                //        return;
+                //}
+
+                //if (filter != null)
+                //{
+                //    Console.Clear();
+                //    var filteredtypes = typeManager.Types.Where(type => filter(type)).ToList();
+                //    Graphics.PrintTypesList(filteredtypes);
+                //    filter = null;
+                //    Console.ReadKey(true);
+                //}
+                #endregion
+
+                #region Method2
+                int number = 0;
+                if (int.TryParse(input.ToString()[input.ToString().Length - 1].ToString(), out number) && number <= filters.Length)
                 {
-                    case ConsoleKey.D1:
-                    case ConsoleKey.NumPad1:
-                        filter = TypeFilters.LowTypeness;
-                        break;
-                    case ConsoleKey.D2:
-                    case ConsoleKey.NumPad2:
-                        filter = TypeFilters.HighTypeness;
-                        break;
-                    case ConsoleKey.D3:
-                    case ConsoleKey.NumPad3:
-                        filter = TypeFilters.IsTypeType1;
-                        break;
-                    case ConsoleKey.D4:
-                    case ConsoleKey.NumPad4:
-                        return;
+                    if (filters[number - 1] == null) return;
+                    Console.Clear();
+                    var filteredtypes = typeManager.Types.Where(type => filters[number - 1](type)).ToList();
+                    Graphics.PrintTypesList(filteredtypes);
+                    filter = filters[number - 1];
+                    filter = null;
+                    Console.ReadKey(true);
                 }
-                Console.Clear();
-                var filteredtypes = typeManager.Types.Where(type => filter(type)).ToList();
-                Graphics.PrintTypesList(filteredtypes);
-                Console.ReadKey(true);
+                #endregion
             }
         }
     }

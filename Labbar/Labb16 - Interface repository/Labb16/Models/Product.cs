@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Labb16
+namespace Labb16.Models
 {
-    class Program
+    class Product
     {
-        static void Main(string[] args)
-        {
-
-        }
+        public string Name { get; set; }
     }
 }
