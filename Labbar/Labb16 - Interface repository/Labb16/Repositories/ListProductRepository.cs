@@ -20,7 +20,10 @@ namespace Labb16.Repositories
 
         public void Delete(int id)
         {
-            ProductList.RemoveAt(id);
+            if (0 <= id && id < ProductList.Count)
+            {
+                ProductList.RemoveAt(id); 
+            }
         }
 
         public Product Get(int id)

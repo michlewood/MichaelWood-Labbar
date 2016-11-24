@@ -9,5 +9,10 @@ namespace Labb16.Models
     class Product
     {
         public string Name { get; set; }
+
+        public bool Equals(Product product)
+        {
+            return Name == product.Name;
+        }
     }
 }
