@@ -89,7 +89,7 @@ namespace Labb13
 
                 #region Method2
                 int number = 0;
-                if (int.TryParse(input.ToString()[input.ToString().Length - 1].ToString(), out number) && number <= filters.Length)
+                if (int.TryParse(input.ToString()[input.ToString().Length - 1].ToString(), out number) && (input.ToString()[0] == 'D' || input.ToString()[0] == 'N') && number <= filters.Length)
                 {
                     if (filters[number - 1] == null) return;
                     Console.Clear();
